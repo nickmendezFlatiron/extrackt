@@ -1,22 +1,16 @@
 import {React } from 'react'
 
-import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import Form from 'react-bootstrap/Form';
 
-const Sidebar = () => {
-  const user = {
-    id: 1,
-    username: "Admin",
-    full_name: "Nick Mendez",
-    email: "nicholasmendez10@gmail.com",
-    account_type: "admin",
-    credits: 2394
-  }
+
+
+
+const Sidebar = ({user}) => {
+
 
   return (
       <>
@@ -37,35 +31,17 @@ const Sidebar = () => {
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id="offcanvasNavbarLabel-expand-false">
                 <h2>Extrackt.</h2>
+                
                 </Offcanvas.Title>
               </Offcanvas.Header>
-              <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Home</Nav.Link>
-                  <Nav.Link href="#action2">Link</Nav.Link>
-                  <NavDropdown
-                    title="Dropdown"
-                    id="offcanvasNavbarDropdown-expand-false"
-                  >
-                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">
-                      Another action
-                    </NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5">
-                      Something else here
-                    </NavDropdown.Item>
-                  </NavDropdown>
+              <Offcanvas.Body className="d-inline-flex">
+                <Nav className="fs-4 roboto">
+                  <Nav.Link href="#action1" >Home</Nav.Link>
+                  <Nav.Link href="#action2">The Crate</Nav.Link>
+                  <Nav.Link href="#action2">My Downloads</Nav.Link>
+                  <Nav.Link href="#action2">Manage Samples</Nav.Link>
+                  <Nav.Link href="#action2">Upload</Nav.Link>
                 </Nav>
-                <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                  <Button variant="outline-success">Search</Button>
-                </Form>
               </Offcanvas.Body>
                 <Container>
                   <hr/>

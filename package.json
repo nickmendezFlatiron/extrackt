@@ -9,5 +9,8 @@
     "clean": "rm -rf public",
     "deploy": "cp -a client/build/. public/",
     "clientbuild": "npm run clean && npm run build && npm run deploy && echo 'Client built!'"
+  },
+  "dependencies": {
+    "sass": "^1.54.8"
   }
 }
