@@ -58,6 +58,7 @@ development:
 test:
   <<: *default
   database: extrackt_test
+  host: localhost
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,7 +81,13 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
+  production:
   <<: *default
-  database: extrackt_production
-  username: extrackt
-  password: <%= ENV["EXTRACKT_DATABASE_PASSWORD"] %>
+  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>

@@ -22,7 +22,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem 'active_model_serializers'
 gem 'rails_serve_static_assets'
 gem 'bcrypt'
-
+gem 'foreman'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
