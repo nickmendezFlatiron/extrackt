@@ -1,6 +1,8 @@
 import { Fragment } from 'react';
-import Sidebar from './Sidebar';
+import {Routes , Route} from 'react-router-dom'
 
+import Sidebar from './Sidebar';
+import Homepage from './home-page/Homepage';
 // CSS Styling
 import './styles/app.scss'
 import './styles/App.css';
@@ -19,6 +21,9 @@ function App() {
   return (
     <Fragment>
       <Sidebar user={user}/>
+      <Routes>
+        <Route path="/" element={<Homepage />}/>
+      </Routes>
     </Fragment>
   );
 }

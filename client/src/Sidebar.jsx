@@ -36,7 +36,7 @@ const Sidebar = ({user}) => {
               </Offcanvas.Header>
               <Offcanvas.Body className="d-inline-flex">
                 <Nav className="fs-4 roboto">
-                  <Nav.Link href="#action1" >Home</Nav.Link>
+                  <Nav.Link href="/" >Home</Nav.Link>
                   <Nav.Link href="#action2">The Crate</Nav.Link>
                   <Nav.Link href="#action2">My Downloads</Nav.Link>
                   <Nav.Link href="#action2">Manage Samples</Nav.Link>
