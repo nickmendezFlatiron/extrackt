@@ -15,8 +15,8 @@ const Sidebar = ({user}) => {
   return (
       <>
         <Navbar   expand="false" className="mb-3">
-          <Container fluid>
-            <Navbar.Brand href="#"><h2>Extrackt.</h2></Navbar.Brand>
+          <Container fluid >
+            <Navbar.Brand href="#"><h2 className="text-dark">Extrackt.</h2></Navbar.Brand>
             <Navbar.Toggle aria-controls="offcanvasNavbar-expand-false" className="light-purple-bg">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"  viewBox="0 0 16 16">
                 <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
@@ -35,7 +35,7 @@ const Sidebar = ({user}) => {
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body className="d-inline-flex">
-                <Nav className="fs-4 roboto">
+                <Nav className="fs-4 roboto text-dark">
                   <Nav.Link href="/" >Home</Nav.Link>
                   <Nav.Link href="#action2">The Crate</Nav.Link>
                   <Nav.Link href="#action2">My Downloads</Nav.Link>
@@ -45,7 +45,7 @@ const Sidebar = ({user}) => {
               </Offcanvas.Body>
                 <Container>
                   <hr/>
-                  <h2>{user.username}</h2>
+                  <h2 className='text-dark'>{user.username}</h2>
                   <h6 className='text-secondary'>{user.credits} Credits</h6>
                 </Container>
             </Navbar.Offcanvas>

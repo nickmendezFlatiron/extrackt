@@ -2,12 +2,17 @@
   font-family: 'Roboto', sans-serif;
 }
 
+.blk-text {
+  color: black;
+}
 .light-purple-bg {
   background-color: #e4c1f9;
 }
 .creme-bg {
   background-color: #fdffe9;
 }
+
+
 .roboto {
   font-family: 'Roboto', sans-serif;
 }
@@ -19,5 +24,4 @@
 .offset {
     box-shadow: 20px 35px;
     color: #adadad;
-
 }
