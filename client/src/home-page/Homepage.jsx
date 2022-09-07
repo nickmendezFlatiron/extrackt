@@ -10,7 +10,7 @@ import wave from "../assets/wave.png"
 
 const Homepage = () => {
   return (
-    <Container fluid className="pt-3">
+    <Container fluid className="p-5">
       <Row>
         <Col lg={5} className="creme-bg py-5 ps-5 rounded-4 offset">
         <h1 className='text-dark fw-bold'>
@@ -28,9 +28,9 @@ const Homepage = () => {
           <br/>
           That means more money for your dreams.
         </p>
-        <Container>
+        <Container className="d-flex align-content-center">
           <Button primary className="fs-5 fw-bold">Create An Account</Button>
-          <Link to="/" className='ps-5 fs-4'><strong>Learn More</strong></Link>
+          <Link to="/" className='ms-4 fs-4'><strong>Learn More</strong></Link>
         </Container>
         </Col>
         <Col className="mx-5 d-flex align-items-center ">

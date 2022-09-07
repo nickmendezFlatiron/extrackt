@@ -1,13 +1,16 @@
-import { Fragment } from 'react';
+import { Fragment , useState } from 'react';
 import {Routes , Route} from 'react-router-dom'
 
 import Sidebar from './Sidebar';
+import Navigation from './home-page/Navigation'
 import Homepage from './home-page/Homepage';
 // CSS Styling
 import './styles/app.scss'
 import './styles/App.css';
+import { useEffect } from 'react';
 
 function App() {
+  const [authenticated , isAuthenticated] = useState(null)
 
   const user = {
     id: 1,
@@ -18,9 +21,14 @@ function App() {
     credits: 2394
   }
 
+  useEffect(()=>{
+    isAuthenticated(false)
+  },[])
+
   return (
     <Fragment>
-      <Sidebar user={user}/>
+      {(authenticated === false) && <Navigation />}
+      {authenticated && <Sidebar user={user}/>}
       <Routes>
         <Route path="/" element={<Homepage />}/>
       </Routes>
