@@ -6,11 +6,11 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 import {Link} from 'react-router-dom'
-import wave from "../assets/wave.png"
+import logo from "../assets/logo-stroke.png"
 
 const Homepage = () => {
   return (
-    <Container fluid className="p-5">
+    <Container fluid className="p-5 banner-bg" >
       <Row>
         <Col lg={5} className="creme-bg py-5 ps-5 rounded-4 offset">
         <h1 className='text-dark fw-bold'>
@@ -30,11 +30,11 @@ const Homepage = () => {
         </p>
         <Container className="d-flex align-content-center">
           <Button primary className="fs-5 fw-bold">Create An Account</Button>
-          <Link to="/" className='ms-4 fs-4'><strong>Learn More</strong></Link>
+          <Link to="/about" className='ms-4 fs-4'><strong>Learn More</strong></Link>
         </Container>
         </Col>
-        <Col className="mx-5 d-flex align-items-center ">
-          <Image src={wave} fluid alt="audio waveform" className=''/>
+        <Col className="mx-5 d-flex align-items-center">
+          <Image src={logo} fluid alt="logo" />
         </Col>
       </Row>
     </Container>
