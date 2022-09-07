@@ -32,3 +32,7 @@ background: url("../assets/tile-image.jpeg");
 background-size: cover;
 /* background-blend-mode: overlay; */
 }
+
+h1 {
+  font-size: 50px;
+}
