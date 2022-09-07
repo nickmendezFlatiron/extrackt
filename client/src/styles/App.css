@@ -48,14 +48,37 @@ h1 {
   font-size: 50px;
 }
 
+/* CARD STYLING */
+
 .card:hover {
   
   box-shadow:0 0 15px rgba(207, 118, 255, 0.75);
-  border: rgba(207, 118, 255, 0.7);
+  /* border: rgba(207, 118, 255, 0.7);
   border-style: outset;
   border-radius: 10px;
-  border-width: 5px;
+  border-width: 5px; */
 
+  transition: all .125s linear;
+  -ms-transition: all .125s linear;
+  -moz-transition: all .125s linear;
+  -webkit-transition: all .125s linear;
+  -o-transition: all .125s linear;
+}
+
+.card:hover > .card-header {
+  background-color: #cf76ff;
+
+  transition: all .125s linear;
+  -ms-transition: all .125s linear;
+  -moz-transition: all .125s linear;
+  -webkit-transition: all .125s linear;
+  -o-transition: all .125s linear;
+  
+}
+
+.card:hover > .card-header > h4 {
+  font-weight: bold;
+  font-size: 35px;
   transition: all .125s linear;
   -ms-transition: all .125s linear;
   -moz-transition: all .125s linear;

@@ -8,9 +8,9 @@ import Button from 'react-bootstrap/Button'
 
 const Plans = () => {
   return (
-    <Container className="py-5">
+    <Container className="py-4">
         <Row>
-          <Col>
+          <Col lg="4" className="my-3">
             <Card className="text-center">
               <Card.Header className="light-purple-bg">
                 <h4 className="fw-normal">Free</h4>
@@ -32,9 +32,9 @@ const Plans = () => {
               </Card.Body>
             </Card>
           </Col>
-          <Col>
-            <Card className="text-center" border="primary">
-              <Card.Header className="border-primary light-purple-bg">
+          <Col lg="4" className="my-3">
+            <Card className="text-center" >
+              <Card.Header className="light-purple-bg">
                 <h4 className="fw-normal">Producer</h4>
               </Card.Header>
               <Card.Body>
@@ -54,7 +54,7 @@ const Plans = () => {
               </Card.Body>
             </Card>
           </Col>
-          <Col>
+          <Col lg="4" className="my-3">
             <Card className="text-center">
               <Card.Header className="light-purple-bg">
                 <h4 className="fw-normal">Creator</h4>
