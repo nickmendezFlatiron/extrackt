@@ -47,3 +47,18 @@ ul {
 h1 {
   font-size: 50px;
 }
+
+.card:hover {
+  
+  box-shadow:0 0 15px rgba(207, 118, 255, 0.75);
+  border: rgba(207, 118, 255, 0.7);
+  border-style: outset;
+  border-radius: 10px;
+  border-width: 5px;
+
+  transition: all .125s linear;
+  -ms-transition: all .125s linear;
+  -moz-transition: all .125s linear;
+  -webkit-transition: all .125s linear;
+  -o-transition: all .125s linear;
+}

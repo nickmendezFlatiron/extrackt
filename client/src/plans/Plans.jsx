@@ -12,7 +12,7 @@ const Plans = () => {
         <Row>
           <Col>
             <Card className="text-center">
-              <Card.Header>
+              <Card.Header className="light-purple-bg">
                 <h4 className="fw-normal">Free</h4>
               </Card.Header>
               <Card.Body>
@@ -33,9 +33,9 @@ const Plans = () => {
             </Card>
           </Col>
           <Col>
-            <Card className="text-center">
-              <Card.Header>
-                <h4 className="fw-normal">Artist</h4>
+            <Card className="text-center" border="primary">
+              <Card.Header className="border-primary light-purple-bg">
+                <h4 className="fw-normal">Producer</h4>
               </Card.Header>
               <Card.Body>
                 <Card.Title>
@@ -56,8 +56,8 @@ const Plans = () => {
           </Col>
           <Col>
             <Card className="text-center">
-              <Card.Header>
-                <h4 className="fw-normal">User</h4>
+              <Card.Header className="light-purple-bg">
+                <h4 className="fw-normal">Creator</h4>
               </Card.Header>
               <Card.Body>
                 <Card.Title>
