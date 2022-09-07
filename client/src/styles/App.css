@@ -11,7 +11,9 @@
 .creme-bg {
   background-color: #fdffe9;
 }
-
+.text-dkg {
+  color: #5e5e5e;
+}
 
 .roboto {
   font-family: 'Roboto', sans-serif;
@@ -33,6 +35,15 @@ background-size: cover;
 /* background-blend-mode: overlay; */
 }
 
+.nav-logo {
+  height: 30px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 h1 {
   font-size: 50px;
 }

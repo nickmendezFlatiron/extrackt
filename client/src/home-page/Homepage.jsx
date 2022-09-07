@@ -10,7 +10,7 @@ import logo from "../assets/logo-stroke.png"
 
 const Homepage = () => {
   return (
-    <Container fluid className="p-5 mb-5 banner-bg" >
+    <Container fluid className="p-5 mb-5 banner-bg shadow" >
       <Row>
         <Col lg={5} className="creme-bg py-5 ps-5 rounded-4 offset">
         <h1 className='text-dark fw-bold'>

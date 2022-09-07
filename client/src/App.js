@@ -4,6 +4,7 @@ import {Routes , Route} from 'react-router-dom'
 import Sidebar from './Sidebar';
 import Navigation from './home-page/Navigation'
 import Homepage from './home-page/Homepage';
+import Plans from './plans/Plans'
 // CSS Styling
 import './styles/app.scss'
 import './styles/App.css';
@@ -22,7 +23,7 @@ function App() {
   }
 
   useEffect(()=>{
-    isAuthenticated(true)
+    isAuthenticated(false)
   },[])
 
   return (
@@ -31,6 +32,7 @@ function App() {
       {authenticated && <Sidebar user={user}/>}
       <Routes>
         <Route path="/" element={<Homepage />}/>
+        <Route path="/plans" element={<Plans />} />
       </Routes>
     </Fragment>
   );
