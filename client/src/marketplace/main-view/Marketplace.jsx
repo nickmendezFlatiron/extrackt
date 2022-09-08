@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Filter from './Filter'
+import Carousel from './Carousel'
 
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
@@ -9,7 +10,9 @@ import Image from 'react-bootstrap/Image'
 
 import featured from '../../assets/stock-album-2.jpg'
 
-const Marketplace = () => {
+const Marketplace = ({collection}) => {
+
+
   
   return (
     <>
@@ -22,6 +25,7 @@ const Marketplace = () => {
           <h4>Featured Artist</h4>
         </Col>
         <Col className="border" lg={9}>
+          <Carousel collection={collection}/>
         </Col>
       </Row>
     </div>

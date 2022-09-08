@@ -57,7 +57,7 @@ function App() {
         <Route path="/" element={<Homepage />}/>
         <Route path="/plans" element={<Plans />} />
         <Route path="about" element={<About />} />
-        <Route path="/marketplace" exact element={<Marketplace/>}>
+        <Route path="/marketplace" exact element={<Marketplace collection={collection}/>}>
         </Route>
         <Route path="/marketplace/:collection_id" element={<Collection collection={collection} />} />
         <Route path=':username' exact element={<Account user={user}/>}>
