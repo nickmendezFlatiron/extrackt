@@ -2,7 +2,10 @@ import React from 'react'
 
 const AudioPlayer = () => {
   return (
-    <div>AudioPlayer</div>
+    // Sticky footer
+    <footer className='mt-5 audio-player fixed-bottom bg-secondary'>
+      This is a footer
+    </footer>
   )
 }
 

@@ -32,6 +32,20 @@
   border-radius: 20px;
 }
 
+/* .audio-player {
+ 
+} */
+
+.height-match{
+  height: 550px;
+}
+
+.table-height{
+  height: 75vh;
+  grid-template-rows:auto 1fr;
+  display: grid;
+  grid-template-columns: 100%;
+}
   
 .banner-bg {
   background-color: white;

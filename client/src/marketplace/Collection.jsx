@@ -10,9 +10,10 @@ import Image from 'react-bootstrap/Image'
 
 const Collection = ({collection}) => {
   return (
-      <div className="mt-3 mx-4">
+    <>
+      <div className="my-3 pb-3 mx-4">
         <Row>
-          <Col className="border" > 
+          <Col className="border height-match" lg={4}> 
             <Col className="py-3 d-flex">
             <Button className="me-4" variant="link"> {`< Back`} </Button>
             <Button className="px-5">Download All</Button>
@@ -25,11 +26,17 @@ const Collection = ({collection}) => {
             <h2 className="text-dkg">{collection.user}</h2>
           </Col>
           <Col className="border border-5">
+            <Col>
+            <h2>Pagination and search bar</h2>
+            </Col>
+            <Col className="table-height overflow-auto">
             <CollectionTable />
+            </Col>
           </Col>
         </Row>
-        <AudioPlayer />
       </div>
+        <AudioPlayer />
+    </>
         
     
   )
