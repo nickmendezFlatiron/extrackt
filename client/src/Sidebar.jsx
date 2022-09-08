@@ -48,7 +48,7 @@ const Sidebar = ({user}) => {
                 <Container className="no-padding-margin">
                 <Nav.Link  className="px-2 fs-4">Logout</Nav.Link>
                   <hr/>
-                  <Nav.Link href="/account" className="px-2"><h2 className='text-dark'>{user.username}</h2></Nav.Link>
+                  <Nav.Link className="px-2"><h2 className='text-dark'>{user.username}</h2></Nav.Link>
                   <h6 className='text-secondary px-2' >{user.credits} Credits</h6>
                 </Container>
             </Navbar.Offcanvas>

@@ -46,7 +46,7 @@ function App() {
         <Route path="/marketplace" element={<Marketplace />}>
           <Route path=":collection" element={<Collection />} />
         </Route>
-        <Route path='/:username' element={<Account />}>
+        <Route path='/:username' element={<Account user={user}/>}>
             <Route path="downloads" element={<Downloads />}/>
             <Route path="samples" element={<Samples />}/>
         </Route>
