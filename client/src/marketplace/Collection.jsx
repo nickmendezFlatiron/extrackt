@@ -15,8 +15,8 @@ const Collection = ({collection}) => {
         <Row>
           <Col className="border height-match" lg={4}> 
             <Col className="py-3 d-flex">
-            <Button className="me-4" variant="link"> {`< Back`} </Button>
-            <Button className="px-5">Download All</Button>
+            <Button className="me-4" variant="link" href="/marketplace"> {`< Back`} </Button>
+            <Button className="px-4 fs-5">Download All</Button>
             </Col> 
             <Col >
               <Image src={collection.artwork} className="cover-preview offset"/>

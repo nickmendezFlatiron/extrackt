@@ -4,8 +4,6 @@ import CollectionTableRow from "./CollectionTableRow"
 import Table from 'react-bootstrap/Table'
 import uuid from 'react-uuid'
 
-
-
 const CollectionTable = () => {
 
   const sample = {
