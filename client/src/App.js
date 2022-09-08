@@ -1,5 +1,5 @@
-import { Fragment , useState } from 'react';
-import {Routes , Route} from 'react-router-dom'
+import { Fragment , useState , useEffect } from 'react';
+import {Routes , Route , Navigate} from 'react-router-dom'
 import Protected from './Protected'
 
 import Sidebar from './Sidebar';
@@ -17,7 +17,7 @@ import Account from './user-files/Account'
 // CSS Styling
 import './styles/app.scss'
 import './styles/App.css';
-import { useEffect } from 'react';
+
 
 function App() {
   const [authenticated , isAuthenticated] = useState(null)
@@ -32,7 +32,7 @@ function App() {
   }
 
   useEffect(()=>{
-    isAuthenticated(false)
+    isAuthenticated(true)
   },[])
 
   return (
@@ -51,6 +51,7 @@ function App() {
             <Route path="samples" element={<Samples />}/>
         </Route>
         <Route path="/upload" element={<UploadForm />} />
+        <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </Fragment>
   );
