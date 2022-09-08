@@ -36,19 +36,20 @@ const Sidebar = ({user}) => {
                 <h2 className="pt-2">Extrackt.</h2>
                 </Offcanvas.Title>
               </Offcanvas.Header>
-              <Offcanvas.Body className="d-inline-flex">
+              <Offcanvas.Body className="d-inline-flex no-padding-margin">
                 <Nav className="fs-4 roboto text-dark">
-                  <Nav.Link href="/" >Home</Nav.Link>
-                  <Nav.Link href="/marketplace">The Crate</Nav.Link>
-                  <Nav.Link href={`/${user.username}/downloads`}>My Downloads</Nav.Link>
-                  <Nav.Link href={`/${user.username}/samples`}>Manage Samples</Nav.Link>
-                  <Nav.Link href="/upload">Upload</Nav.Link>
+                  <Nav.Link href="/" className="px-2">Home</Nav.Link>
+                  <Nav.Link href="/marketplace" className="px-2">The Crate</Nav.Link>
+                  <Nav.Link href={`/${user.username}/downloads`} className="px-2">My Downloads</Nav.Link>
+                  <Nav.Link href={`/${user.username}/samples`} className="px-2">Manage Samples</Nav.Link>
+                  <Nav.Link href="/upload" className="px-2">Upload</Nav.Link>
                 </Nav>
               </Offcanvas.Body>
-                <Container>
+                <Container className="no-padding-margin">
+                <Nav.Link  className="px-2 fs-4">Logout</Nav.Link>
                   <hr/>
-                  <Nav.Link href="/account"><h2 className='text-dark'>{user.username}</h2></Nav.Link>
-                  <h6 className='text-secondary'>{user.credits} Credits</h6>
+                  <Nav.Link href="/account" className="px-2"><h2 className='text-dark'>{user.username}</h2></Nav.Link>
+                  <h6 className='text-secondary px-2' >{user.credits} Credits</h6>
                 </Container>
             </Navbar.Offcanvas>
           </Container>

@@ -12,6 +12,7 @@ import Marketplace from './marketplace/Marketplace'
 import UploadForm from "./upload/UploadForm";
 import Downloads from './user-files/Downloads'
 import Samples from './user-files/Samples'
+import Account from './user-files/Account'
 
 // CSS Styling
 import './styles/app.scss'
@@ -45,7 +46,7 @@ function App() {
         <Route path="/marketplace" element={<Marketplace />}>
           <Route path=":collection" element={<Collection />} />
         </Route>
-        <Route path='/:username'>
+        <Route path='/:username' element={<Account />}>
             <Route path="downloads" element={<Downloads />}/>
             <Route path="samples" element={<Samples />}/>
         </Route>

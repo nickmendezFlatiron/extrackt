@@ -43,6 +43,20 @@
     height: 30px;
   }
   
+  .nav-link:hover {
+    background-color: #cf76ff;
+    transition: all .125s linear;
+
+    -ms-transition: all .125s linear;
+    -moz-transition: all .125s linear;
+    -webkit-transition: all .125s linear;
+    -o-transition: all .125s linear;
+  }
+
+  .no-padding-margin {
+    margin: 0;
+    padding: 0;
+  }
   /* TAG STYLING */
 
   ul li::marker {
