@@ -32,7 +32,7 @@ function App() {
   }
 
   useEffect(()=>{
-    isAuthenticated(true)
+    isAuthenticated(false)
   },[])
 
   return (

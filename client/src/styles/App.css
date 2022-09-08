@@ -43,7 +43,7 @@
     height: 30px;
   }
   
-  .nav-link:hover {
+  .sidebar:hover {
     background-color: #cf76ff;
     transition: all .125s linear;
 
