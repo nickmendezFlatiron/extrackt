@@ -8,7 +8,7 @@ import Homepage from './home-page/Homepage';
 import Plans from './plans/Plans'
 import About from './About'
 import Collection from './marketplace/Collection';
-import Marketplace from './marketplace/Marketplace'
+import Marketplace from './marketplace/main-view/Marketplace'
 import UploadForm from "./upload/UploadForm";
 import Downloads from './user-files/Downloads'
 import Samples from './user-files/Samples'
@@ -57,7 +57,7 @@ function App() {
         <Route path="/" element={<Homepage />}/>
         <Route path="/plans" element={<Plans />} />
         <Route path="about" element={<About />} />
-        <Route path="/marketplace" exact element={<Marketplace />}>
+        <Route path="/marketplace" exact element={<Marketplace/>}>
         </Route>
         <Route path="/marketplace/:collection_id" element={<Collection collection={collection} />} />
         <Route path=':username' exact element={<Account user={user}/>}>

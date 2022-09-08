@@ -2,6 +2,7 @@ import React from 'react'
 
 import CollectionTableRow from "./CollectionTableRow"
 import Table from 'react-bootstrap/Table'
+import Button from 'react-bootstrap/Button'
 import uuid from 'react-uuid'
 
 const CollectionTable = () => {
@@ -40,10 +41,7 @@ const CollectionTable = () => {
         <CollectionTableRow key={uuid()} sample={sample}/>
         <CollectionTableRow key={uuid()} sample={sample}/>
         <CollectionTableRow key={uuid()} sample={sample}/>
-      <CollectionTableRow key={uuid()} sample={sample}/>
-      <CollectionTableRow key={uuid()} sample={sample}/>
-      <CollectionTableRow key={uuid()} sample={sample}/>
-      <CollectionTableRow key={uuid()} sample={sample}/>
+        <CollectionTableRow key={uuid()} sample={sample}/>
       </tbody>
     </Table>
   )

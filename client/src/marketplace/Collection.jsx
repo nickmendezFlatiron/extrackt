@@ -31,6 +31,7 @@ const Collection = ({collection}) => {
             </Col>
             <Col className="table-height overflow-auto">
             <CollectionTable />
+            <Button variant="link" className="text-start">Load Next 20 Samples...</Button>
             </Col>
           </Col>
         </Row>
