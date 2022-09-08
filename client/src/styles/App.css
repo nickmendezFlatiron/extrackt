@@ -2,6 +2,8 @@
   font-family: 'Roboto', sans-serif;
 }
 
+/* CLASS STYLING */
+
 .blk-text {
   color: black;
 }
@@ -19,40 +21,50 @@
   font-family: 'Roboto', sans-serif;
 }
 
-#offcanvasNavbar-expand-false{
-  width: fit-content;
-}
-
 .offset {
-    box-shadow: 20px 35px;
+  box-shadow: 20px 35px;
     color: #adadad;
-}
-
-.banner-bg {
-background-color: white;
-background: url("../assets/tile-image.jpeg");
-background-size: cover;
-/* background-blend-mode: overlay; */
-}
-
-.nav-logo {
-  height: 30px;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-h1 {
-  font-size: 50px;
-}
-
-/* CARD STYLING */
-
-.card:hover {
+  }
   
-  box-shadow:0 0 15px rgba(207, 118, 255, 0.75);
+  .banner-bg {
+    background-color: white;
+    background: url("../assets/tile-image.jpeg");
+    background-size: cover;
+    /* background-blend-mode: overlay; */
+  }
+
+  .plans-banner-bg {
+    background-color: white;
+    background: url('../assets/plan-banner.jpeg');
+    background-size: cover;
+  }
+  
+  .nav-logo {
+    height: 30px;
+  }
+  
+  /* TAG STYLING */
+
+  ul li::marker {
+    content: "✓";
+    color: #3f8090 ;
+  }
+
+  h1 {
+    font-size: 50px;
+  }
+
+
+  /* ID STYLING */
+  #offcanvasNavbar-expand-false{
+    width: fit-content;
+  }
+  
+  /* CARD STYLING */
+  
+  .card:hover {
+    
+    box-shadow:0 0 15px rgba(207, 118, 255, 0.75);
   /* border: rgba(207, 118, 255, 0.7);
   border-style: outset;
   border-radius: 10px;
