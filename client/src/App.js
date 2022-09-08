@@ -14,9 +14,14 @@ import Downloads from './user-files/Downloads'
 import Samples from './user-files/Samples'
 import Account from './user-files/Account'
 
+
 // CSS Styling
 import './styles/app.scss'
 import './styles/App.css';
+
+// TEMP FILES
+import cover from "./assets/stock-album-2.jpg"
+
 
 
 function App() {
@@ -30,7 +35,16 @@ function App() {
     account_type: "admin",
     credits: 2394
   }
-
+  const collection = {
+    collection_id: 1,
+    collection_name: "Fire Samples Vol. 2",
+    artwork: cover,
+    downloads: 12930,
+    user_id: 1,
+    created_at: new Date(),
+    updated_at: Date.now() ,
+    user: user.username,
+  }
   useEffect(()=>{
     isAuthenticated(true)
   },[])
@@ -43,9 +57,9 @@ function App() {
         <Route path="/" element={<Homepage />}/>
         <Route path="/plans" element={<Plans />} />
         <Route path="about" element={<About />} />
-        <Route path="/marketplace" element={<Marketplace />}>
-          <Route path=":collection" element={<Collection />} />
+        <Route path="/marketplace" exact element={<Marketplace />}>
         </Route>
+        <Route path="/marketplace/:collection_id" element={<Collection collection={collection} />} />
         <Route path='/:username' element={<Account user={user}/>}>
             <Route path="downloads" element={<Downloads />}/>
             <Route path="samples" element={<Samples />}/>

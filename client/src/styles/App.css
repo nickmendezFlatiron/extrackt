@@ -24,14 +24,21 @@
 .offset {
   box-shadow: 20px 35px;
     color: #adadad;
-  }
+}
+
+.cover-preview{
+  width: 300px;
+  height: auto;
+  border-radius: 20px;
+}
+
   
-  .banner-bg {
-    background-color: white;
-    background: url("../assets/tile-image.jpeg");
-    background-size: cover;
-    /* background-blend-mode: overlay; */
-  }
+.banner-bg {
+  background-color: white;
+  background: url("../assets/tile-image.jpeg");
+  background-size: cover;
+  /* background-blend-mode: overlay; */
+}
 
   .plans-banner-bg {
     background-color: white;
