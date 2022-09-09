@@ -14,12 +14,12 @@ const FormTableRow = () => {
   ]
   
   return (
-    <tr>
+    <tr className="align-items-center">
       <td>
-        <Button className="">Del</Button>
+        <Form.Control type="file" size="sm" accept="audio/*" title="*"/>
       </td>
       <td>
-        <Form.Control type="text" placeholder="name" className='w-75'/>
+        <Form.Control type="text" placeholder="name" className=''/>
       </td>
       <td>Category</td>
       <td>Key</td>
