@@ -19,6 +19,7 @@ import Account from './user-files/Account'
 import './styles/app.scss'
 import './styles/App.css';
 
+
 // TEMP FILES
 import cover from "./assets/stock-album-2.jpg"
 

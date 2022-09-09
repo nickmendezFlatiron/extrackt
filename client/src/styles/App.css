@@ -78,17 +78,33 @@
   
   .sidebar:hover {
     background-color: #cf76ff;
-    transition: all .125s linear;
+    transition: all .1s linear;
 
-    -ms-transition: all .125s linear;
-    -moz-transition: all .125s linear;
-    -webkit-transition: all .125s linear;
-    -o-transition: all .125s linear;
+    -ms-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -o-transition: all .1s linear;
   }
 
   .no-padding-margin {
     margin: 0;
     padding: 0;
+  }
+
+  .carousel-pic{
+    width: 50px;
+    height: auto;
+  }
+
+  /* SLICK OVERWRITE */
+  .slick-prev:before , .slick-next:before{
+    color: #cf76ff !important;
+    font-size: 25px !important;
+    opacity: 100% !important;
+  }
+
+  .slick-dots{
+    position:static  !important;
   }
   /* TAG STYLING */
 
@@ -100,6 +116,7 @@
   h1 {
     font-size: 50px;
   }
+
 
 
   /* ID STYLING */
