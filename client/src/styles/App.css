@@ -52,6 +52,21 @@
   background-color: #5e5e5e2e;
 }
 
+.form-button {
+  background-color: black;
+ 
+  color: #cf76ff;
+  font-size: 30px;
+  
+
+}
+.upload-preview {
+  box-shadow:0 0 10px rgba(157, 157, 157, 0.487);
+  border-width: 3px;
+  border-radius: 10px;
+  
+}
+
 /* .audio-player {
  
 } */

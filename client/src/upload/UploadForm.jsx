@@ -1,10 +1,11 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container'
+import FormTable from './FormTable'
 
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Image from 'react-bootstrap/Image'
 import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 import cover from '../assets/stock-album-2.jpg'
 
@@ -12,7 +13,7 @@ const UploadForm = () => {
   return (
     <div className="mx-5">
       <Row>
-        <Col className="border border-3 pt-2 mx-2" lg="3">
+        <Col className="pt-2 mx-2 upload-preview" lg="3">
           <h2 className="text-center mb-4">Upload Preview</h2>
           <Image src={cover} className="featured-preview offset mb-5"/>
           <h2 className='text-dark fw-bold '> Collection Name</h2>
@@ -37,6 +38,10 @@ const UploadForm = () => {
                 </Form.Group>
                 <Form.Group controlId="formFileSm" className="mb-3 w-25">
                   <Form.Control type="file" size="sm" />
+                </Form.Group>
+                <Form.Group>
+                  <FormTable />
+                  <Button className="form-button">+</Button>
                 </Form.Group>
               </Form>
             </Col>
