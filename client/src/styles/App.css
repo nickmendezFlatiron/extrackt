@@ -92,7 +92,7 @@
   }
 
   .carousel-pic{
-    width: 50px;
+    width: 100%;
     height: auto;
   }
 
@@ -103,9 +103,9 @@
     opacity: 100% !important;
   }
 
-  .slick-dots{
+  /* .slick-dots{
     position:static  !important;
-  }
+  } */
   /* TAG STYLING */
 
   ul li::marker {

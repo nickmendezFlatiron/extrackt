@@ -8,7 +8,7 @@ const Filter = () => {
   return (
     
     <Form>
-      <h3 className="text-center">Filter</h3>
+      <h3 className="text-center mt-2">Filter</h3>
       <InputGroup size="lg" className="px-2 mb-3">
         <FormControl  
           aria-label="Large" 

@@ -1,6 +1,8 @@
 import React from 'react'
 import Slider from 'react-slick'
 import Image from 'react-bootstrap/Image'
+import CarouselCard from './CarouselCard'
+
 import uuid from 'react-uuid';
 
 
@@ -18,13 +20,11 @@ const Carousel = ({collection}) => {
     speed: 500,
     autoplay: true,
     autoplaySpeed: 5000,
-    slidesToShow: 6,
+    slidesToShow: 5,
     slidesToScroll: 5
   }
 
-  const slides = featured.map(c => {return <Image className='p-2 rounded-4' src={c.artwork} key={uuid()}/>
-    
-  })
+  const slides = featured.map(c => {return <CarouselCard c={c} key={uuid()}/>})
 
   return (
     <Slider {...settings} classNames="creme-bg">
