@@ -14,7 +14,7 @@ const Plans = () => {
           <h1 className="text-center text-white ">Plans</h1>
         </Row>
         <Row>
-          <Col lg="4" className="my-3 d-flex align-items-stretch">
+          <Col lg="4" className="my-3 d-flex align-items-stretch ">
             <Card className="text-center ">
               <Card.Header className="light-purple-bg">
                 <h4 className="fw-normal">Free</h4>
