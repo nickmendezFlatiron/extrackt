@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/Button'
 import cover from '../assets/stock-album-2.jpg'
 
 const UploadForm = () => {
-
+  
   return (
     <div className="mx-4">
       <Row className="">
@@ -36,7 +36,6 @@ const UploadForm = () => {
                 </Form.Group>
                 <Form.Group>
                   <FormTable />
-                  <p>Add Row Button</p>
                 </Form.Group>
               </Form>
             </Col>

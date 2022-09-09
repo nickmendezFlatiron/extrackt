@@ -1,13 +1,24 @@
-import React from 'react'
-import FormTableRow from './FormTableRow'
-
+import {React, useState} from 'react'
+import UploadTableRowForm from './UploadTableRowForm'
+import uuid from 'react-uuid'
 import Table from 'react-bootstrap/Table'
+import Button from 'react-bootstrap/Button'
+
 const FormTable = () => {
+  const [samples , setSamples] = useState([])
+
+  function addRow(){
+   
+  }
+
+  
   return (
+    <>
     <Table borderless className='creme-bg rounded-3'>
       <thead>
         <tr>
           <th scope="col">Delete</th>
+          <th scope="col">File</th>
           <th scope="col">Sample Name</th>
           <th scope="col">Categories</th>
           <th scope="col">Key</th>
@@ -17,9 +28,10 @@ const FormTable = () => {
         </tr>
       </thead>
       <tbody>
-        <FormTableRow />
+       <UploadTableRowForm />
       </tbody>
     </Table>
+    </>
   )
 }
 
