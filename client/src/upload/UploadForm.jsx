@@ -10,9 +10,10 @@ import Button from 'react-bootstrap/Button'
 import cover from '../assets/stock-album-2.jpg'
 
 const UploadForm = () => {
+
   return (
     <div className="mx-5">
-      <Row>
+      <Row className="vh-80">
         <Col className="pt-2 mx-2 upload-preview" lg="3">
           <h2 className="text-center mb-4">Upload Preview</h2>
           <Image src={cover} className="featured-preview offset mb-5"/>
@@ -29,7 +30,7 @@ const UploadForm = () => {
               <h4 className="mt-1">Samples</h4>
             </Col>
             <Col>
-              <Form className="">
+              <Form >
                 <Form.Group className="mb-3">
                   <Form.Control type="text" placeholder="Enter collection name here..." />
                 </Form.Group>
@@ -41,7 +42,7 @@ const UploadForm = () => {
                 </Form.Group>
                 <Form.Group>
                   <FormTable />
-                  <Button className="form-button">+</Button>
+                  <p>Add Row Button</p>
                 </Form.Group>
               </Form>
             </Col>
