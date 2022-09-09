@@ -7,8 +7,8 @@ import FormControl from 'react-bootstrap/FormControl'
 const Filter = () => {
   return (
     
-    <Form>
-      <h3 className="text-center mt-2">Filter</h3>
+    <Form className="mt-2">
+      {/* <h3 className="text-center mt-2">Filter</h3> */}
       <InputGroup size="lg" className="px-2 mb-3">
         <FormControl  
           aria-label="Large" 

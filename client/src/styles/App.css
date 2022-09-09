@@ -38,10 +38,18 @@
   height: auto;
   border-radius: 20px;
 }
-.featured-preview:hover {
+.featured-preview:hover , .carousel-card:hover {
   transition: all .05s linear;
   cursor: pointer;
   opacity: 80%;
+}
+
+.filter {
+  border: #9d9d9d3f;
+  border-width: 5px;
+  border-style:outset;
+  border-radius: 5px;
+  background-color: #5e5e5e2e;
 }
 
 /* .audio-player {
