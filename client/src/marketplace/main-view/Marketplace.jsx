@@ -25,7 +25,6 @@ const Marketplace = ({collection}) => {
           <h4>Featured Artist</h4>
         </Col>
         <Col className="border"  lg={9}>
-          <h1>Searchbar</h1>
           <div>
             <h3 className="mt-2">Top 10 Downloads</h3>
             <Container className="light-purple-bg my-3 mt-3 rounded-2 shadow-sm">
@@ -38,7 +37,6 @@ const Marketplace = ({collection}) => {
               <Carousel collection={collection}/>
             </Container>
           </div>
-         
         </Col>
       </Row>
     </div>
