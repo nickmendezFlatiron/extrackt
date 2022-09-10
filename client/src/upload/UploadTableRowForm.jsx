@@ -5,9 +5,10 @@ import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
 
-const UploadTableRowForm = () => {
+const UploadTableRowForm = ({setSamples , samples}) => {
   const [type, setSelectedType] = useState(null);
   const [genre , setSelectedGenre] = useState(null)
+  const [key ,setSelectedKey] = useState(null)
   const [sampleName , setSampleName] = useState("")
   const [bpm , setBpm] = useState(null)
   const [file , setFile] = useState()
@@ -19,11 +20,24 @@ const UploadTableRowForm = () => {
 
   ]
 
-
   const genres = [ "pop","rock","hip-hop","rap","country","rnb", "jazz", "metal", "electronic", "soul", "ambient", "funk","raggae", "disco","classical","house","indie","techno","trap","dubstep", "gospel","latin", "raggaeton", "grime", "edm", "synthwave", "cinematic", "trance", "experimental","electro","idm","acapella"]
   
-  const genresObj = genres.map(genre => {return {value: genre , label: genre}})
-  console.log(genresObj)
+  const genresOptions = genres.map(genre => {return {value: genre , label: genre}})
+  
+  const keysOptions = [
+    {value: "a", label:"A"},
+    {value: "b", label: "B"},
+    {value: "c", label: "C"},
+    {value: "d", label: "D"},
+    {value: "e", label: "E"},
+    {value: "f", label: "F"},
+    {value: "g", label: "G"},
+    {value: "sharp", label: "♯"},
+    {value: "flat", label: "♭"},
+    {value: "minor", label: "min"},
+    {value: "major", label: "maj"}
+    
+  ]
 
   const categories = ["fx","drums","percussion","vocal"]
 
@@ -32,7 +46,7 @@ const UploadTableRowForm = () => {
   }
 
   function handleBpm(e) {
-    setBpm(e.target.value)
+    setBpm(parseInt(e.target.value))
   }
 
   function handleFile(e) {
@@ -43,7 +57,7 @@ const UploadTableRowForm = () => {
 
     reader.readAsDataURL(e.target.files[0])
     reader.onload = (e) => {
-      console.log(reader.result)
+      // console.log(reader.result)
     }
   }
   
@@ -51,14 +65,17 @@ const UploadTableRowForm = () => {
     const newSample = {
       name: sampleName,
       type: type.value,
+      genre: genre.value,
+      key,
       bpm: bpm,
       file,
+      category: "test"
     }
-    console.log(newSample)
+    setSamples([...samples , newSample])
   }
 
   const selectDropdownStyles = {
-    control: styles => ({ ...styles, backgroundColor: 'white' }),
+    // control: styles => ({ ...styles, backgroundColor: 'white' }),
     // container: styles => ({ ...styles,  width: 100  }),
     menuList: styles => ({...styles , height: 200})
   };
@@ -88,13 +105,30 @@ const UploadTableRowForm = () => {
         />
       </td>
       <td>Category</td>
-      <td>Key</td>
+      <td>
+      <Select 
+          isMulti
+          styles={selectDropdownStyles}
+          required
+          onChange={setSelectedKey}
+          options={keysOptions}
+          theme={(theme) => ({
+            ...theme,
+            borderRadius: 5,
+            colors: {
+              ...theme.colors,
+              primary25: '#cf76ff4e',
+              primary: '#cf76ff',
+            },
+          })}
+         />
+      </td>
       <td>
       <Select 
           styles={selectDropdownStyles}
           required
           onChange={setSelectedGenre}
-          options={genresObj}
+          options={genresOptions}
           theme={(theme) => ({
             ...theme,
             borderRadius: 5,
