@@ -2,16 +2,10 @@ import {React, useState} from 'react'
 import UploadTableRowForm from './UploadTableRowForm'
 import uuid from 'react-uuid'
 import Table from 'react-bootstrap/Table'
-import Button from 'react-bootstrap/Button'
 
 const FormTable = () => {
   const [samples , setSamples] = useState([])
-
-  function addRow(){
-   
-  }
-
-  
+ 
   return (
     <>
     <Table borderless className='creme-bg rounded-3'>
