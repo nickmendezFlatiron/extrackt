@@ -6,7 +6,8 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
 
 const UploadTableRowForm = () => {
-  const [type, setselectedType] = useState(null);
+  const [type, setSelectedType] = useState(null);
+  const [genre , setSelectedGenre] = useState(null)
   const [sampleName , setSampleName] = useState("")
   const [bpm , setBpm] = useState(null)
   const [file , setFile] = useState()
@@ -18,9 +19,11 @@ const UploadTableRowForm = () => {
 
   ]
 
-  
 
   const genres = [ "pop","rock","hip-hop","rap","country","rnb", "jazz", "metal", "electronic", "soul", "ambient", "funk","raggae", "disco","classical","house","indie","techno","trap","dubstep", "gospel","latin", "raggaeton", "grime", "edm", "synthwave", "cinematic", "trance", "experimental","electro","idm","acapella"]
+  
+  const genresObj = genres.map(genre => {return {value: genre , label: genre}})
+  console.log(genresObj)
 
   const categories = ["fx","drums","percussion","vocal"]
 
@@ -33,10 +36,15 @@ const UploadTableRowForm = () => {
   }
 
   function handleFile(e) {
-    setFile(e.target.files[0])
     let name = e.target.files[0].name.split(" ").join("_")
-    
+    let reader = new FileReader()
+    setFile(e.target.files[0])
     setSampleName(name)
+
+    reader.readAsDataURL(e.target.files[0])
+    reader.onload = (e) => {
+      console.log(reader.result)
+    }
   }
   
   function handleClick(){
@@ -48,6 +56,13 @@ const UploadTableRowForm = () => {
     }
     console.log(newSample)
   }
+
+  const selectDropdownStyles = {
+    control: styles => ({ ...styles, backgroundColor: 'white' }),
+    // container: styles => ({ ...styles,  width: 100  }),
+    menuList: styles => ({...styles , height: 200})
+  };
+
   return (
     <tr className="align-items-center">
       <td>
@@ -74,7 +89,23 @@ const UploadTableRowForm = () => {
       </td>
       <td>Category</td>
       <td>Key</td>
-      <td>Genre</td>
+      <td>
+      <Select 
+          styles={selectDropdownStyles}
+          required
+          onChange={setSelectedGenre}
+          options={genresObj}
+          theme={(theme) => ({
+            ...theme,
+            borderRadius: 5,
+            colors: {
+              ...theme.colors,
+              primary25: '#cf76ff4e',
+              primary: '#cf76ff',
+            },
+          })}
+         />
+      </td>
       <td>
         <Form.Control 
           type="number" 
@@ -88,7 +119,7 @@ const UploadTableRowForm = () => {
       <td>
         <Select 
           required
-          onChange={setselectedType}
+          onChange={setSelectedType}
           options={types}
           theme={(theme) => ({
             ...theme,
