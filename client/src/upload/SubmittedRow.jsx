@@ -1,4 +1,5 @@
 import React from 'react'
+import CloseButton from 'react-bootstrap/CloseButton'
 
 const SubmittedRow = ({sample}) => {
   const {file , name , category , key, genre, bpm, type} = sample
@@ -8,8 +9,8 @@ const SubmittedRow = ({sample}) => {
   // const tableKey = `${key[0].value}${key[1].value} ${key[2].value}`
   debugger
   return (
-    <tr>
-      <td><button>delete</button></td>
+    <tr >
+      <td><CloseButton className="ms-3" /></td>
       <td>{file.name}</td>
       <td>{name}</td>
       <td>{tableKey}</td>

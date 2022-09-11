@@ -67,6 +67,12 @@
   
 }
 
+.sample-tbody{
+  display:block;
+  overflow:auto;
+  height:45vh;
+  width:80vw;
+}
 
 .vh-80 {
   height: 87vh;

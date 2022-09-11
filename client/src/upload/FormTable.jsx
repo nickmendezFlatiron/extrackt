@@ -14,10 +14,10 @@ const FormTable = ({samples , setSamples}) => {
 
   return (
     <>
-    <Table borderless className='creme-bg rounded-3'>
+    <Table borderless className='creme-bg rounded-3 sample-tbody '>
       <thead>
         <tr>
-          <th scope="col">Delete</th>
+          <th scope="col"></th>
           <th scope="col">File</th>
           <th scope="col">Sample Name</th>
           <th scope="col">Key</th>
@@ -26,7 +26,7 @@ const FormTable = ({samples , setSamples}) => {
           <th scope="col">Type</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody >
        <UploadTableRowForm setSamples={setSamples} samples={samples}/>
         {rows}
       </tbody>

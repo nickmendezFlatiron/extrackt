@@ -99,13 +99,10 @@ const UploadTableRowForm = ({setSamples , samples}) => {
       bpm,
       file
     }
-    setSamples(()=>[...samples , newSample])
+    setSamples(()=>[newSample, ...samples ])
     setSampleName("")
-    setSelectedType(null)
-    setSelectedGenre(null)
-    setSelectedKey(null)
-    setBpm(null)
-    Document.querySelector('#formFile').reset()
+    document.querySelector('#formFile').reset()
+    debugger 
   }
 
   const selectDropdownStyles = {
@@ -115,9 +112,9 @@ const UploadTableRowForm = ({setSamples , samples}) => {
   };
 
   return (
-    <tr className="align-items-center">
+    <tr>
       <td>
-        <Button className="ms-2" onClick={handleClick}>+</Button>
+        <Button className="ms-3" onClick={handleClick}>+</Button>
       </td>
       <td>
         <Form.Control 

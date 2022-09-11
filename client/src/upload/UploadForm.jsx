@@ -37,7 +37,7 @@ const UploadForm = () => {
   }
   
   return (
-    <div className="mx-4">
+    <div className="mx-3">
       <PreviewModal name={name} samples={samples} description={description} coverArt={coverArt} showModal={showModal} handleClose={handleClose}/>
       <Row className="">
         <Col className=" pt-2 light-purple-bg rounded-3 mx-2">
