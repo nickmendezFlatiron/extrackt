@@ -5,8 +5,8 @@ import Table from 'react-bootstrap/Table'
 
 import SubmittedRow from './SubmittedRow'
 
-const FormTable = () => {
-  const [samples , setSamples] = useState([])
+const FormTable = ({samples , setSamples}) => {
+  
   
   
 
@@ -20,7 +20,6 @@ const FormTable = () => {
           <th scope="col">Delete</th>
           <th scope="col">File</th>
           <th scope="col">Sample Name</th>
-          <th scope="col">Categories</th>
           <th scope="col">Key</th>
           <th scope="col">Genre</th>
           <th scope="col">BPM</th>
@@ -28,8 +27,8 @@ const FormTable = () => {
         </tr>
       </thead>
       <tbody>
-        {rows}
        <UploadTableRowForm setSamples={setSamples} samples={samples}/>
+        {rows}
       </tbody>
     </Table>
     </>

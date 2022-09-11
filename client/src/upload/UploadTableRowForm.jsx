@@ -12,10 +12,18 @@ const UploadTableRowForm = ({setSamples , samples}) => {
   const [bpm , setBpm] = useState(null)
   const [file , setFile] = useState()
 
+  const genres = [ "pop","rock","hip-hop","rap","country","rnb", "jazz", "metal", "electronic", "soul", "ambient", "funk","raggae", "disco","classical","house","indie","techno","trap","dubstep", "gospel","latin", "raggaeton", "grime", "edm", "synthwave", "cinematic", "trance", "experimental","electro","idm","acapella"]
+  const categories = ["fx","drums","percussion","vocal"]
+
   const types = [
     { value: 'one-shot', label: 'One Shot' },
     { value: 'loop', label: 'Loop' },
     { value: 'melody', label: 'Melody' },
+    { value: 'vocal', label: 'Vocal' },
+    { value: 'drum', label: 'Drum' },
+    { value: 'fx', label: 'FX' },
+    { value: 'percussion', label: 'Percussion' },
+    { value: 'foley', label: 'Foley' },
 
   ]
   const songKeys = [
@@ -56,11 +64,10 @@ const UploadTableRowForm = ({setSamples , samples}) => {
       options: hideScales
   }]
 
-  const genres = [ "pop","rock","hip-hop","rap","country","rnb", "jazz", "metal", "electronic", "soul", "ambient", "funk","raggae", "disco","classical","house","indie","techno","trap","dubstep", "gospel","latin", "raggaeton", "grime", "edm", "synthwave", "cinematic", "trance", "experimental","electro","idm","acapella"]
+  
   
   const genresOptions = genres.map(genre => {return {value: genre , label: genre}})
   
-  const categories = ["fx","drums","percussion","vocal"]
 
   function handleSampleName(e){
     setSampleName(e.target.value)
@@ -73,13 +80,13 @@ const UploadTableRowForm = ({setSamples , samples}) => {
   function handleFile(e) {
     let name = e.target.files[0].name.split(" ").join("_")
     setFile(e.target.files[0])
-    setSampleName(name)
+    setSampleName(name.substring(0 , name.length - 4))
     
-    let reader = new FileReader()
-    reader.readAsDataURL(e.target.files[0])
-    reader.onload = (e) => {
-      // console.log(reader.result)
-    }
+    // let reader = new FileReader()
+    // reader.readAsDataURL(e.target.files[0])
+    // reader.onload = (e) => {
+    //   // console.log(reader.result)
+    // }
   }
   
   function handleClick(e){
@@ -89,11 +96,16 @@ const UploadTableRowForm = ({setSamples , samples}) => {
       type: type.value,
       genre: genre.value,
       key,
-      bpm: bpm,
-      file,
-      category: "test"
+      bpm,
+      file
     }
     setSamples(()=>[...samples , newSample])
+    setSampleName("")
+    setSelectedType(null)
+    setSelectedGenre(null)
+    setSelectedKey(null)
+    setBpm(null)
+    Document.querySelector('#formFile').reset()
   }
 
   const selectDropdownStyles = {
@@ -109,13 +121,15 @@ const UploadTableRowForm = ({setSamples , samples}) => {
       </td>
       <td>
         <Form.Control 
+          id="formFile"
           style={{width: '150px'}}
           type="file" 
           size="sm" 
           accept="audio/wav" 
           title="*" 
           onChange={handleFile}
-          required
+          
+          
         />
       </td>
       <td>
@@ -124,15 +138,15 @@ const UploadTableRowForm = ({setSamples , samples}) => {
           placeholder="Use underscores , no spaces" 
           value={sampleName} 
           onChange={handleSampleName} 
-          required
+          
         />
       </td>
-      <td>Category</td>
       <td>
       <Select 
+          value={key}
           isMulti
           styles={selectDropdownStyles}
-          required
+          
           onChange={setSelectedKey}
           options={keyOptions}
           theme={(theme) => ({
@@ -148,8 +162,9 @@ const UploadTableRowForm = ({setSamples , samples}) => {
       </td>
       <td>
       <Select 
+          value={genre}
           styles={selectDropdownStyles}
-          required
+          
           onChange={setSelectedGenre}
           options={genresOptions}
           theme={(theme) => ({
@@ -170,14 +185,16 @@ const UploadTableRowForm = ({setSamples , samples}) => {
           onChange={handleBpm}  
           value={bpm} 
           min="0" max="200" 
-          required
+          
         />
       </td>
       <td>
         <Select 
-          required
+          value={type}
+          
           onChange={setSelectedType}
           options={types}
+          styles={selectDropdownStyles}
           theme={(theme) => ({
             ...theme,
             borderRadius: 5,

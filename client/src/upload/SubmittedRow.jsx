@@ -12,7 +12,6 @@ const SubmittedRow = ({sample}) => {
       <td><button>delete</button></td>
       <td>{file.name}</td>
       <td>{name}</td>
-      <td>{category}</td>
       <td>{tableKey}</td>
       <td>{genre}</td>
       <td>{bpm}</td>
