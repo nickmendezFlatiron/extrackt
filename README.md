@@ -1,24 +1,14 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  const keysOptions = [
+    {value: "a", label:"A"},
+    {value: "b", label: "B"},
+    {value: "c", label: "C"},
+    {value: "d", label: "D"},
+    {value: "e", label: "E"},
+    {value: "f", label: "F"},
+    {value: "g", label: "G"},
+    {value: "sharp", label: "♯"},
+    {value: "flat", label: "♭"},
+    {value: "minor", label: "min"},
+    {value: "major", label: "maj"}
+    
+  ]

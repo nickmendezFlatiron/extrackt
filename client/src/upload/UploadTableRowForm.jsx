@@ -2,7 +2,6 @@ import {React , useState} from 'react'
 import Select from 'react-select'
 
 import Form from 'react-bootstrap/Form'
-import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
 
 const UploadTableRowForm = ({setSamples , samples}) => {
@@ -19,26 +18,48 @@ const UploadTableRowForm = ({setSamples , samples}) => {
     { value: 'melody', label: 'Melody' },
 
   ]
-
-  const genres = [ "pop","rock","hip-hop","rap","country","rnb", "jazz", "metal", "electronic", "soul", "ambient", "funk","raggae", "disco","classical","house","indie","techno","trap","dubstep", "gospel","latin", "raggaeton", "grime", "edm", "synthwave", "cinematic", "trance", "experimental","electro","idm","acapella"]
-  
-  const genresOptions = genres.map(genre => {return {value: genre , label: genre}})
-  
-  const keysOptions = [
+  const songKeys = [
     {value: "a", label:"A"},
     {value: "b", label: "B"},
     {value: "c", label: "C"},
     {value: "d", label: "D"},
     {value: "e", label: "E"},
     {value: "f", label: "F"},
-    {value: "g", label: "G"},
+    {value: "g", label: "G"}
+  ]
+  const keyExist = key && key.filter(k => /[a-g]/.exec(k.value) && k.value.length === 1)
+  const hideKeys = keyExist?.length > 0 ? [] : songKeys 
+
+  const modifier = [
     {value: "sharp", label: "♯"},
     {value: "flat", label: "♭"},
+  ]
+  const modifierExist = key && key.filter(k => /sharp/.exec(k.value) ||  /flat/.exec(k.value))
+  const hideModifiers = modifierExist?.length > 0 ? [] : modifier
+  
+  const scales = [
     {value: "minor", label: "min"},
     {value: "major", label: "maj"}
-    
   ]
 
+  const scalesExist = key && key.filter(k => k.value.includes("minor") || k.value.includes("major"))
+  const hideScales = scalesExist?.length > 0 ? [] : scales
+  const keyOptions = [
+    {
+      label: "Keys",
+      options: hideKeys
+    },
+    { label: "Modifier", 
+      options: hideModifiers
+    },
+    { label: "Scale", 
+      options: hideScales
+  }]
+
+  const genres = [ "pop","rock","hip-hop","rap","country","rnb", "jazz", "metal", "electronic", "soul", "ambient", "funk","raggae", "disco","classical","house","indie","techno","trap","dubstep", "gospel","latin", "raggaeton", "grime", "edm", "synthwave", "cinematic", "trance", "experimental","electro","idm","acapella"]
+  
+  const genresOptions = genres.map(genre => {return {value: genre , label: genre}})
+  
   const categories = ["fx","drums","percussion","vocal"]
 
   function handleSampleName(e){
@@ -51,17 +72,18 @@ const UploadTableRowForm = ({setSamples , samples}) => {
 
   function handleFile(e) {
     let name = e.target.files[0].name.split(" ").join("_")
-    let reader = new FileReader()
     setFile(e.target.files[0])
     setSampleName(name)
-
+    
+    let reader = new FileReader()
     reader.readAsDataURL(e.target.files[0])
     reader.onload = (e) => {
       // console.log(reader.result)
     }
   }
   
-  function handleClick(){
+  function handleClick(e){
+    e.preventDefault()
     const newSample = {
       name: sampleName,
       type: type.value,
@@ -71,7 +93,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
       file,
       category: "test"
     }
-    setSamples([...samples , newSample])
+    setSamples(()=>[...samples , newSample])
   }
 
   const selectDropdownStyles = {
@@ -87,6 +109,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
       </td>
       <td>
         <Form.Control 
+          style={{width: '150px'}}
           type="file" 
           size="sm" 
           accept="audio/wav" 
@@ -111,7 +134,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
           styles={selectDropdownStyles}
           required
           onChange={setSelectedKey}
-          options={keysOptions}
+          options={keyOptions}
           theme={(theme) => ({
             ...theme,
             borderRadius: 5,

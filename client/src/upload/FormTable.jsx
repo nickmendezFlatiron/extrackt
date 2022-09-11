@@ -3,12 +3,15 @@ import UploadTableRowForm from './UploadTableRowForm'
 import uuid from 'react-uuid'
 import Table from 'react-bootstrap/Table'
 
+import SubmittedRow from './SubmittedRow'
+
 const FormTable = () => {
   const [samples , setSamples] = useState([])
   
-  console.log(samples)
+  
 
-  // const rows = samples && samples.map(sample => {<tr key={uuid()}></tr>})
+  const rows = samples.map(sample => {return <SubmittedRow sample={sample} key={uuid()} />})
+
   return (
     <>
     <Table borderless className='creme-bg rounded-3'>
@@ -25,6 +28,7 @@ const FormTable = () => {
         </tr>
       </thead>
       <tbody>
+        {rows}
        <UploadTableRowForm setSamples={setSamples} samples={samples}/>
       </tbody>
     </Table>
