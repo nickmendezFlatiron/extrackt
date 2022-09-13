@@ -17,7 +17,7 @@ const Collection = ({collection}) => {
 
   return (
     <>
-      <div className="my-3 pb-3 mx-4">
+      <div className="my-3 pb-5 mx-4">
         <Row>
           <Col className="border height-match" lg={4}> 
             <Col className="py-3 d-flex">
@@ -39,10 +39,10 @@ const Collection = ({collection}) => {
             <CollectionTable />
             <Button variant="link" className="text-start">Load Next 20 Samples...</Button>
             </Col>
+            <AudioPlayer />
           </Col>
         </Row>
       </div>
-        <AudioPlayer />
     </>
         
     

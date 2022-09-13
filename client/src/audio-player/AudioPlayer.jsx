@@ -4,11 +4,15 @@ import { WaveSurfer , WaveForm} from 'wavesurfer-react';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import audio from '../assets/audio-test.mp3'
+import { useEffect } from 'react';
 
 const AudioPlayer = () => {
   const [audioFile, setAudioFile] = useState(audio)
   const waveform = useRef()
 
+  useEffect(()=>{
+
+  },[])
   const handleWSMount = (waveSurfer)=>{
     waveform.current = waveSurfer;
     waveform.current.load(audioFile)
@@ -32,14 +36,14 @@ const AudioPlayer = () => {
     waveform.current.setVolume(volume)
   }
 
-  function handleKeyboard(){
-
+  function handleSeek(e){
+    console.log(e)
   }
   return (
     // Sticky footer
-   <div className="audio-player align-items-center fixed-bottm">
-    <Row className="align-items-center d-flex">
-      <Col className="ms-3" xs={3}>
+   <div className="audio-player fixed-bottom creme-bg ">
+    <Row className="align-items-center">
+      <Col className="ms-3" >
           <svg onClick={handlePrevious} xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="play-btn bi bi-chevron-bar-left" viewBox="0 0 16 16">
             <path fillRule="evenodd" d="M11.854 3.646a.5.5 0 0 1 0 .708L8.207 8l3.647 3.646a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 0 1 .708 0zM4.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 1 0v-13a.5.5 0 0 0-.5-.5z"/>
           </svg>
@@ -53,15 +57,16 @@ const AudioPlayer = () => {
 
 
       </Col>
-      <Col>
-     <WaveSurfer onMount={handleWSMount} className="creme-bg" >
-      <WaveForm id="waveform" 
-        cursorColor="transparent" 
-        waveColor="#e4c1f9"
-        progressColor="#b249eb"
-        ></WaveForm>
-     </WaveSurfer>
-      </Col>
+        <Col className="mx-4 "> 
+              <WaveSurfer onMount={handleWSMount} className="creme-bg" onClick={handleSeek}>
+                <WaveForm id="waveform" 
+                  cursorColor="transparent" 
+                  waveColor="#e4c1f9"
+                  progressColor="#b249eb"
+                  barHeight="0.75"
+                  ></WaveForm>
+              </WaveSurfer>
+        </Col>
       <Col xs={2} className="justify-content-start">
         <Row>
            <h2>Song Name</h2>
