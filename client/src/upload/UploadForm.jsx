@@ -23,7 +23,7 @@ const UploadForm = () => {
 
   function handleSubmit(e) {
     e.preventDefault()
-    return samples.length == 0 ? window.alert("No samples were uploaded") : null
+    return samples.length === 0 ? window.alert("No samples were uploaded") : null
   }
 
   function handleName(e) {

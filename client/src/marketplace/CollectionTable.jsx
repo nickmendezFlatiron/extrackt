@@ -2,8 +2,8 @@ import React from 'react'
 
 import CollectionTableRow from "./CollectionTableRow"
 import Table from 'react-bootstrap/Table'
-import Button from 'react-bootstrap/Button'
 import uuid from 'react-uuid'
+// import Button from 'react-bootstrap/Button'
 
 const CollectionTable = () => {
 

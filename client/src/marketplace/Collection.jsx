@@ -1,7 +1,8 @@
 import React from 'react'
 
-import AudioPlayer from './AudioPlayer'
+import AudioPlayer from '../audio-player/AudioPlayer'
 import CollectionTable from './CollectionTable'
+import { useNavigate } from 'react-router-dom'
 
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
@@ -9,13 +10,18 @@ import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 
 const Collection = ({collection}) => {
+  let navigate = useNavigate()
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
     <>
       <div className="my-3 pb-3 mx-4">
         <Row>
           <Col className="border height-match" lg={4}> 
             <Col className="py-3 d-flex">
-            <Button className="me-4" variant="link" href="/marketplace"> {`< Back`} </Button>
+            <Button className="me-4" variant="link" onClick={() => goBack()}> {`< Back`} </Button>
             <Button className="px-4 fs-5">Download All</Button>
             </Col> 
             <Col >

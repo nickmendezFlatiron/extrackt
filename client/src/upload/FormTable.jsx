@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React} from 'react'
 import UploadTableRowForm from './UploadTableRowForm'
 import uuid from 'react-uuid'
 import Table from 'react-bootstrap/Table'
@@ -6,10 +6,6 @@ import Table from 'react-bootstrap/Table'
 import SubmittedRow from './SubmittedRow'
 
 const FormTable = ({samples , setSamples}) => {
-  
-  
-  
-
   const rows = samples.map(sample => {return <SubmittedRow sample={sample} key={uuid()} />})
 
   return (
@@ -18,7 +14,7 @@ const FormTable = ({samples , setSamples}) => {
       <thead>
         <tr>
           <th scope="col"></th>
-          <th scope="col">File</th>
+          <th scope="col">Local File</th>
           <th scope="col">Sample Name</th>
           <th scope="col">Key</th>
           <th scope="col">Genre</th>

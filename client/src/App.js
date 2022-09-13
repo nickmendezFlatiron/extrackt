@@ -1,6 +1,6 @@
 import { Fragment , useState , useEffect } from 'react';
-import {Routes , Route , Navigate} from 'react-router-dom'
-import Protected from './Protected'
+import {Routes , Route} from 'react-router-dom'
+// import Protected from './Protected'
 
 import Sidebar from './Sidebar';
 import Navigation from './home-page/Navigation'
@@ -37,7 +37,7 @@ function App() {
     credits: 2394
   }
   const collection = {
-    collection_id: 1,
+    id: 1,
     collection_name: "Fire Samples Vol. 2",
     artwork: cover,
     downloads: 12930,
@@ -58,15 +58,15 @@ function App() {
         <Route path="/" element={<Homepage />}/>
         <Route path="/plans" element={<Plans />} />
         <Route path="about" element={<About />} />
-        <Route path="/marketplace" exact element={<Marketplace collection={collection}/>}>
+        <Route path="marketplace" exact element={<Marketplace collection={collection}/>}>
         </Route>
-        <Route path="/marketplace/:collection_id" element={<Collection collection={collection} />} />
-        <Route path=':username' exact element={<Account user={user}/>}>
+        <Route path="marketplace/:id" element={<Collection collection={collection} />} />
+        <Route path='user/:username' exact element={<Account user={user}/>}>
             <Route path="downloads" element={<Downloads />}/>
             <Route path="samples" element={<Samples />}/>
         </Route>
         <Route path="/upload" element={<UploadForm />} />
-        <Route path="*" element={<Navigate replace to="/" />} />
+        {/* <Route path="*" element={<Navigate replace to="/" />} /> */}
       </Routes>
     </Fragment>
   );

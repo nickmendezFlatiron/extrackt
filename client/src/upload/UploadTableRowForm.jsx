@@ -13,7 +13,6 @@ const UploadTableRowForm = ({setSamples , samples}) => {
   const [file , setFile] = useState()
 
   const genres = [ "pop","rock","hip-hop","rap","country","rnb", "jazz", "metal", "electronic", "soul", "ambient", "funk","raggae", "disco","classical","house","indie","techno","trap","dubstep", "gospel","latin", "raggaeton", "grime", "edm", "synthwave", "cinematic", "trance", "experimental","electro","idm","acapella"]
-  const categories = ["fx","drums","percussion","vocal"]
 
   const types = [
     { value: 'one-shot', label: 'One Shot' },

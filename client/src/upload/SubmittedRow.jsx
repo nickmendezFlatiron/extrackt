@@ -2,7 +2,7 @@ import React from 'react'
 import CloseButton from 'react-bootstrap/CloseButton'
 
 const SubmittedRow = ({sample}) => {
-  const {file , name , category , key, genre, bpm, type} = sample
+  const {file , name , key, genre, bpm, type} = sample
   console.log(sample.key)
 
   const tableKey = key.map(element => element.label).join("")
