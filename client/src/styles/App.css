@@ -60,6 +60,42 @@
   
 
 }
+
+.play-btn {
+  color: #cf76ff;
+}
+
+.play-btn:hover , .prev-btn:hover{
+  cursor: pointer;
+  color: #d395f5;
+  size: 50px;
+  transition: all .1s linear;
+}
+
+.play-btn:active {
+  color: #b249eb;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  margin-right: 15px;
+  width: auto;
+  height: 3px;
+  border-radius: 5px;
+  background-color: #cf76ff;
+  background-repeat: no-repeat;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #b249eb;
+}
+
+
+
 .upload-preview {
   box-shadow:0 0 10px rgba(157, 157, 157, 0.487);
   border-width: 3px;
@@ -77,9 +113,7 @@
 .vh-80 {
   height: 87vh;
 }
-/* .audio-player {
- 
-} */
+
 
 .height-match{
   height: 550px;
