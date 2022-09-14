@@ -21,7 +21,7 @@
 }
 
 .text-ltg{
-  color: #adadad;
+  color: #909090;
 }
 
 .roboto {
@@ -81,6 +81,13 @@
   color: #b249eb;
 }
 
+.audio-player{
+  opacity: 85%;
+}
+
+#waveform wave {
+  height: 70px !important;
+}
 input[type="range"] {
   -webkit-appearance: none;
   margin-right: 15px;
@@ -117,6 +124,17 @@ input[type="range"]::-webkit-slider-thumb {
 .vh-80 {
   height: 87vh;
 }
+
+.link-btn{
+  background: none;
+  border: none;
+  color: #cf76ff;
+
+}
+.link-btn:hover{
+    background: none;
+    text-decoration: underline;
+ }
 
 
 .height-match{

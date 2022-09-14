@@ -17,9 +17,9 @@ const Collection = ({collection}) => {
 
   return (
     <>
-      <div className="my-3 pb-5 mx-4">
+      <div className="mb-3 pb-5 mx-4">
         <Row className="pb-5">
-          <Col className="border height-match" lg={4}> 
+          <Col className="height-match" lg={4}> 
             <Col className="py-3 d-flex">
             <Button className="me-4" variant="link" onClick={() => goBack()}> {`< Back`} </Button>
             <Button className="px-4 fs-5">Download All</Button>
@@ -31,13 +31,13 @@ const Collection = ({collection}) => {
               <h2 className='text-dark fw-bold '> {collection.collection_name}</h2>
             <h2 className="text-dkg">{collection.user}</h2>
           </Col>
-          <Col className="border border-5">
+          <Col className="">
             <Col>
             <h2>Pagination and search bar</h2>
             </Col>
-            <Col className="table-height overflow-auto">
+            <Col className="table-height mb-5 pb-5 overflow-auto">
             <CollectionTable />
-            <Button variant="link" className="text-start">Load Next 20 Samples...</Button>
+            <button className="text-start mb-3 me-auto link-btn">Load Next 20 Samples...</button>
             </Col>
           </Col>
         </Row>
