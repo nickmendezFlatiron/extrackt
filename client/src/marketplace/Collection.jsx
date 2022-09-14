@@ -33,9 +33,9 @@ const Collection = ({collection}) => {
           </Col>
           <Col className="">
             <Col>
-            <h2>Pagination and search bar</h2>
+            <h2>search bar</h2>
             </Col>
-            <Col className="table-height mb-5 pb-5 overflow-auto">
+            <Col className="table-height mb-5 pb-3 overflow-auto">
             <CollectionTable />
             <button className="text-start mb-3 me-auto link-btn">Load Next 20 Samples...</button>
             </Col>

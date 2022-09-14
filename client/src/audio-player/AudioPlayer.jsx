@@ -35,7 +35,12 @@ const AudioPlayer = () => {
     waveform.current.on('ready' , () =>{
       const time = waveform.current.getDuration()
       setAudioDuration(()=>calculateTime(time))
-  })
+      waveform.current.play()
+      waveform.current.on('interaction', ()=>{
+       console.log("interaction")
+     })
+    })
+
     if (window) {
       window.surferidze = waveform.current;
     }
@@ -44,38 +49,40 @@ const AudioPlayer = () => {
   
   
   function handlePlay(){
-    console.log(audioFile)
     waveform.current.playPause()
-    const time = waveform.current.getDuration()
-    setAudioDuration(()=>calculateTime(time))
+    // const time = waveform.current.getDuration()
+    // setAudioDuration(()=>calculateTime(time))
   }
 
   function handlePrevious(){
     if(audioFile > 0 ){
+      waveform.current.unAll()
       setAudioFile((audioFile)=> audioFile - 1 )
       waveform.current.load(audioFiles[audioFile])
-      debugger
-      waveform.current.on('ready' , () => {
-        console.log("prev" , {audioFile})
+      waveform.current.on('ready' , () =>{
         const time = waveform.current.getDuration()
         setAudioDuration(()=>calculateTime(time))
         waveform.current.play()
-    })
+        waveform.current.on('interaction', ()=>{
+         console.log("interaction", "prev")
+       })
+      })
     } 
   }
   
   function handleNext(){    
+    setAudioFile((audioFile) => audioFile + 1)
     if(audioFile < 3 ){
-      setAudioFile((audioFile) => audioFile + 1)
-      waveform.current.load(audioFiles[audioFile])
-      debugger
-      waveform.current.on('ready' , () => {
-        console.log("next" , {audioFile})
-        const time = waveform.current.getDuration()
-        setAudioDuration(()=>calculateTime(time))
-        waveform.current.play()
-    }
-      )
+        waveform.current.unAll()
+        waveform.current.load(audioFiles[audioFile])  
+        waveform.current.on('ready' , () =>{ 
+          const time = waveform.current.getDuration()
+          setAudioDuration(()=>calculateTime(time))
+          waveform.current.play()
+          waveform.current.on('interaction', ()=>{
+           console.log("interaction" , "next")
+         })
+        })   
     } 
   }
 
@@ -84,8 +91,7 @@ const AudioPlayer = () => {
     waveform.current.setVolume(volume)
   }
 
-  function handleSeek(e){
-    
+  function handleSeek(e){ 
   }
 
   
@@ -107,15 +113,14 @@ const AudioPlayer = () => {
           <h4 className="text-ltg  ms-auto">{`${audioDuration.minutes}:${audioDuration.seconds}`}</h4>
 
       </Col>
-        <Col className="me-4 " > 
-              <WaveSurfer onMount={handleWSMount} className="creme-bg" >
+        <Col className="me-4" > 
+              <WaveSurfer onMount={handleWSMount} className="creme-bg"  onClick={handleSeek} >
                 <WaveForm id="waveform" 
                   cursorColor="transparent" 
                   waveColor="#e4c1f9"
                   progressColor="#b249eb"
                   barHeight="0.75"
-                  barRadius="5"
-                  // normalize="true"
+                  normalize={true}
                   ></WaveForm>
               </WaveSurfer>
         </Col>

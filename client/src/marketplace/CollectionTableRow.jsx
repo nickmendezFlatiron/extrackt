@@ -11,8 +11,8 @@ const CollectionTableRow = ({sample}) => {
       <td>{sample.name}</td>
       <td>{sample.artist}</td>
       <td>{sample.genre}</td>
-      <td>{sample.key}</td>
       <td>{sample.bpm}</td>
+      <td>{sample.key}</td>
       <td>
         <Button>DL</Button>
         <Button variant="white" className=" ms-2 text-primary">✓</Button>
