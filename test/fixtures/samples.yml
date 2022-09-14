@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  key: MyString
+  bpm: 1
+  genre: MyString
+  type: 
+  collection: one
+  downloads: 1
+
+two:
+  name: MyString
+  key: MyString
+  bpm: 1
+  genre: MyString
+  type: 
+  collection: two
+  downloads: 1

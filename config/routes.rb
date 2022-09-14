@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :downloads
+  resources :samples
+  resources :collections
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
