@@ -155,6 +155,13 @@ input[type="range"]::-webkit-slider-thumb {
   /* background-blend-mode: overlay; */
 }
 
+.signup-bg {
+  background-color: white;
+  background: url("../assets/signup.jpg");
+  background-size: contain;
+  background-position: left;
+}
+
   .plans-banner-bg {
     background-color: white;
     background: url('../assets/plan-banner.jpeg');

@@ -5,12 +5,12 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
-import {Link} from 'react-router-dom'
+import {Link , useNavigate} from 'react-router-dom'
 import logo from "../assets/logo-stroke.png"
 import LoginModal from './LoginModal'
 
 const Homepage = ({toggleModal , handleClose}) => {
-  
+  const navigate = useNavigate()
   return (
     <Container fluid className="p-5 mb-5 banner-bg shadow" >
       <Row>
@@ -31,7 +31,7 @@ const Homepage = ({toggleModal , handleClose}) => {
           That means more money for your dreams.
         </p>
         <Container className="d-flex align-content-center">
-          <Button primary className="fs-5 fw-bold">Create An Account</Button>
+          <Button onClick={()=>navigate("/signup") } primary className="fs-5 fw-bold">Create An Account</Button>
           <Link to="/about" className='ms-4 fs-4'><strong>Learn More</strong></Link>
         </Container>
         </Col>
@@ -39,7 +39,6 @@ const Homepage = ({toggleModal , handleClose}) => {
           <Image src={logo} fluid alt="logo" />
         </Col>
       </Row>
-        <LoginModal toggleModal={toggleModal} handleClose={handleClose}/>
     </Container>
   )
 }

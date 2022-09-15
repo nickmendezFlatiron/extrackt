@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  resources :downloads
-  resources :samples
-  resources :collections
-  resources :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  #sessions controller
+  post "/login" , to: "sessions#login"
+  delete "/logout", to: "sessions#destroy"
+
+  post '/signup' ,  to: "users#create"
+  get '/authorize', to "users#show"  
+  
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

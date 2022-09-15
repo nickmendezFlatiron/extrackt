@@ -1,5 +1,6 @@
 import { Fragment , useState , useEffect } from 'react';
 import {Routes , Route} from 'react-router-dom'
+import {LoginContext} from './context/LoginContext'
 // import Protected from './Protected'
 
 import Sidebar from './Sidebar';
@@ -13,6 +14,7 @@ import UploadForm from "./upload/UploadForm";
 import Downloads from './user-files/Downloads'
 import Samples from './user-files/Samples'
 import Account from './user-files/Account'
+import SignupForm from './home-page/SignupForm';
 
 import Spinner from 'react-bootstrap/Spinner'
 
@@ -64,10 +66,11 @@ function App() {
 
   return (
     <Fragment>
-      {(authenticated === false) && <Navigation handleShow={handleShow}/>}
+      {(authenticated === false) && <Navigation handleShow={handleShow} handleClose={handleClose} toggleModal={toggleModal}/>}
       {authenticated && <Sidebar user={user}/>}
       <Routes>
-        <Route path="/" element={<Homepage toggleModal={toggleModal} handleClose={handleClose}/>}/>
+        <Route path="/" element={<Homepage toggleModal={toggleModal} />}/>
+        <Route path="/signup" element={<SignupForm />}/>
         <Route path="/plans" element={<Plans />} />
         <Route path="about" element={<About />} />
         <Route path="marketplace" exact element={ <Marketplace collection={collection}/>}>
