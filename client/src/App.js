@@ -14,6 +14,8 @@ import Downloads from './user-files/Downloads'
 import Samples from './user-files/Samples'
 import Account from './user-files/Account'
 
+import Spinner from 'react-bootstrap/Spinner'
+
 
 // CSS Styling
 import './styles/app.scss'
@@ -27,6 +29,14 @@ import cover from "./assets/stock-album-2.jpg"
 
 function App() {
   const [authenticated , isAuthenticated] = useState(null)
+  const [toggleModal , setToggleModal] = useState(false)
+
+  const handleClose = () => setToggleModal(false);
+  const handleShow = () =>  setToggleModal(true);
+
+  const spinner =   <Spinner animation="border" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
 
   const user = {
     id: 1,
@@ -47,18 +57,20 @@ function App() {
     user: user.username,
   }
   useEffect(()=>{
-    isAuthenticated(true)
+    isAuthenticated(false)
   },[])
+
+  if(isAuthenticated === null) return spinner
 
   return (
     <Fragment>
-      {(authenticated === false) && <Navigation />}
+      {(authenticated === false) && <Navigation handleShow={handleShow}/>}
       {authenticated && <Sidebar user={user}/>}
       <Routes>
-        <Route path="/" element={<Homepage />}/>
+        <Route path="/" element={<Homepage toggleModal={toggleModal} handleClose={handleClose}/>}/>
         <Route path="/plans" element={<Plans />} />
         <Route path="about" element={<About />} />
-        <Route path="marketplace" exact element={<Marketplace collection={collection}/>}>
+        <Route path="marketplace" exact element={ <Marketplace collection={collection}/>}>
         </Route>
         <Route path="marketplace/:id" element={<Collection collection={collection} />} />
         <Route path='user/:username' exact element={<Account user={user}/>}>

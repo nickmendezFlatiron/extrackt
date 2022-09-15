@@ -1,4 +1,4 @@
-import React from 'react'
+import React  from 'react'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -7,8 +7,10 @@ import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 import {Link} from 'react-router-dom'
 import logo from "../assets/logo-stroke.png"
+import LoginModal from './LoginModal'
 
-const Homepage = () => {
+const Homepage = ({toggleModal , handleClose}) => {
+  
   return (
     <Container fluid className="p-5 mb-5 banner-bg shadow" >
       <Row>
@@ -37,6 +39,7 @@ const Homepage = () => {
           <Image src={logo} fluid alt="logo" />
         </Col>
       </Row>
+        <LoginModal toggleModal={toggleModal} handleClose={handleClose}/>
     </Container>
   )
 }
