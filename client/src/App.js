@@ -70,7 +70,7 @@ function App() {
       {authenticated && <Sidebar user={user}/>}
       <Routes>
         <Route path="/" element={<Homepage toggleModal={toggleModal} />}/>
-        <Route path="/signup" element={<SignupForm />}/>
+        <Route path="/signup" element={<SignupForm handleShow={handleShow}/>}/>
         <Route path="/plans" element={<Plans />} />
         <Route path="about" element={<About />} />
         <Route path="marketplace" exact element={ <Marketplace collection={collection}/>}>
