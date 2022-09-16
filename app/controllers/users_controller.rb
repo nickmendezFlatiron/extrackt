@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authorize_user , only: [:create]
 
   def create
-    user = User.create(user_params)
+    user = User.create!(user_params)
     user.account_type = "free"
     session[:user_id] = user.id
     render json: user , status: :created
@@ -14,6 +14,12 @@ class UsersController < ApplicationController
     else
       render json: [error: "Not Authorized , please login"] ,status: :unauthorized
     end 
+  end
+
+  def update
+      user = User.find(params[:id]) 
+      user.update!({full_name: params[:full_name], email: params[:email]})
+      render json: user , status: :ok
   end
 
   def destroy

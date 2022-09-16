@@ -19,7 +19,7 @@ class ApplicationController < ActionController::API
     render json: {errors: ["#{error.model} Not Found"]}, status: :not_found
   end 
 
-  def render_unprocessable_entity
+  def render_unprocessable_entity invalid
     render json: {errors: [invalid.record.errors.full_messages]} , status: :unprocessable_entity
   end
 end
