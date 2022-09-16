@@ -6,12 +6,23 @@ import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image'
-
+import { useNavigate } from 'react-router-dom';
 import logo from "./assets/top-logo.png"
 
-const Sidebar = ({user}) => {
+const Sidebar = ({user , setUser , isAuthenticated}) => {
 
+const navigate = useNavigate()
 
+const handleLogout = () => {
+  fetch('/logout', {method: "DELETE"})
+    .then(r => {
+      if(r.ok) {
+        setUser({})
+        isAuthenticated(false)
+        navigate("/")
+      }
+    })
+}
   return (
       <>
         <Navbar   expand="false" className="mx-3">
@@ -46,7 +57,7 @@ const Sidebar = ({user}) => {
                 </Nav>
               </Offcanvas.Body>
                 <Container className="no-padding-margin">
-                <Nav.Link  className="px-2 sidebar fs-4">Logout</Nav.Link>
+                <Nav.Link onClick={handleLogout} className="px-2 sidebar fs-4">Logout</Nav.Link>
                   <hr/>
                   <Nav.Link href={`/user/${user.username}`} className="px-2 sidebar"><h2 className='text-dark'>{user.username}</h2></Nav.Link>
                   <h6 className='text-secondary px-2' >{user.credits} Credits</h6>

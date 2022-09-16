@@ -79,14 +79,14 @@ function App() {
         }
       })
   },[])
-
+ 
   if(isAuthenticated === null) return spinner
 
   return (
     <Fragment>
       <LoginContext.Provider value={{setUser , user , authenticated , isAuthenticated , errors, setErrors}}>
         {(authenticated === false) && <Navigation handleShow={handleShow} handleClose={handleClose} toggleModal={toggleModal}/>}
-        {authenticated && <Sidebar user={user}/>}
+        {authenticated && <Sidebar user={user} setUser={setUser} isAuthenticated={isAuthenticated}/>}
         <Routes>
           <Route path="/" element={<Homepage toggleModal={toggleModal} />}/>
           <Route path="/signup" element={<SignupForm handleShow={handleShow}/>}/>
