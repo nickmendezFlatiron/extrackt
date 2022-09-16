@@ -16,8 +16,25 @@ const SignupForm = ({handleShow}) => {
   const [email, setEmail] = useState("")
   const [password , setPassword] = useState("")
   const [passwordConfirmation , setPasswordConfirmation] = useState("")
-
   
+  function handleUsername(e){
+    setUsername(e.target.value)
+  }
+  function handleName(e){
+    setName(e.target.value)
+  }
+  function handleEmail(e){
+    setEmail(e.target.value)
+  }
+  function handlePassword(e){
+    setPassword(e.target.value)
+  }
+  function handlePasswordConfirmation(e){
+    setPasswordConfirmation(e.target.value)
+  }
+
+
+
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -44,24 +61,44 @@ const SignupForm = ({handleShow}) => {
                   Char Count Remaining
                   </Form.Text>
                 </Form.Label>
-              <Form.Control type="text" placeholder="Username..." />
+              <Form.Control 
+                type="text" 
+                placeholder="Username..." 
+                value={username} onChange={handleUsername}
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Label>Name</Form.Label>
-              <Form.Control type="text" placeholder="John Doe"/>
+              <Form.Control
+                type="text" 
+                placeholder="John Doe"
+                value={name} 
+                onChange={handleName}
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="Email..." />
+              <Form.Control 
+                type="email" placeholder="Email..." />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" value={password}/>
+              <Form.Control 
+                type="password" 
+                placeholder="Password" 
+                value={password} 
+                onChange={handlePassword}
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPasswordConfirmation">
               <Form.Label>Password Confirmation</Form.Label>
-              <Form.Control type="password" placeholder="Password must match" />
+              <Form.Control 
+                type="password" 
+                placeholder="Password must match" 
+                value={passwordConfirmation}
+                onChange={handlePasswordConfirmation}
+                />
             </Form.Group>
 
             {/* <hr/> */}
