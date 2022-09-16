@@ -9,7 +9,7 @@ const SubmittedRow = ({sample}) => {
   // const tableKey = `${key[0].value}${key[1].value} ${key[2].value}`
   debugger
   return (
-    <tr >
+    <tr className="shadow-sm">
       <td><CloseButton className="ms-3" /></td>
       <td>{file.name}</td>
       <td>{name}</td>

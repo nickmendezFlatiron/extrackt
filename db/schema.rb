@@ -77,8 +77,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_212717) do
     t.string "full_name"
     t.string "email"
     t.string "password_digest"
-    t.string "account_type"
-    t.integer "credits"
+    t.string "account_type", default: "free"
+    t.integer "credits", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

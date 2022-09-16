@@ -5,8 +5,8 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :full_name
       t.string :email
       t.string :password_digest
-      t.string :account_type
-      t.integer :credits
+      t.string :account_type , default: "free"
+      t.integer :credits , default: 0
 
       t.timestamps
     end

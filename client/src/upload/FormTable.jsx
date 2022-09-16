@@ -10,7 +10,7 @@ const FormTable = ({samples , setSamples}) => {
 
   return (
     <>
-    <Table borderless className='creme-bg rounded-3 sample-tbody '>
+    <Table borderless className='bg-light shadow rounded-3 sample-tbody p-2'>
       <thead>
         <tr>
           <th scope="col"></th>

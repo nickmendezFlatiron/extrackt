@@ -8,8 +8,9 @@ import Form from 'react-bootstrap/Form'
 
 
 const Account = ({user}) => {
-  const [name , setName] = useState(user.full_name)
-  const [userEmail , setEmail] = useState(user.email) 
+  console.log(user)
+  const [name , setName] = useState("")
+  const [userEmail , setEmail] = useState("") 
 
   function handleName(e){
     setName(e.target.value)
@@ -27,8 +28,8 @@ const Account = ({user}) => {
     <Container className="pb-5">
       <Row>
         <Col lg={5} className="creme-bg py-5 ps-5 rounded-4 offset">
-          <h1 className='text-dark fw-bold'> {user.username}</h1>
-          <h2 className="text-dkg">{user.account_type}</h2>
+          <h1 className='text-dark fw-bold'> {user && user.username}</h1>
+          <h2 className="text-dkg">{user && user.account_type}</h2>
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail" onSubmit={handleSubmit}>
               <Form.Control type="text" placeholder="Enter email" value={name} onChange={handleName}/>
@@ -40,7 +41,7 @@ const Account = ({user}) => {
             </Form.Group>
           </Form>
           <div className="text-secondary pb-3">
-            <h4>{user.credits} Credits</h4>
+            <h4>{user && user.credits} Credits</h4>
             <h4>Total Downloads</h4>
             <h4>Total Favorites</h4>
           </div>

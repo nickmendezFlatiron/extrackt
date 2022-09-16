@@ -56,7 +56,7 @@ const LoginModal = ({toggleModal , handleClose}) => {
             </Form.Group>
             <Form.Group>
               <ul>List Of Errors Here</ul>
-              <Link to="/signup" className='text-primary opacity-75' exact={true}>Not a user? Sign up here.</Link>
+              <Link to="/signup" className='text-primary opacity-75' exact={true} onClick={handleClose}>Not a user? Sign up here.</Link>
             </Form.Group>
           </Form>
         </Modal.Body>

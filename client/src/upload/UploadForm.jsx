@@ -52,19 +52,19 @@ const UploadForm = () => {
             </Col>
             <Col>
               <Form className="mb-3" onSubmit={handleSubmit}>
-                <Form.Group className="mb-3 w-25">
+                <Form.Group className="mb-3 w-25 shadow-sm rounded">
                   <Form.Control value={name} onChange={handleName} type="text" placeholder="Enter collection name here..." required/>
                 </Form.Group>
-                <Form.Group className="mb-3 w-50">
+                <Form.Group className="mb-3 w-50 shadow-sm rounded">
                     <Form.Control value={description} onChange={handleDescription} className="text-break" as="textarea" placeholder="Describe your sample pack...." required/>
                 </Form.Group>
-                <Form.Group controlId="formFileSm" className="mb-3 w-25">
+                <Form.Group controlId="formFileSm" className="mb-3 w-25 shadow-sm rounded">
                   <Form.Control type="file" accept="image/*" size="sm" onChange={handleCoverArt} required/>
                 </Form.Group>
                 <Form.Group>
                   <FormTable samples={samples} setSamples={setSamples}/>
                 </Form.Group>
-                <Button variant="light" type="submit">Submit</Button>
+                <Button variant="primary" type="submit">Submit</Button>
               </Form>
             </Col>
           </Row>
