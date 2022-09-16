@@ -1,18 +1,19 @@
-import {React , useState, useContext} from 'react'
+import {React , useState, useContext, useEffect} from 'react'
+import { LoginContext} from '../context/LoginContext'
+import Errors from '../Errors'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import { useEffect } from 'react'
-import { LoginContext} from '../context/LoginContext'
+
 
 
 const Account = ({user , spinner}) => {
   const [name , setName] = useState("")
   const [userEmail , setEmail] = useState("") 
-  const {setUser , setErrors , errors} = useContext(LoginContext)
+  const {setUser , setErrors} = useContext(LoginContext)
   function handleName(e){
     setName(e.target.value)
   }
@@ -35,12 +36,13 @@ const Account = ({user , spinner}) => {
       body: JSON.stringify(updatedInfo)
     }).then(r=>{
       if(r.ok){
-        r.json().then(user => {setUser(user)
-        console.log("success")}
+        r.json().then(user => {
+          setUser(user)
+          setErrors([])
+        }
         )
       } else(r.json().then((e)=>{
-          setErrors(e.errors)
-          console.log(e.errors)
+          setErrors(e.errors[0])
       }))
     })
 
@@ -67,8 +69,9 @@ const Account = ({user , spinner}) => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Control className="mb-3" type="email" placeholder="Enter email" value={userEmail} onChange={handleEmail}/>
+              <Errors />
               <Button type="submit" primary="true" className="fs-5 fw-bold">Save</Button>
-              <Button variant="link">Delete My Account</Button>
+              <Button variant="link" >Delete My Account</Button>
             </Form.Group>
           </Form>
           <div className="text-secondary pb-3">
