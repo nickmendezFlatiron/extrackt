@@ -95,7 +95,7 @@ function App() {
           <Route path="marketplace" exact element={ <Marketplace collection={collection}/>}>
           </Route>
           <Route path="marketplace/:id" element={<Collection collection={collection} />} />
-          <Route path='user/:username' exact element={<Account user={user}/>}>
+          <Route path='user/:username' exact element={<Account user={user} spinner={spinner}/>}>
               <Route path="downloads" element={<Downloads />}/>
               <Route path="samples" element={<Samples />}/>
           </Route>

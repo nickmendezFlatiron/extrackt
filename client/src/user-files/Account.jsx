@@ -5,9 +5,10 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import { useEffect } from 'react'
 
 
-const Account = ({user}) => {
+const Account = ({user , spinner}) => {
   console.log(user)
   const [name , setName] = useState("")
   const [userEmail , setEmail] = useState("") 
@@ -23,6 +24,8 @@ const Account = ({user}) => {
   function handleSubmit(e){
     e.preventDefault()
   }
+
+  if (!user) return spinner
   
   return (
     <Container className="pb-5">

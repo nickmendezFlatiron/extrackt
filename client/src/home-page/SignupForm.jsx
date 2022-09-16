@@ -71,7 +71,7 @@ const SignupForm = ({handleShow}) => {
           navigate(`/user/${user.username}`)
         })
       }else {
-        r.json().then(e => setErrors(e))
+        r.json().then(e => setErrors(e.errors))
       }
     })
    

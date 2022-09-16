@@ -1,15 +1,17 @@
-import React , {useState} from 'react'
+import React , {useState, useContext} from 'react'
 import { Modal , Form , Button } from 'react-bootstrap'
 import { Link , useNavigate} from 'react-router-dom'
 import logo from "../assets/top-logo.png"
-import uuid from "react-uuid"
+import { LoginContext } from '../context/LoginContext'
 
-const LoginModal = ({toggleModal , handleClose}) => {
-  const [username , setUsername] = useState("")
+const LoginModal = ({toggleModal , handleClose }) => {
+  const [usernameLogin , setusernameLogin] = useState("")
   const [password , setPassword] = useState("")
+  const navigate = useNavigate()
+  const {setUser , isAuthenticated , user} = useContext(LoginContext)
 
-  const handleUsername = (e) => {
-    setUsername(e.target.value)
+  const handleUsernameLogin = (e) => {
+    setusernameLogin(e.target.value)
   }
   const handlePassword = (e) => {
     setPassword(e.target.value)
@@ -17,9 +19,25 @@ const LoginModal = ({toggleModal , handleClose}) => {
   function handleLogin(e){
     e.preventDefault()
     const login = {
-      username,
+      username: usernameLogin,
       password 
     }
+    fetch('/login',{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(login)
+    }).then(r => {
+      if(r.ok){
+        r.json().then(user =>{
+          setUser(user)
+          isAuthenticated(true)
+          navigate(`/user/${user.username}`)
+          handleClose()
+        })
+      }
+    })
 
   }
 
@@ -38,8 +56,8 @@ const LoginModal = ({toggleModal , handleClose}) => {
                 type="text"
                 placeholder="Enter username here..."
                 autoFocus
-                value={username}
-                onChange={handleUsername}
+                value={usernameLogin}
+                onChange={handleUsernameLogin}
               />
             </Form.Group>
             <Form.Group
