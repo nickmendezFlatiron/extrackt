@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post '/signup' ,  to: "users#create"
   get '/authorize', to: "users#show"  
   
+  #collections controller
+  resources :collections , only: [:create]
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

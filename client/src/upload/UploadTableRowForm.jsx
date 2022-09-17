@@ -101,7 +101,6 @@ const UploadTableRowForm = ({setSamples , samples}) => {
     setSamples(()=>[newSample, ...samples ])
     setSampleName("")
     document.querySelector('#formFile').reset()
-    debugger 
   }
 
   const selectDropdownStyles = {
@@ -123,9 +122,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
           size="sm" 
           accept="audio/wav" 
           title="*" 
-          onChange={handleFile}
-          
-          
+          onChange={handleFile}          
         />
       </td>
       <td>

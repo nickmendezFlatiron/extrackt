@@ -19,7 +19,7 @@ const UploadForm = () => {
   const handleClose = () => setshowModal(false);
   const handleShow = () => setshowModal(true);
 
-
+  console.log(samples)
 
   function handleSubmit(e) {
     e.preventDefault()
