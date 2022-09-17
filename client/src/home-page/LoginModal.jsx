@@ -3,12 +3,13 @@ import { Modal , Form , Button } from 'react-bootstrap'
 import { Link , useNavigate} from 'react-router-dom'
 import logo from "../assets/top-logo.png"
 import { LoginContext } from '../context/LoginContext'
+import Errors from '../Errors'
 
 const LoginModal = ({toggleModal , handleClose }) => {
   const [usernameLogin , setusernameLogin] = useState("")
   const [password , setPassword] = useState("")
   const navigate = useNavigate()
-  const {setUser , isAuthenticated , user} = useContext(LoginContext)
+  const {setUser , isAuthenticated , user , setErrors} = useContext(LoginContext)
 
   const handleUsernameLogin = (e) => {
     setusernameLogin(e.target.value)
@@ -31,13 +32,18 @@ const LoginModal = ({toggleModal , handleClose }) => {
     }).then(r => {
       if(r.ok){
         r.json().then(user =>{
+          setErrors([])
           setUser(user)
           isAuthenticated(true)
           navigate(`/user/${user.username}`)
           handleClose()
         })
-      }
-    })
+      } else {r.json().then((e)=>{
+        console.log(e.errors)
+        setErrors(e.errors)
+      })}
+    }
+    )
 
   }
 
@@ -73,7 +79,7 @@ const LoginModal = ({toggleModal , handleClose }) => {
               />
             </Form.Group>
             <Form.Group>
-              <ul>List Of Errors Here</ul>
+              <Errors />
               <Link to="/signup" className='text-primary opacity-75' exact={true} onClick={handleClose}>Not a user? Sign up here.</Link>
             </Form.Group>
           </Form>

@@ -35,8 +35,14 @@ function App() {
   const [user , setUser] = useState(null)
   const [errors , setErrors] = useState(null)
 
-  const handleClose = () => setToggleModal(false);
-  const handleShow = () =>  setToggleModal(true);
+  const handleClose = () => {
+    setToggleModal(false)
+    setErrors([])
+  };
+  const handleShow = () =>  {
+    setToggleModal(true)
+    setErrors([])
+  };
 
 
 
@@ -73,7 +79,7 @@ function App() {
           })
         } else {
           r.json().then(errors=>{
-            setErrors(errors)
+            setErrors(errors[0])
             isAuthenticated(false)
           })
         }

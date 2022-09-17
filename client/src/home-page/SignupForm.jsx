@@ -1,4 +1,7 @@
-import {React , useState} from 'react'
+import {React , useState , useContext} from 'react'
+import { useNavigate } from 'react-router-dom'
+import { LoginContext } from '../context/LoginContext'
+import Errors from "../Errors"
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -8,9 +11,7 @@ import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 
 import logo from '../assets/logo-stroke.png'
-import { useContext } from 'react'
-import { LoginContext } from '../context/LoginContext'
-import { useNavigate } from 'react-router-dom'
+
 
 const SignupForm = ({handleShow}) => {
   const [validated, setValidated] = useState(false);
@@ -22,7 +23,7 @@ const SignupForm = ({handleShow}) => {
   
   const navigate = useNavigate()
 
-  const {setUser , isAuthenticated , setErrors , errors} = useContext(LoginContext)
+  const {setUser , isAuthenticated , setErrors } = useContext(LoginContext)
 
   function handleUsername(e){
     setUsername(e.target.value)
@@ -61,6 +62,7 @@ const SignupForm = ({handleShow}) => {
     }).then(r =>{
       if(r.ok) {
         r.json().then(user=>{
+          setErrors([])
           setUser(user)
           setUsername("")
           setPassword("")
@@ -71,7 +73,7 @@ const SignupForm = ({handleShow}) => {
           navigate(`/user/${user.username}`)
         })
       }else {
-        r.json().then(e => setErrors(e.errors))
+        r.json().then(e => setErrors(e.errors[0]))
       }
     })
    
@@ -146,8 +148,7 @@ const SignupForm = ({handleShow}) => {
                 required
                 />
             </Form.Group>
-
-            {/* <hr/> */}
+            <Errors />
             <Button variant="primary" type="submit">
               Sign Up
             </Button>

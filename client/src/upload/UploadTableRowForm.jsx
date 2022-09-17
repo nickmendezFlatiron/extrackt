@@ -23,7 +23,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
     { value: 'fx', label: 'FX' },
     { value: 'percussion', label: 'Percussion' },
     { value: 'foley', label: 'Foley' },
-
+    { value: 'pad', label: 'Pad' },
   ]
   const songKeys = [
     {value: "a", label:"A"},
@@ -178,13 +178,11 @@ const UploadTableRowForm = ({setSamples , samples}) => {
           onChange={handleBpm}  
           value={bpm} 
           min="0" max="200" 
-          
         />
       </td>
       <td>
         <Select 
           value={type}
-          
           onChange={setSelectedType}
           options={types}
           styles={selectDropdownStyles}

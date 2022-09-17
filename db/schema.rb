@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_14_212717) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_17_134744) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,7 +61,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_212717) do
 
   create_table "samples", force: :cascade do |t|
     t.string "name"
-    t.string "key"
     t.integer "bpm"
     t.string "genre"
     t.string "type"
@@ -69,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_212717) do
     t.integer "downloads", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "key", array: true
     t.index ["collection_id"], name: "index_samples_on_collection_id"
   end
 
