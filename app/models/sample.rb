@@ -23,7 +23,7 @@ class Sample < ApplicationRecord
     letter_count = key.select {|k| ["a", "b", "c", "d", "e", "f", "g"].include?(k)==true}
     step_count = key.select {|k| ["sharp", "flat"].include?(k)==true}
     scale_count = key.select {|k| ["major", "minor"].include?(k)==true}
-    
+
     if letter_count.length > 1 
       errors.add(:key, "invalid, only 1 letter allowed ")
     end
@@ -34,4 +34,5 @@ class Sample < ApplicationRecord
       errors.add(:key, "invalid, only 1 scale allowed")
     end
   end
+
 end

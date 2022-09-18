@@ -12,7 +12,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
   const [sampleName , setSampleName] = useState("")
   const [bpm , setBpm] = useState(null)
   const [file , setFile] = useState()
-
+  
   const fileRef = useRef()
 
   const genres = [ "pop","rock","hip-hop","rap","country","rnb", "jazz", "metal", "electronic", "soul", "ambient", "funk","raggae", "disco","classical","house","indie","techno","trap","dubstep", "gospel","latin", "raggaeton", "grime", "edm", "synthwave", "cinematic", "trance", "experimental","electro","idm","acapella"]

@@ -10,17 +10,16 @@ class CollectionsController < ApplicationController
       })
         # iterate over the params object except for the last 2 params in the object
       params.keys[1..-3].each do |p|
-        Sample.create!({
+        collection.samples.create!({
           name: params[p][:name],
           key: JSON.parse(params[p][:key]),
           bpm: params[p][:bpm],
           genre: params[p][:genre],
           sample_type: params[p][:sample_type],
-          collection_id: collection.id,
           audio_file: params[p][:audio_file]
           })
       end
-        
+        render json: collection , status: :created
     end
   end
 

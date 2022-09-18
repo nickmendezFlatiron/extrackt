@@ -1,4 +1,4 @@
-import React , {useState , useContext} from 'react'
+import React , {useState , useContext, useRef} from 'react'
 import FormTable from './FormTable'
 import PreviewModal from './PreviewModal'
 
@@ -19,6 +19,7 @@ const UploadForm = () => {
   const [showModal, setshowModal] = useState(false);
   const [showAlert , setShowAlert] = useState(false)
 
+  const coverRef = useRef()
   const handleClose = () => setshowModal(false);
   const handleShow = () => setshowModal(true);
   const {errors , setErrors} = useContext(LoginContext)
@@ -50,13 +51,17 @@ const UploadForm = () => {
     }).then(r=>{
       if(r.ok) {
         r.json().then((collection)=>{
-          
           console.log("success")
+          debugger
+          setErrors([])
+          setSamples([])
+          coverRef.current.value = null
         })
       } else {
         r.json().then((e)=>{
           setErrors(e.errors[0])
           setShowAlert(true)
+          console.log("failed")
         })
       }
     })
@@ -103,7 +108,7 @@ const UploadForm = () => {
                     <Form.Control value={description} onChange={handleDescription} className="text-break" as="textarea" placeholder="Describe your sample pack...." required/>
                 </Form.Group>
                 <Form.Group controlId="formFileSm" className="mb-3 w-25 shadow-sm rounded">
-                  <Form.Control type="file" accept="image/*" size="sm" onChange={handleCoverArt} required/>
+                  <Form.Control ref={coverRef} type="file" accept="image/*" size="sm" onChange={handleCoverArt} required/>
                 </Form.Group>
                 <Form.Group>
                   <FormTable samples={samples} setSamples={setSamples}/>

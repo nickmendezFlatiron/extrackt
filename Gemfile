@@ -29,6 +29,7 @@ gem 'foreman'
 gem 'activestorage', '~> 7.0', '>= 7.0.4'
 gem 'activestorage-validator', '~> 0.2.2'
 gem "aws-sdk-s3", require: false
+gem "jsonapi-serializer", "~> 2.2"
 
 #Faker Gem
 gem 'faker'
@@ -42,4 +43,5 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
+
 
