@@ -11,7 +11,7 @@ const PreviewModal = ({showModal , handleClose, coverArt , name , description , 
   return (
     <Modal show={showModal} onHide={handleClose}>
       <Col className="pt-2 mx-2 text-center">
-          <h2 className="text-center mb-4">Upload Preview</h2>
+          <h3 className="text-center mb-4 text-secondary">Preview</h3>
           <Image src={imgSrc} className="cover-preview offset mb-5"/>
           <h2 className='text-dark fw-bold '> {name}</h2>
           <p className='text-dark '> {description}</p>

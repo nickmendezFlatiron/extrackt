@@ -18,15 +18,15 @@ const UploadTableRowForm = ({setSamples , samples}) => {
   const genres = [ "pop","rock","hip-hop","rap","country","rnb", "jazz", "metal", "electronic", "soul", "ambient", "funk","raggae", "disco","classical","house","indie","techno","trap","dubstep", "gospel","latin", "raggaeton", "grime", "edm", "synthwave", "cinematic", "trance", "experimental","electro","idm","acapella"]
 
   const types = [
-    { value: 'one-shot', label: 'One Shot' },
+    { value: 'drum', label: 'Drum' },
+    { value: 'foley', label: 'Foley' },
+    { value: 'fx', label: 'FX' },
     { value: 'loop', label: 'Loop' },
     { value: 'melody', label: 'Melody' },
-    { value: 'vocal', label: 'Vocal' },
-    { value: 'drum', label: 'Drum' },
-    { value: 'fx', label: 'FX' },
-    { value: 'percussion', label: 'Percussion' },
-    { value: 'foley', label: 'Foley' },
+    { value: 'one-shot', label: 'One Shot' },
     { value: 'pad', label: 'Pad' },
+    { value: 'percussion', label: 'Percussion' },
+    { value: 'vocal', label: 'Vocal' },
   ]
   const songKeys = [
     {value: "a", label:"A"},
@@ -68,7 +68,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
 
   
   
-  const genresOptions = genres.map(genre => {return {value: genre , label: genre}})
+  const genresOptions = genres.sort((a, b) => a.localeCompare(b)).map(genre => {return {value: genre , label: genre}})
   
 
   function handleSampleName(e){
@@ -146,7 +146,6 @@ const UploadTableRowForm = ({setSamples , samples}) => {
           value={key}
           isMulti
           styles={selectDropdownStyles}
-          
           onChange={setSelectedKey}
           options={keyOptions}
           theme={(theme) => ({
@@ -164,7 +163,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
       <Select 
           value={genre}
           styles={selectDropdownStyles}
-          
+          isClearable
           onChange={setSelectedGenre}
           options={genresOptions}
           theme={(theme) => ({
@@ -189,6 +188,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
       </td>
       <td>
         <Select 
+          isClearable
           value={type}
           onChange={setSelectedType}
           options={types}
