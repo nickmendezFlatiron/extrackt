@@ -41,15 +41,15 @@ const UploadTableRowForm = ({setSamples , samples}) => {
   const hideKeys = keyExist?.length > 0 ? [] : songKeys 
 
   const halfStep = [
-    {value: "sharp", label: "♯"},
     {value: "flat", label: "♭"},
+    {value: "sharp", label: "♯"}
   ]
   const halfStepExist = key && key.filter(k => /sharp/.exec(k.value) ||  /flat/.exec(k.value))
   const hideHalfSteps = halfStepExist?.length > 0 ? [] : halfStep
   
   const scales = [
-    {value: "minor", label: "min"},
-    {value: "major", label: "maj"}
+    {value: "major", label: "maj"},
+    {value: "minor", label: "min"}
   ]
 
   const scalesExist = key && key.filter(k => k.value.includes("minor") || k.value.includes("major"))
@@ -62,9 +62,10 @@ const UploadTableRowForm = ({setSamples , samples}) => {
     { label: "Half Step", 
       options: hideHalfSteps
     },
-    { label: "Scale", 
+    { label: "Scale",
       options: hideScales
-  }]
+    }
+  ]
 
   
   
