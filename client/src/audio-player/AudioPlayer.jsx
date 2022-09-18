@@ -36,9 +36,9 @@ const AudioPlayer = () => {
       const time = waveform.current.getDuration()
       setAudioDuration(()=>calculateTime(time))
       waveform.current.play()
-      waveform.current.on('interaction', ()=>{
-       console.log("interaction")
-     })
+    //   waveform.current.on('interaction', ()=>{
+    //    console.log("interaction")
+    //  })
     })
 
     if (window) {
@@ -63,9 +63,9 @@ const AudioPlayer = () => {
         const time = waveform.current.getDuration()
         setAudioDuration(()=>calculateTime(time))
         waveform.current.play()
-        waveform.current.on('interaction', ()=>{
-         console.log("interaction", "prev")
-       })
+      //   waveform.current.on('interaction', ()=>{
+      //    console.log("interaction", "prev")
+      //  })
       })
     } 
   }
@@ -79,9 +79,9 @@ const AudioPlayer = () => {
           const time = waveform.current.getDuration()
           setAudioDuration(()=>calculateTime(time))
           waveform.current.play()
-          waveform.current.on('interaction', ()=>{
-           console.log("interaction" , "next")
-         })
+        //   waveform.current.on('interaction', ()=>{
+        //    console.log("interaction" , "next")
+        //  })
         })   
     } 
   }
@@ -97,7 +97,7 @@ const AudioPlayer = () => {
   
   return (
     // Sticky footer
-   <div className="audio-player fixed-bottom creme-bg" >
+   <div className="audio-player fixed-bottom creme-bg " >
     <Row className="align-items-center">
       <Col className="ms-3 d-flex align-items-center" >
           <svg onClick={handlePrevious} xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="play-btn bi bi-chevron-bar-left" viewBox="0 0 16 16">
@@ -119,6 +119,7 @@ const AudioPlayer = () => {
                   cursorColor="transparent" 
                   waveColor="#e4c1f9"
                   progressColor="#b249eb"
+                  width="100%"
                   barHeight="0.75"
                   normalize={true}
                   ></WaveForm>

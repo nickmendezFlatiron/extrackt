@@ -19,11 +19,36 @@ const UploadForm = () => {
   const handleClose = () => setshowModal(false);
   const handleShow = () => setshowModal(true);
 
-  console.log(samples)
-
   function handleSubmit(e) {
     e.preventDefault()
-    return samples.length === 0 ? window.alert("No samples were uploaded") : null
+    if (samples.length === 0) return window.alert("No samples were uploaded") 
+    const data = new FormData()
+
+    data.append("[collection]cover_art" , coverArt)
+    data.append("[collection]description", description)
+    data.append("[collection]name" , name)
+    let counter = 1
+    // each sample in its own [sample_individual]attr and append each piece
+    samples.forEach((sample)=>{
+      // # name , key , bpm , genre , type , file
+      data.append(`[sample${counter}]name`, sample.name)
+      data.append(`[sample${counter}]key`,JSON.stringify(sample.key))
+      data.append(`[sample${counter}]bpm`,sample.bpm)
+      data.append(`[sample${counter}]genre`, sample.genre)
+      data.append(`[sample${counter}]type`, sample.type)
+      data.append(`[sample${counter}]audio_file`,sample.file)
+      counter = counter + 1
+    })
+    counter = 0
+    fetch("/collections",{
+      method: "POST",
+      body: data
+    }).then(r=>{
+      if(r.ok) {
+ 
+        r.json().then(console.log("success"))
+      } else (console.log("failed"))
+    })
   }
 
   function handleName(e) {
