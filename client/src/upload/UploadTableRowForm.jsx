@@ -92,6 +92,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
     e.preventDefault()
     const keyArray = key.map(k => {return k.value})
     const newSample = {
+      keyLabel: key,
       name: sampleName,
       type: type.value,
       genre: genre.value,

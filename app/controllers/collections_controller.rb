@@ -9,10 +9,7 @@ class CollectionsController < ApplicationController
         user_id: current_user.id
       })
         # iterate over the params object except for the last 2 params in the object
-      len = params.keys.length - 3
-      keys = params.keys
-      
-      keys[1..len].each do |p|
+      params.keys[1..-3].each do |p|
         Sample.create!({
           name: params[p][:name],
           key: JSON.parse(params[p][:key]),
