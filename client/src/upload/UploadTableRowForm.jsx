@@ -1,8 +1,9 @@
-import {React , useState} from 'react'
+import {React , useState, useRef} from 'react'
 import Select from 'react-select'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import uuid from 'react-uuid'
 
 const UploadTableRowForm = ({setSamples , samples}) => {
   const [type, setSelectedType] = useState(null);
@@ -11,6 +12,8 @@ const UploadTableRowForm = ({setSamples , samples}) => {
   const [sampleName , setSampleName] = useState("")
   const [bpm , setBpm] = useState(null)
   const [file , setFile] = useState()
+
+  const fileRef = useRef()
 
   const genres = [ "pop","rock","hip-hop","rap","country","rnb", "jazz", "metal", "electronic", "soul", "ambient", "funk","raggae", "disco","classical","house","indie","techno","trap","dubstep", "gospel","latin", "raggaeton", "grime", "edm", "synthwave", "cinematic", "trance", "experimental","electro","idm","acapella"]
 
@@ -92,6 +95,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
     e.preventDefault()
     const keyArray = key.map(k => {return k.value})
     const newSample = {
+      id: uuid(),
       keyLabel: key,
       name: sampleName,
       type: type.value,
@@ -102,7 +106,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
     }
     setSamples(()=>[newSample, ...samples ])
     setSampleName("")
-    document.querySelector('#formFile').reset()
+    fileRef.current.value = null
   }
 
   const selectDropdownStyles = {
@@ -110,7 +114,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
     // container: styles => ({ ...styles,  width: 100  }),
     menuList: styles => ({...styles , height: 200})
   };
-
+  
   return (
     <tr>
       <td>
@@ -124,7 +128,8 @@ const UploadTableRowForm = ({setSamples , samples}) => {
           size="sm" 
           accept="audio/wav" 
           title="*" 
-          onChange={handleFile}          
+          onChange={handleFile} 
+          ref={fileRef}     
         />
       </td>
       <td>

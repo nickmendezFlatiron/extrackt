@@ -17,7 +17,7 @@ const UploadForm = () => {
   const [description , setDescription] = useState()
   const [coverArt , setCoverArt] = useState()
   const [showModal, setshowModal] = useState(false);
-  const [showAlert , setShowAlert] = useState(true)
+  const [showAlert , setShowAlert] = useState(false)
 
   const handleClose = () => setshowModal(false);
   const handleShow = () => setshowModal(true);

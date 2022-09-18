@@ -118,7 +118,6 @@ input[type="range"]::-webkit-slider-thumb {
   display:block;
   overflow:auto;
   height:45vh;
-  width:81vw;
 }
 
 .vh-80 {
