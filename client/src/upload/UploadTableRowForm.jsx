@@ -90,11 +90,12 @@ const UploadTableRowForm = ({setSamples , samples}) => {
   
   function handleClick(e){
     e.preventDefault()
+    const keyArray = key.map(k => {return k.value})
     const newSample = {
       name: sampleName,
       type: type.value,
       genre: genre.value,
-      key,
+      key: keyArray,
       bpm,
       file
     }

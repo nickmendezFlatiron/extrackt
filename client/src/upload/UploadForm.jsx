@@ -35,7 +35,7 @@ const UploadForm = () => {
       data.append(`[sample${counter}]key`,JSON.stringify(sample.key))
       data.append(`[sample${counter}]bpm`,sample.bpm)
       data.append(`[sample${counter}]genre`, sample.genre)
-      data.append(`[sample${counter}]type`, sample.type)
+      data.append(`[sample${counter}]sample_type`, sample.type)
       data.append(`[sample${counter}]audio_file`,sample.file)
       counter = counter + 1
     })

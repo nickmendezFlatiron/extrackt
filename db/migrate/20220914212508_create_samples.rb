@@ -5,7 +5,7 @@ class CreateSamples < ActiveRecord::Migration[7.0]
       t.string :key
       t.integer :bpm
       t.string :genre
-      t.string :type
+      t.string :sample_type
       t.belongs_to :collection, null: false, foreign_key: true
       t.integer :downloads ,:default => 0
 

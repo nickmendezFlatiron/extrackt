@@ -63,7 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_17_134744) do
     t.string "name"
     t.integer "bpm"
     t.string "genre"
-    t.string "type"
+    t.string "sample_type"
     t.bigint "collection_id", null: false
     t.integer "downloads", default: 0
     t.datetime "created_at", null: false
