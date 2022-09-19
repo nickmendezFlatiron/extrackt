@@ -1,6 +1,7 @@
 import { Fragment , useState , useEffect } from 'react';
 import {Routes , Route} from 'react-router-dom'
 import {LoginContext} from './context/LoginContext'
+import CollectionContext from './context/CollectionContext'
 // import Protected from './Protected'
 
 import Sidebar from './Sidebar';
@@ -30,11 +31,21 @@ import cover from "./assets/stock-album-2.jpg"
 
 
 function App() {
+  const col = {
+    id: 1,
+    collection_name: "Fire Samples Vol. 2",
+    artwork: cover,
+    downloads: 12930,
+    user_id: 1,
+    created_at: new Date(),
+    updated_at: Date.now() ,
+    user: "nick",
+  }
   const [authenticated , isAuthenticated] = useState(null)
   const [toggleModal , setToggleModal] = useState(false)
   const [user , setUser] = useState(null)
   const [errors , setErrors] = useState(null)
-
+  const [collection , setCollection] = useState(col)
   const handleClose = () => {
     setToggleModal(false)
     setErrors([])
@@ -59,16 +70,6 @@ function App() {
   //   credits: 2394
   // }
 
-  const collection = {
-    id: 1,
-    collection_name: "Fire Samples Vol. 2",
-    artwork: cover,
-    downloads: 12930,
-    user_id: 1,
-    created_at: new Date(),
-    updated_at: Date.now() ,
-    user: "nick",
-  }
   useEffect(()=>{
     fetch("/authorize")
       .then(r =>{
@@ -93,7 +94,8 @@ function App() {
       <LoginContext.Provider value={{setUser , user , authenticated , isAuthenticated , errors, setErrors}}>
         {(authenticated === false) && <Navigation handleShow={handleShow} handleClose={handleClose} toggleModal={toggleModal}/>}
         {authenticated && <Sidebar user={user} setUser={setUser} isAuthenticated={isAuthenticated}/>}
-        <Routes>
+          <CollectionContext.Provider value={{collection, setCollection}}>
+        <Routes >
           <Route path="/" element={<Homepage toggleModal={toggleModal} />}/>
           <Route path="/signup" element={<SignupForm handleShow={handleShow}/>}/>
           <Route path="/plans" element={<Plans />} />
@@ -102,12 +104,13 @@ function App() {
           </Route>
           <Route path="marketplace/:id" element={<Collection collection={collection} />} />
           <Route path='user/:username' exact element={<Account user={user} spinner={spinner}/>}>
-              <Route path="downloads" element={<Downloads />}/>
-              <Route path="samples" element={<Samples />}/>
+              <Route path="downloads" exact element={<Downloads />}/>
           </Route>
+              <Route path="/user/:username/samples" exact element={<Samples />}/>
           <Route path="/upload" element={<UploadForm />} />
           {/* <Route path="*" element={<Navigate replace to="/" />} /> */}
         </Routes>
+          </CollectionContext.Provider>
       </LoginContext.Provider>
     </Fragment>
   );

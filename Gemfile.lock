@@ -74,8 +74,8 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
     aws-eventstream (1.2.0)
-    aws-partitions (1.629.0)
-    aws-sdk-core (3.146.0)
+    aws-partitions (1.631.0)
+    aws-sdk-core (3.149.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.525.0)
       aws-sigv4 (~> 1.1)
@@ -109,8 +109,6 @@ GEM
       concurrent-ruby (~> 1.0)
     jmespath (1.6.1)
     jsonapi-renderer (0.2.2)
-    jsonapi-serializer (2.2.0)
-      activesupport (>= 4.2)
     loofah (2.19.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -198,7 +196,6 @@ DEPENDENCIES
   byebug
   faker
   foreman
-  jsonapi-serializer (~> 2.2)
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors

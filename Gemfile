@@ -29,7 +29,7 @@ gem 'foreman'
 gem 'activestorage', '~> 7.0', '>= 7.0.4'
 gem 'activestorage-validator', '~> 0.2.2'
 gem "aws-sdk-s3", require: false
-gem "jsonapi-serializer", "~> 2.2"
+
 
 #Faker Gem
 gem 'faker'

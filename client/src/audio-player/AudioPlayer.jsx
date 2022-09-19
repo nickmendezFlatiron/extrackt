@@ -29,6 +29,7 @@ const AudioPlayer = () => {
 
 
   const handleWSMount = (waveSurfer)=>{
+
     waveform.current = waveSurfer;
     waveform.current.load(audioFiles[audioFile])
     waveform.current.on('ready' , () =>{
@@ -120,7 +121,8 @@ const AudioPlayer = () => {
                   progressColor="#b249eb"
                   width="100%"
                   barHeight="0.75"
-                  />
+                  normalize={true}
+                  ></WaveForm>
               </WaveSurfer>
         </Col>
       <Col xs={2} className="justify-content-start text-ltg">

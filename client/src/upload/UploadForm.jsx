@@ -9,6 +9,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 import {LoginContext} from '.././context/LoginContext'
+import CollectionContext from '../context/CollectionContext'
 
 
 const UploadForm = () => {
@@ -18,10 +19,12 @@ const UploadForm = () => {
   const [coverArt , setCoverArt] = useState()
   const [showModal, setshowModal] = useState(false);
   const [showAlert , setShowAlert] = useState(false)
-
+  
   const coverRef = useRef()
   const handleClose = () => setshowModal(false);
   const handleShow = () => setshowModal(true);
+  
+  const {collection , setCollection} = useContext(CollectionContext)
   const {errors , setErrors} = useContext(LoginContext)
 
   function handleSubmit(e) {
@@ -53,9 +56,12 @@ const UploadForm = () => {
         r.json().then((collection)=>{
           console.log("success")
           debugger
-          setErrors([])
-          setSamples([])
+          setName("")
+          setDescription("")
           coverRef.current.value = null
+          setSamples([])
+          setErrors([])
+          setCollection(collection)
         })
       } else {
         r.json().then((e)=>{
