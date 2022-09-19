@@ -121,6 +121,10 @@ input[type="range"]::-webkit-slider-thumb {
   height:45vh;
 }
 
+.text-va{
+  vertical-align: middle !important;
+  margin-bottom: 0 !important;
+}
 .vh-80 {
   height: 87vh;
 }
