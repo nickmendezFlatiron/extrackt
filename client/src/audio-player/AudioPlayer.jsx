@@ -24,12 +24,14 @@ const AudioPlayer = () => {
   const [audioFile, setAudioFile] = useState(0)
   const [audioDuration , setAudioDuration] = useState({minutes: 0 , seconds: 0 })
   const [wavesurfer , setWavesurfer] = useState(null)
-  
+
+  const pause =  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z"/>
+  const play = <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
+  const [playButton, setPlayButton] = useState(pause)
   const waveform = useRef()
   const audioFiles = [audioTest , audioTest1 , audioTest2 , audioTest3]
 
   useEffect(()=>{
-    console.log("rerender")
     let ws = WaveSurfer.create({ 
       normalize: true,
       barHeight: 1,
@@ -49,9 +51,14 @@ const AudioPlayer = () => {
       setAudioDuration(()=>calculateTime(time))
       ws.play()
     });
-
+    ws.on("pause", function(){
+      setPlayButton(play)
+    })
+    ws.on("play", function (){
+      setPlayButton(pause)
+    }
+    )
     return () => {
-      console.log("cleanedup")
       ws.unAll();
       ws.destroy();
     };
@@ -92,7 +99,7 @@ const AudioPlayer = () => {
             <path fillRule="evenodd" d="M11.854 3.646a.5.5 0 0 1 0 .708L8.207 8l3.647 3.646a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 0 1 .708 0zM4.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 1 0v-13a.5.5 0 0 0-.5-.5z"/>
           </svg>
           <svg onClick={handlePlay} className="play-btn mx-1 bi bi-play-circle-fill" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"  viewBox="0 0 16 16">
-            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
+           {playButton}
           </svg>
           <svg onClick={handleNext} xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="play-btn bi bi-chevron-bar-right" viewBox="0 0 16 16">
             <path fillRule="evenodd" d="M4.146 3.646a.5.5 0 0 0 0 .708L7.793 8l-3.647 3.646a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708 0zM11.5 1a.5.5 0 0 1 .5.5v13a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 .5-.5z"/>
