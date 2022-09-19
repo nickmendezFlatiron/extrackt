@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/authorize', to: "users#show"  
   
   #collections controller
-  resources :collections , only: [:create]
+  resources :collections , only: [:create, :show]
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

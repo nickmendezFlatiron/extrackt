@@ -1,18 +1,18 @@
-import React from 'react'
-import Slider from 'react-slick'
-
+import {React, useContext} from 'react'
+import CollectionContext from '../../context/CollectionContext';
 import CarouselCard from './CarouselCard'
 
 import uuid from 'react-uuid';
+import Slider from 'react-slick'
 
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 // make carousel using react slick package
-const Carousel = ({collection}) => {
-
-  const featured = [collection,collection,collection,collection,collection,collection,collection,collection,collection,collection]
+const Carousel = () => {
+  const {collection} = useContext(CollectionContext)
+ 
   const settings = {
     arrows: false,
     dots: true,
@@ -24,7 +24,7 @@ const Carousel = ({collection}) => {
     slidesToScroll: 5
   }
 
-  const slides = featured.map(c => {return <CarouselCard c={c} key={uuid()}/>})
+  const slides = collection?.map(c => {return <CarouselCard c={c} key={uuid()}/>})
 
   return (
     <Slider {...settings} classNames="creme-bg">

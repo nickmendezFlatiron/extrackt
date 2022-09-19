@@ -112,8 +112,6 @@ const UploadTableRowForm = ({setSamples , samples}) => {
   }
 
   const selectDropdownStyles = {
-    // control: styles => ({ ...styles, backgroundColor: 'white' }),
-    // container: styles => ({ ...styles,  width: 100  }),
     menuList: styles => ({...styles , height: 200})
   };
   

@@ -5,20 +5,11 @@ import Table from 'react-bootstrap/Table'
 import uuid from 'react-uuid'
 // import Button from 'react-bootstrap/Button'
 
-const CollectionTable = () => {
+const CollectionTable = ({samples}) => {
 
-  const sample = {
-    id: 3,
-    name: 'snare',
-    key: "A",
-    bpm: 126,
-    genre: "House",
-    artist: "Admin",
-    type: "One-Shot",
-    format: "wav",
-    collection_id: 1
-  }
-
+  const renderSamples = samples?.map(sample=>{
+    return <CollectionTableRow key={uuid()} sample={sample}/>
+  })
   return (
     <Table hover className=''>
       <thead>
@@ -33,15 +24,7 @@ const CollectionTable = () => {
         </tr>
       </thead>
       <tbody className="">
-        <CollectionTableRow key={uuid()} sample={sample}/>
-        <CollectionTableRow key={uuid()} sample={sample}/>
-        <CollectionTableRow key={uuid()} sample={sample}/>
-        <CollectionTableRow key={uuid()} sample={sample}/>
-        <CollectionTableRow key={uuid()} sample={sample}/>
-        <CollectionTableRow key={uuid()} sample={sample}/>
-        <CollectionTableRow key={uuid()} sample={sample}/>
-        <CollectionTableRow key={uuid()} sample={sample}/>
-        <CollectionTableRow key={uuid()} sample={sample}/>
+        {renderSamples}
       </tbody>
     </Table>
   )

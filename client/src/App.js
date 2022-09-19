@@ -1,8 +1,8 @@
 import { Fragment , useState , useEffect } from 'react';
-import {Routes , Route} from 'react-router-dom'
+import {Routes , Route, Navigate} from 'react-router-dom'
 import {LoginContext} from './context/LoginContext'
 import CollectionContext from './context/CollectionContext'
-// import Protected from './Protected'
+import Protected from './Protected'
 
 import Sidebar from './Sidebar';
 import Navigation from './home-page/Navigation'
@@ -31,21 +31,12 @@ import cover from "./assets/stock-album-2.jpg"
 
 
 function App() {
-  const col = {
-    id: 1,
-    collection_name: "Fire Samples Vol. 2",
-    artwork: cover,
-    downloads: 12930,
-    user_id: 1,
-    created_at: new Date(),
-    updated_at: Date.now() ,
-    user: "nick",
-  }
+
   const [authenticated , isAuthenticated] = useState(null)
   const [toggleModal , setToggleModal] = useState(false)
   const [user , setUser] = useState(null)
   const [errors , setErrors] = useState(null)
-  const [collection , setCollection] = useState(col)
+  const [collection , setCollection] = useState(null)
   const handleClose = () => {
     setToggleModal(false)
     setErrors([])
@@ -56,20 +47,12 @@ function App() {
   };
 
 
-
+  const navigate = <Navigate to="/" />
   const spinner =   <Spinner animation="border" role="status">
                       <span className="visually-hidden">Loading...</span>
                     </Spinner>
 
-  // const user_sample = {
-  //   id: 1,
-  //   username: "Admin",
-  //   full_name: "Nick Mendez",
-  //   email: "nicholasmendez10@gmail.com",
-  //   account_type: "admin",
-  //   credits: 2394
-  // }
-
+ 
   useEffect(()=>{
     fetch("/authorize")
       .then(r =>{
@@ -88,10 +71,10 @@ function App() {
   },[])
  
   if(isAuthenticated === null) return spinner
-
+  
   return (
     <Fragment>
-      <LoginContext.Provider value={{setUser , user , authenticated , isAuthenticated , errors, setErrors}}>
+      <LoginContext.Provider value={{setUser , user , authenticated , isAuthenticated , errors, setErrors, spinner, navigate}}>
         {(authenticated === false) && <Navigation handleShow={handleShow} handleClose={handleClose} toggleModal={toggleModal}/>}
         {authenticated && <Sidebar user={user} setUser={setUser} isAuthenticated={isAuthenticated}/>}
           <CollectionContext.Provider value={{collection, setCollection}}>

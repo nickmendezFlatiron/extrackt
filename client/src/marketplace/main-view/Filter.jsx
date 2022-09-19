@@ -1,61 +1,191 @@
-import React from 'react'
+import{useState ,React} from 'react'
 
+
+import Select from 'react-select'
 import Form from  'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
 
-const Filter = () => {
+const Filter = ({handleFilterQuery}) => {
+  const [search , setSearch] = useState("")
+  const [key, setKey] = useState(null)
+  const [genre, setGenre] = useState(null)
+  const [bpm , setBpm] = useState(null)
+  const [type, setType] = useState(null)
 
+  function handleSearch(e){
+    setSearch(e.target.value)
+  }
+
+  function handleSubmit(e){
+    e.preventDefault()
+    const searchParams = {
+      sample_type: type,
+      search,
+      key, 
+      genre,
+      bpm
+    }
+   
+    handleFilterQuery(searchParams)
+  }
+
+  function handleBpm(e){
+    if (e.target.value > 200) {
+      setBpm(200)
+      e.target.value = 200
+    } else if(e.target.value <= 200 || e.target.value > 0) {
+      setBpm(parseInt(e.target.value))
+    } else if(e.target.value == NaN) {
+      e.target.value = null
+      setBpm(null)
+    } else {
+      setBpm(0)
+      e.target.value = 0
+    }
+  }
+
+  const genres = [ "pop","rock","hip-hop","rap","country","rnb", "jazz", "metal", "electronic", "soul", "ambient", "funk","raggae", "disco","classical","house","indie","techno","trap","dubstep", "gospel","latin", "raggaeton", "grime", "edm", "synthwave", "cinematic", "trance", "experimental","electro","idm","acapella"]
+
+  const types = [
+    { value: 'drum', label: 'Drum' },
+    { value: 'foley', label: 'Foley' },
+    { value: 'fx', label: 'FX' },
+    { value: 'loop', label: 'Loop' },
+    { value: 'melody', label: 'Melody' },
+    { value: 'one-shot', label: 'One Shot' },
+    { value: 'pad', label: 'Pad' },
+    { value: 'percussion', label: 'Percussion' },
+    { value: 'vocal', label: 'Vocal' },
+  ]
   
+  const songKeys = [
+    {value: "a", label:"A"},
+    {value: "b", label: "B"},
+    {value: "c", label: "C"},
+    {value: "d", label: "D"},
+    {value: "e", label: "E"},
+    {value: "f", label: "F"},
+    {value: "g", label: "G"}
+  ]
+  const keyExist = key && key.filter(k => /[a-g]/.exec(k.value) && k.value.length === 1)
+  const hideKeys = keyExist?.length > 0 ? [] : songKeys 
+
+  const halfStep = [
+    {value: "flat", label: "♭"},
+    {value: "sharp", label: "♯"}
+  ]
+  const halfStepExist = key && key.filter(k => /sharp/.exec(k.value) ||  /flat/.exec(k.value))
+  const hideHalfSteps = halfStepExist?.length > 0 ? [] : halfStep
+  
+  const scales = [
+    {value: "major", label: "maj"},
+    {value: "minor", label: "min"}
+  ]
+
+  const scalesExist = key && key.filter(k => k.value.includes("minor") || k.value.includes("major"))
+  const hideScales = scalesExist?.length > 0 ? [] : scales
+  const keyOptions = [
+    {
+      label: "Keys",
+      options: hideKeys
+    },
+    { label: "Half Step", 
+      options: hideHalfSteps
+    },
+    { label: "Scale",
+      options: hideScales
+    }
+  ]
+  
+  const genresOptions = genres.sort((a, b) => a.localeCompare(b)).map(genre => {return {value: genre , label: genre}})
+  const selectDropdownStyles = {
+    menuList: styles => ({...styles , height: 200})
+  };
 
   return (
-    <Form className="mt-2">
+    <Form className="my-2" onSubmit={handleSubmit}>
       {/* <h3 className="text-center mt-2">Filter</h3> */}
       <InputGroup size="lg" className="px- mb-3">
         <FormControl  
           aria-label="Large" 
           aria-describedby="inputGroup-sizing-sm" 
           placeholder='Search Samples...' 
-          // value={searchQuery} 
-          // onChange={handleFilter}
+          value={search} 
+          onChange={handleSearch}
           />
       </InputGroup>
-      <Form.Group className="px-4 mb-3">
-        <Row>
-        <Col>
-        <Form.Select aria-label="Default select example" label="Key">
-          <option>Key</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </Form.Select>
-        </Col>
-        <Col>
-        <Form.Select aria-label="Default select example" label="Scale">
-          <option>Scale</option>
-          <option value="1">Major</option>
-          <option value="2">Minor</option>
-        </Form.Select>
-        </Col>
-        </Row>
+      <Form.Group className="mb-3">
+        <Form.Control 
+            type="number" 
+            onChange={handleBpm}  
+            placeholder="Enter BPM 0 to 200..." 
+            value={bpm} 
+            min="0" 
+            max="200" 
+          />
       </Form.Group>
-      <Form.Group className="px-5 mb-3">
-        <Form.Select aria-label="Default select example" label="Key">
-          <option>Genre</option>
-        </Form.Select>
+      <Form.Group className=" mb-3">
+        <Select 
+          value={key}
+          isMulti
+          styles={selectDropdownStyles}
+          onChange={setKey}
+          options={keyOptions}
+          placeholder= "Select key..."
+          theme={(theme) => ({
+            ...theme,
+            borderRadius: 5,
+            colors: {
+              ...theme.colors,
+              primary25: '#cf76ff4e',
+              primary: '#cf76ff',
+            },
+          })}
+         />  
       </Form.Group>
-      <Form.Group className="px-5 mb-3">
-        <Form.Select aria-label="Default select example" label="Key">
-          <option>BPM</option>
-        </Form.Select>
+      <Form.Group className="mb-3">
+        <Select 
+          placeholder= "Select genre..."
+            value={genre}
+            styles={selectDropdownStyles}
+            isClearable
+            onChange={setGenre}
+            options={genresOptions}
+            theme={(theme) => ({
+              ...theme,
+              borderRadius: 5,
+              colors: {
+                ...theme.colors,
+                primary25: '#cf76ff4e',
+                primary: '#cf76ff',
+              },
+            })}
+          />
       </Form.Group>
-      <Form.Group className="px-5 mb-3">
-        <Form.Select aria-label="Default select example" label="Key">
-          <option>Type</option>
-        </Form.Select>
+      <Form.Group className="mb-3">
+        <Select 
+            isClearable
+            placeholder="Select sample type..."
+            value={type}
+            onChange={setType}
+            options={types}
+            styles={selectDropdownStyles}
+            theme={(theme) => ({
+              ...theme,
+              borderRadius: 5,
+              colors: {
+                ...theme.colors,
+                primary25: '#cf76ff4e',
+                primary: '#cf76ff',
+              },
+            })}
+          />
       </Form.Group>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
     </Form>
   )
 }

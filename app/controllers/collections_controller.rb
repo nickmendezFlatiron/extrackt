@@ -23,6 +23,11 @@ class CollectionsController < ApplicationController
     end
   end
 
+  def show
+    collection = Collection.find(params[:id])
+    render json: collection , status: :ok
+  end
+
 
   private
   # name , downloads , :user_id , :description , :cover_art
