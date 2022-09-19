@@ -1,5 +1,4 @@
 import React,{useState , useRef , useEffect} from 'react'
-// import { WaveSurfer , WaveForm} from 'wavesurfer-react';
 import WaveSurfer from "wavesurfer.js"
 
 import Row from 'react-bootstrap/Row'
@@ -22,12 +21,15 @@ function calculateTime(secs){
 }
 
 const AudioPlayer = () => {
-  const audioFiles = [audioTest , audioTest1 , audioTest2 , audioTest3]
   const [audioFile, setAudioFile] = useState(0)
   const [audioDuration , setAudioDuration] = useState({minutes: 0 , seconds: 0 })
+  const [wavesurfer , setWavesurfer] = useState(null)
+  
   const waveform = useRef()
+  const audioFiles = [audioTest , audioTest1 , audioTest2 , audioTest3]
 
   useEffect(()=>{
+    console.log("rerender")
     let ws = WaveSurfer.create({ 
       normalize: true,
       barHeight: 1,
@@ -39,85 +41,42 @@ const AudioPlayer = () => {
       waveColor: "#e4c1f9",
       cursorColor: "transparent"
     });
-  
     ws.load(audioFiles[audioFile])
 
+    setWavesurfer(ws)
     ws.on("ready", function () {
-      ws.play()
-      waveform.current = ws
       const time = ws.getDuration()
       setAudioDuration(()=>calculateTime(time))
+      ws.play()
     });
 
     return () => {
+      console.log("cleanedup")
       ws.unAll();
       ws.destroy();
     };
-  },[])
-
-
-  // const handleWSMount = (waveSurfer)=>{
-
-  //   waveform.current = waveSurfer;
-  //   waveform.current.load(audioFiles[audioFile])
-  //   waveform.current.on('ready' , () =>{
-  //     const time = waveform.current.getDuration()
-  //     setAudioDuration(()=>calculateTime(time))
-  //     waveform.current.play()
-  //   //   waveform.current.on('interaction', ()=>{
-  //   //    console.log("interaction")
-  //   //  })
-  //   })
-
-  //   if (window) {
-  //     window.surferidze = waveform.current;
-  //   }
-  // }
-
-  
-  
+  },[audioFile])
+    
   function handlePlay(){
-    waveform.current.playPause()
-    console.log("play")
-    // const time = waveform.current.getDuration()
-    // setAudioDuration(()=>calculateTime(time))
+    wavesurfer.playPause()
+
   }
 
   function handlePrevious(){
     if(audioFile > 0 ){
-      waveform.current.unAll()
       setAudioFile((audioFile)=> audioFile - 1 )
-      waveform.current.load(audioFiles[audioFile])
-      waveform.current.on('ready' , () =>{
-        const time = waveform.current.getDuration()
-        setAudioDuration(()=>calculateTime(time))
-        waveform.current.play()
-      //   waveform.current.on('interaction', ()=>{
-      //    console.log("interaction", "prev")
-      //  })
-      })
     } 
   }
   
   function handleNext(){    
-    setAudioFile((audioFile) => audioFile + 1)
     if(audioFile < 3 ){
-        waveform.current.unAll()
-        waveform.current.load(audioFiles[audioFile])  
-        waveform.current.on('ready' , () =>{ 
-          const time = waveform.current.getDuration()
-          setAudioDuration(()=>calculateTime(time))
-          waveform.current.play()
-        //   waveform.current.on('interaction', ()=>{
-        //    console.log("interaction" , "next")
-        //  })
-        })   
+      setAudioFile((audioFile)=> audioFile + 1 )
     } 
   }
 
   function handleVolume(e){
     let volume = parseFloat(e.target.value / 100) 
-    waveform.current.setVolume(volume)
+    wavesurfer.setVolume(volume)
   }
 
   function handleSeek(e){ 
@@ -142,20 +101,9 @@ const AudioPlayer = () => {
           <h4 className="text-ltg  ms-auto">{`${audioDuration.minutes}:${audioDuration.seconds}`}</h4>
 
       </Col>
-        <Col className="me-4"> 
-              {/* <WaveSurfer onMount={handleWSMount} className="creme-bg"  onClick={handleSeek} >
-                <WaveForm id="waveform" 
-                  cursorColor="transparent" 
-                  waveColor="#e4c1f9"
-                  progressColor="#b249eb"
-                  width="100%"
-                  barHeight="0.75"
-                  normalize={true}
-                  ></WaveForm>
-              </WaveSurfer> */}
-              <div ref={waveform} className="creme-bg">
-                
-              </div>
+        <Col className="me-4">
+          <div ref={waveform} className="creme-bg">
+          </div>
         </Col>
       <Col xs={2} className="justify-content-start text-ltg">
         <Row>
