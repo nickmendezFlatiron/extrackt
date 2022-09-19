@@ -97,7 +97,7 @@ const AudioPlayer = () => {
   
   return (
     // Sticky footer
-   <div className="audio-player fixed-bottom creme-bg " >
+   <div className="audio-player fixed-bottom creme-bg" >
     <Row className="align-items-center">
       <Col className="ms-3 d-flex align-items-center" >
           <svg onClick={handlePrevious} xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="play-btn bi bi-chevron-bar-left" viewBox="0 0 16 16">

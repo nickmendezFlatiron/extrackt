@@ -14,7 +14,7 @@ const Collection = ({collection}) => {
   const goBack = () => {
     navigate(-1);
   };
-
+  
   return (
     <>
       <div className="mb-3 pb-5 mx-4">
@@ -41,7 +41,7 @@ const Collection = ({collection}) => {
             </Col>
           </Col>
         </Row>
-            <AudioPlayer />
+      <AudioPlayer />
       </div>
     </>
         
