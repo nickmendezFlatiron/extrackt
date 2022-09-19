@@ -1,5 +1,6 @@
-import React,{useState , useRef } from 'react'
-import { WaveSurfer , WaveForm} from 'wavesurfer-react';
+import React,{useState , useRef , useEffect} from 'react'
+// import { WaveSurfer , WaveForm} from 'wavesurfer-react';
+import WaveSurfer from "wavesurfer.js"
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -25,31 +26,59 @@ const AudioPlayer = () => {
   const [audioFile, setAudioFile] = useState(0)
   const [audioDuration , setAudioDuration] = useState({minutes: 0 , seconds: 0 })
   const waveform = useRef()
+
+  useEffect(()=>{
+    let ws = WaveSurfer.create({ 
+      normalize: true,
+      barHeight: 1,
+      container: waveform.current,
+      backend: "WebAudio",
+      height: 60,
+      progressColor: "#b249eb",
+      responsive: true,
+      waveColor: "#e4c1f9",
+      cursorColor: "transparent"
+    });
   
+    ws.load(audioFiles[audioFile])
 
-
-  const handleWSMount = (waveSurfer)=>{
-
-    waveform.current = waveSurfer;
-    waveform.current.load(audioFiles[audioFile])
-    waveform.current.on('ready' , () =>{
-      const time = waveform.current.getDuration()
+    ws.on("ready", function () {
+      ws.play()
+      waveform.current = ws
+      const time = ws.getDuration()
       setAudioDuration(()=>calculateTime(time))
-      waveform.current.play()
-    //   waveform.current.on('interaction', ()=>{
-    //    console.log("interaction")
-    //  })
-    })
+    });
 
-    if (window) {
-      window.surferidze = waveform.current;
-    }
-  }
+    return () => {
+      ws.unAll();
+      ws.destroy();
+    };
+  },[])
+
+
+  // const handleWSMount = (waveSurfer)=>{
+
+  //   waveform.current = waveSurfer;
+  //   waveform.current.load(audioFiles[audioFile])
+  //   waveform.current.on('ready' , () =>{
+  //     const time = waveform.current.getDuration()
+  //     setAudioDuration(()=>calculateTime(time))
+  //     waveform.current.play()
+  //   //   waveform.current.on('interaction', ()=>{
+  //   //    console.log("interaction")
+  //   //  })
+  //   })
+
+  //   if (window) {
+  //     window.surferidze = waveform.current;
+  //   }
+  // }
 
   
   
   function handlePlay(){
     waveform.current.playPause()
+    console.log("play")
     // const time = waveform.current.getDuration()
     // setAudioDuration(()=>calculateTime(time))
   }
@@ -99,7 +128,7 @@ const AudioPlayer = () => {
     // Sticky footer
    <div className="audio-player fixed-bottom creme-bg" >
     <Row className="align-items-center">
-      <Col className="ms-3 d-flex align-items-center" >
+      <Col className="ms-3 d-flex align-items-center " >
           <svg onClick={handlePrevious} xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="play-btn bi bi-chevron-bar-left" viewBox="0 0 16 16">
             <path fillRule="evenodd" d="M11.854 3.646a.5.5 0 0 1 0 .708L8.207 8l3.647 3.646a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 0 1 .708 0zM4.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 1 0v-13a.5.5 0 0 0-.5-.5z"/>
           </svg>
@@ -113,8 +142,8 @@ const AudioPlayer = () => {
           <h4 className="text-ltg  ms-auto">{`${audioDuration.minutes}:${audioDuration.seconds}`}</h4>
 
       </Col>
-        <Col className="me-4" > 
-              <WaveSurfer onMount={handleWSMount} className="creme-bg"  onClick={handleSeek} >
+        <Col className="me-4"> 
+              {/* <WaveSurfer onMount={handleWSMount} className="creme-bg"  onClick={handleSeek} >
                 <WaveForm id="waveform" 
                   cursorColor="transparent" 
                   waveColor="#e4c1f9"
@@ -123,7 +152,10 @@ const AudioPlayer = () => {
                   barHeight="0.75"
                   normalize={true}
                   ></WaveForm>
-              </WaveSurfer>
+              </WaveSurfer> */}
+              <div ref={waveform} className="creme-bg">
+                
+              </div>
         </Col>
       <Col xs={2} className="justify-content-start text-ltg">
         <Row>
