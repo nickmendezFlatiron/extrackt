@@ -66,7 +66,7 @@ const Filter = ({handleFilterQuery}) => {
         searchObj[param] = searchParams[param]
       }
     })
-    console.log(searchObj)
+  
     if (filterParams.length > 0) return handleFilterQuery(searchObj)
   
   }

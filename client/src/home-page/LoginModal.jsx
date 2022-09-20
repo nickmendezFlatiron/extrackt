@@ -39,7 +39,6 @@ const LoginModal = ({toggleModal , handleClose }) => {
           handleClose()
         })
       } else {r.json().then((e)=>{
-        console.log(e.errors)
         setErrors(e.errors)
       })}
     }

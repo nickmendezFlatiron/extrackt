@@ -1,4 +1,4 @@
-import {React , useContext, useEffect}from 'react'
+import {React , useContext, useEffect, useState}from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import CollectionContext from '../context/CollectionContext'
 import {LoginContext} from '../context/LoginContext'
@@ -13,24 +13,28 @@ import Image from 'react-bootstrap/Image'
 
 const Collection = () => {
   const {collection , setCollection} = useContext(CollectionContext)
+  const {samplePreview , setSamplePreview} = useState()
   const {errors, setErrors, spinner, isAuthenticated} = useContext(LoginContext)
   const params = useParams()
   let navigate = useNavigate()
+
   const goBack = () => {
     navigate(-1);
   };
+
   useEffect(()=>{
     fetch(`/collections/${params.id}`)
       .then(r => {
         if(r.ok){
           r.json().then(collection => setCollection(collection))
-          console.log(collection)
+      
         }else {r.json().then(e=> setErrors(e.errors[0]))}
       })
   },[])
 
-  
-  const renderTable = collection? <CollectionTable samples={collection?.samples}/> : spinner;
+
+  const renderTable = collection? <CollectionTable samples={collection?.samples} setSamplePreview={setSamplePreview}/> : spinner;
+
   const loadMore = <button className="text-start mb-3 me-auto link-btn">Load Next 20 Samples...</button>
   return (
     <>
@@ -58,7 +62,7 @@ const Collection = () => {
             </Col>
           </Col>
         </Row>
-      <AudioPlayer />
+      <AudioPlayer samplePreview={samplePreview}/>
       </div>
     </>
         

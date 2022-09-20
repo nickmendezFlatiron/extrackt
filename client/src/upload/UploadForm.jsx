@@ -54,8 +54,8 @@ const UploadForm = () => {
     }).then(r=>{
       if(r.ok) {
         r.json().then((collection)=>{
-          console.log("success")
-          debugger
+          
+          
           setName("")
           setDescription("")
           coverRef.current.value = null
@@ -67,7 +67,7 @@ const UploadForm = () => {
         r.json().then((e)=>{
           setErrors(e.errors[0])
           setShowAlert(true)
-          console.log("failed")
+          
         })
       }
     })

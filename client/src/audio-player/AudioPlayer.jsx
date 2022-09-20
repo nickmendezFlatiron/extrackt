@@ -20,7 +20,7 @@ function calculateTime(secs){
   return {minutes , seconds }
 }
 
-const AudioPlayer = () => {
+const AudioPlayer = ({samplePreview}) => {
   const [audioFile, setAudioFile] = useState(0)
   const [audioDuration , setAudioDuration] = useState({minutes: 0 , seconds: 0 })
   const [wavesurfer , setWavesurfer] = useState(null)
@@ -85,7 +85,7 @@ const AudioPlayer = () => {
 
   function handleVolume(e){
     let vol = parseFloat(e.target.value / 100) 
-    console.log(vol)
+    
     setVolume(e.target.value)
     wavesurfer.setVolume(vol)
   }

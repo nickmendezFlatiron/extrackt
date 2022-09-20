@@ -26,6 +26,7 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 gem 'foreman'
 gem 'will_paginate', '~> 3.3', '>= 3.3.1'
 
+
 # Cloud Storage 
 gem 'activestorage', '~> 7.0', '>= 7.0.4'
 gem 'activestorage-validator', '~> 0.2.2'

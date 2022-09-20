@@ -2,12 +2,16 @@ import React from 'react'
 
 import Button from 'react-bootstrap/Button'
 
-const CollectionTableRow = ({sample}) => {
+const CollectionTableRow = ({sample, SetSamplePreview}) => {
   const {name , bpm, artist, genre, key, sample_type, sample_url} = sample
+
+  function handleSetSamplePreview(){
+    SetSamplePreview(sample)
+  }
   return (
     <tr className="align-middle">
       <td>
-        <Button variant="outline-primary">Play</Button>
+        <Button onClick={handleSetSamplePreview} variant="outline-primary">Play</Button>
       </td>
       <td>{name}</td>
       <td>{artist}</td>
