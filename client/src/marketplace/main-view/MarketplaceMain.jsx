@@ -2,6 +2,7 @@ import {React, useContext, useState, useEffect} from 'react'
 import {LoginContext} from '../../context/LoginContext'
 import uuid from 'react-uuid'
 import Container from 'react-bootstrap/Container'
+import Col from 'react-bootstrap/Col'
 import Carousel from './Carousel'
 
 const MarketplaceMain = () => {
@@ -30,15 +31,15 @@ const MarketplaceMain = () => {
     <Container>
       <div>
         <h3 className="mt-2">Top 10 Downloads</h3>
-        <Container className="light-purple-bg my-3 mt-3 rounded-2 shadow-sm">
+        <Col className="light-purple-bg my-3 mt-3 rounded-2 shadow-sm">
           <Carousel key={uuid()} featuredCollections={popularCollections}/>
-        </Container>
+        </Col>
       </div>
       <div className='mt-5'>
         <h3 className="mt-2">New Releases</h3>
-        <Container className="bg-light my-3 mt-3 rounded-2 shadow">
+        <Col className="bg-light my-3 mt-3 rounded-2 shadow">
           <Carousel key={uuid()} featuredCollections={recentCollections}/>
-        </Container>
+        </Col>
         </div>
     </Container>
     

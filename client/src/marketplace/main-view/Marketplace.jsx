@@ -50,7 +50,7 @@ const Marketplace = () => {
     <>
       <div className="mb-3 pb-3 mx-4">
         <Row>
-          <Col className="text-center filter" lg={3}>
+          <Col className=" filter" lg={3}>
             <Row>
             <Filter handleFilterQuery={handleFilterQuery} setShowAlert={setShowAlert}/>
             </Row>

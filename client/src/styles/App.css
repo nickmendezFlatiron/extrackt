@@ -36,6 +36,7 @@
 .cover-preview{
   width: 300px;
   height: auto;
+  aspect-ratio: 1/1;
   border-radius: 20px;
 }
 
@@ -195,6 +196,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 .carousel-pic{
   width: 100%;
+  aspect-ratio: 1/1;
   height: auto;
 }
 

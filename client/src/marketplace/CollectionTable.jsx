@@ -11,7 +11,7 @@ const CollectionTable = ({samples, SetSamplePreview}) => {
     return <CollectionTableRow key={uuid()} sample={sample} SetSamplePreview={SetSamplePreview}/>
   })
   return (
-    <Table hover className=''>
+    <Table hover responsive className=''>
       <thead>
         <tr>
           <th scope="col"></th>
