@@ -28,6 +28,15 @@ class CollectionsController < ApplicationController
     render json: collection , status: :ok
   end
 
+  def recent
+    recent = Collection.order(created_at: :desc ).limit(10)
+    render json: recent, each_serializer: MarketplaceCollectionSerializer ,status: :created
+  end
+
+  def popular
+    popular = Collection.order(downloads:  :desc).limit(10)
+    render json: popular, each_serializer: MarketplaceCollectionSerializer ,status: :created
+  end
 
   private
   # name , downloads , :user_id , :description , :cover_art

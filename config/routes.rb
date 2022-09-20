@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   
   #collections controller
   resources :collections , only: [:create, :show]
+  get '/marketplace/recent', to: "collections#recent"
+  get '/marketplace/popular', to: "collections#popular"
   
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

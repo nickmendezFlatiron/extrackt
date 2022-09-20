@@ -47,9 +47,9 @@
   border-radius: 20px;
 }
 .featured-preview:hover , .carousel-card:hover {
-  transition: all .05s linear;
-  cursor: pointer;
-  opacity: 80%;
+  transition: all .05s linear !important;
+  cursor: pointer !important;
+  opacity: 80% !important;
 }
 
 .filter {
@@ -120,6 +120,8 @@ input[type="range"]::-webkit-slider-thumb {
   overflow:auto;
   height:45vh;
 }
+
+
 
 .text-va{
   vertical-align: middle !important;

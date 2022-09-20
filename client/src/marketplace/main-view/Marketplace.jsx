@@ -32,14 +32,14 @@ const Marketplace = () => {
         },
         body: JSON.stringify(filter)
       }).then(r =>{
-        console.log(r)
+       
         if(r.status === 204) {
           setShowAlert(true)
           setErrors(["No matches found, broaden your search."])
         }
         if(r.ok){ r.json().then(res =>{
           // setSearchResults([...setSearchResults,res])
-          console.log(res)
+         
         })
 
         }
