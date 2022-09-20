@@ -12,9 +12,10 @@ Rails.application.routes.draw do
   get '/authorize', to: "users#show"  
   
   #collections controller
-  resources :collections , only: [:create, :show]
+  resources :collections , only: [:create, :show, :destroy]
   get '/marketplace/recent', to: "collections#recent"
   get '/marketplace/popular', to: "collections#popular"
+  get 'user/:id/collections', to: "collections#index"
   
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

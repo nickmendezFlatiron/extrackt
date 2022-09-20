@@ -23,10 +23,26 @@ class CollectionsController < ApplicationController
     end
   end
 
+  def index
+    user = User.find(params[:id])
+    if current_user == user
+      render json: user.collections , status: :ok,  each_serializer: MarketplaceCollectionSerializer ,status: :created
+    end
+  end 
+
   def show
-    collection = Collection.find(params[:id])
+    collection = Collection.find_by!(id: params[:id])
     render json: collection , status: :ok
   end
+
+  def destroy
+    collection = Collection.find_by!(id: params[:id])
+    if current_user.id == collection.user_id
+      collection.destroy
+      return head :no_content
+    end
+    
+  end 
 
   def recent
     recent = Collection.order(created_at: :desc ).limit(10)

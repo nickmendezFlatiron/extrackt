@@ -5,10 +5,12 @@ import {useNavigate} from 'react-router-dom'
 
 
 const CarouselCard = ({c}) => {
-  const {setCollection} = useContext(CollectionContext)
+  const {setCollection , collection} = useContext(CollectionContext)
   const navigate = useNavigate()
   function handleClick(){
-    setCollection(null)
+    if (c.id !== collection?.id){
+      setCollection(null)
+    }
     navigate(`/marketplace/${c.id}`)
   }
   return (

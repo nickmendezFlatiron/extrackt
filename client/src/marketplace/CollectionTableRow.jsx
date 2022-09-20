@@ -10,9 +10,6 @@ const CollectionTableRow = ({sample, SetSamplePreview}) => {
   }
   return (
     <tr className="align-middle">
-      <td>
-        <Button onClick={handleSetSamplePreview} variant="outline-primary">Play</Button>
-      </td>
       <td>{name}</td>
       <td>{artist}</td>
       <td>{genre}</td>

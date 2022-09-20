@@ -14,7 +14,6 @@ const CollectionTable = ({samples, SetSamplePreview}) => {
     <Table hover responsive className=''>
       <thead>
         <tr>
-          <th scope="col"></th>
           <th scope="col">Sample Name</th>
           <th scope="col">Artist</th>
           <th scope="col">Genre</th>

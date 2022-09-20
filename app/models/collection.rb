@@ -9,6 +9,6 @@ class Collection < ApplicationRecord
   validates :name , presence: true ,on: :create
   validates :description , format: {with: /[0-9a-zA-Z\s[:punct:]_-]/ , message: "may only include letters, spaces, and punctuation"}
   validates :description , presence: true , on: :create
-  validates :cover_art, presence: true, blob: { content_type: :image, size_range: 1..(3.megabytes)}
+  validates :cover_art, presence: true, blob: { content_type: :image, size_range: 1..(1.megabytes)}
   validates :user_id , numericality: true
 end

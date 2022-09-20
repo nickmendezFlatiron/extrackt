@@ -52,7 +52,7 @@ const handleLogout = () => {
                   <Nav.Link href="/" className="px-2 sidebar">Home</Nav.Link>
                   <Nav.Link href="/marketplace" className="px-2 sidebar">The Crate</Nav.Link>
                   <Nav.Link href={`/user/${user.username}/downloads`} className="px-2 sidebar">My Downloads</Nav.Link>
-                  <Nav.Link href={`/user/${user.username}/samples`} className="px-2 sidebar">Manage Samples</Nav.Link>
+                  <Nav.Link href={`/user/${user.username}/samples`} className="px-2 sidebar">Manage Uploads</Nav.Link>
                   <Nav.Link href="/upload" className="px-2 sidebar">Upload</Nav.Link>
                 </Nav>
               </Offcanvas.Body>

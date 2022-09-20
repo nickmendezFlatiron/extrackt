@@ -5,7 +5,7 @@ import CollectionContext from '../context/CollectionContext'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-import audioTest from '../assets/audio-files/audio-test.mp3'
+import audioTest from '../assets/audio-files/snare.wav'
 import audioTest1 from '../assets/audio-files/audio-test-1.mp3'
 import audioTest2 from '../assets/audio-files/audio-test-2.mp3'
 import audioTest3 from '../assets/audio-files/audio-test-3.mp3'
