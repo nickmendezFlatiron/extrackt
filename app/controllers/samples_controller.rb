@@ -3,13 +3,17 @@ class SamplesController < ApplicationController
   def search
     search = {}
     params.keys[0..-4].each do |p|
-    if p == "key"
+    if p == "key" || p == "name"
       next
     end
      search[p] = params[p]
     end
 
     res = Sample.where(search)
+
+    if params.has_key?("name")
+      res = res.find_all {|r| r["name"].downcase.include?(params["name"].downcase)}
+    end
     # if the key parameter is not empty then i want to check if each result includes each "key" value
     # check if every provided param key string is included in result key array
     if params.has_key?("key") && !params["key"].empty?
@@ -18,12 +22,14 @@ class SamplesController < ApplicationController
         test_case
       end
       if ans.empty?
-       return render json: {} ,status: :ok
+       return head :no_content
       end
-      byebug
       return render json: ans , status: :ok
     end
-    # return render json: res , status: :ok
+    if res.empty?
+      return head :no_content
+    end
+    return render json: res , status: :ok
   end
   
 

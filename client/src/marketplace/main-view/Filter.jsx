@@ -1,5 +1,5 @@
-import{useState ,React} from 'react'
-
+import{useState ,React, useContext} from 'react'
+import {LoginContext} from "../../context/LoginContext"
 
 import Select from 'react-select'
 import Form from  'react-bootstrap/Form'
@@ -7,12 +7,13 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 
-const Filter = ({handleFilterQuery}) => {
+const Filter = ({handleFilterQuery, setShowAlert}) => {
   const [search , setSearch] = useState("")
   const [key, setKey] = useState(null)
   const [genre, setGenre] = useState(null)
   const [bpm , setBpm] = useState(null)
   const [type, setType] = useState(null)
+  const {setErrors} = useContext(LoginContext)
 
   function handleSearch(e){
     setSearch(e.target.value)
@@ -39,6 +40,8 @@ const Filter = ({handleFilterQuery}) => {
     setGenre(null)
     setBpm(null)
     setType(null)
+    setErrors(null)
+    setShowAlert(false)
   }
 
   function handleSubmit(e){
@@ -137,7 +140,7 @@ const Filter = ({handleFilterQuery}) => {
         <FormControl  
           aria-label="Large" 
           aria-describedby="inputGroup-sizing-sm" 
-          placeholder='Search Samples...' 
+          placeholder='Search sample names...' 
           value={search} 
           onChange={handleSearch}
           />

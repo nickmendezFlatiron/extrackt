@@ -36,6 +36,7 @@ const Collection = () => {
   const renderTable = collection? <CollectionTable samples={collection?.samples} setSamplePreview={setSamplePreview}/> : spinner;
 
   const loadMore = <button className="text-start mb-3 me-auto link-btn">Load Next 20 Samples...</button>
+  const date = Date(collection?.created_at).split(" ").splice(1,3).join(" ")
   return (
     <>
       <div className="mb-3 pb-5 mx-4">
@@ -47,10 +48,11 @@ const Collection = () => {
             </Col> 
             <Col >
               <Image src={collection?.cover_art_url} className="cover-preview offset"/>
-              <h3 className="ms-5">{collection?.samples.length} Sample(s)</h3>
+              <h3 className="ms-5 text-black">{collection?.samples.length} Sample(s)</h3>
             </Col>
-              <h2 className='text-dark fw-bold '>{collection?.name}</h2>
-            <h2 className="text-dkg">{collection?.user.username}</h2>
+              <h2 className='text-black fw-bold '>{collection?.name}</h2>
+            <h2 className="text-black">{collection?.user.username}</h2>
+            <p className="text-black">Released: {date}</p>
           </Col>
           <Col className="">
             <Col>

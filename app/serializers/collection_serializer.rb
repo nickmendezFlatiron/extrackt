@@ -1,5 +1,5 @@
 class CollectionSerializer < ActiveModel::Serializer
-  attributes :id, :name, :cover_art_url, :downloads, :description
+  attributes :id, :name, :cover_art_url, :downloads, :description, :created_at
   has_one :user
   has_many :samples
 
