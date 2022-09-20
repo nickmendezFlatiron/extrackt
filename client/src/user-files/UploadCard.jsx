@@ -15,7 +15,7 @@ const UploadCard = ({upload, handleUploads}) => {
   function handleDelete(e){
     e.stopPropagation()
     setErrors([])
-   if( window.confirm("Please confirm you'd like to delete this collection")){
+   if( window.confirm("Please confirm you'd like to delete this collection, this action is irreversible.")){
     fetch(`/collections/${upload.id}`, {method: "DELETE"})
       .then(r => {
         if(r.ok){
