@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-
+  #samples controller
+  post '/samples/search' , to: "samples#search"
+  
   #sessions controller
   post "/login" , to: "sessions#login"
   delete "/logout", to: "sessions#destroy"
@@ -11,7 +13,7 @@ Rails.application.routes.draw do
   
   #collections controller
   resources :collections , only: [:create, :show]
-
+  
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
 

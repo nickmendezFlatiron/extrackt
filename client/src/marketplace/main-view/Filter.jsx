@@ -18,19 +18,6 @@ const Filter = ({handleFilterQuery}) => {
     setSearch(e.target.value)
   }
 
-  function handleSubmit(e){
-    e.preventDefault()
-    const searchParams = {
-      sample_type: type,
-      search,
-      key, 
-      genre,
-      bpm
-    }
-   
-    handleFilterQuery(searchParams)
-  }
-
   function handleBpm(e){
     if (e.target.value > 200) {
       setBpm(200)
@@ -40,11 +27,50 @@ const Filter = ({handleFilterQuery}) => {
     } else if(e.target.value == NaN) {
       e.target.value = null
       setBpm(null)
-    } else {
-      setBpm(0)
-      e.target.value = 0
+    } else if(e.target.value === 0 || e.target.value < 1) {
+      setBpm(1)
+      e.target.value = 1
     }
   }
+
+  function handleReset(){
+    setSearch("")
+    setKey(null)
+    setGenre(null)
+    setBpm(null)
+    setType(null)
+  }
+
+  function handleSubmit(e){
+    e.preventDefault()
+    const searchParams = {
+      sample_type: type?.value,
+      name: search,
+      key, 
+      genre: genre?.value,
+      bpm
+    }
+    const filterParams = Object.keys(searchParams).filter(k=>{
+        if(Array.isArray(searchParams[k])){
+          return searchParams[k].length > 0
+        } else {
+          return  !!searchParams[k] === true
+        }
+    })
+    const searchObj = {}
+    
+    filterParams.forEach(param => {
+      if(param === "key") {
+        searchObj[param] = key.map(k => {return k.value})
+      } else {
+        searchObj[param] = searchParams[param]
+      }
+    })
+    console.log(searchObj)
+    if (filterParams.length > 0) return handleFilterQuery(searchObj)
+  
+  }
+
 
   const genres = [ "pop","rock","hip-hop","rap","country","rnb", "jazz", "metal", "electronic", "soul", "ambient", "funk","raggae", "disco","classical","house","indie","techno","trap","dubstep", "gospel","latin", "raggaeton", "grime", "edm", "synthwave", "cinematic", "trance", "experimental","electro","idm","acapella"]
 
@@ -120,9 +146,9 @@ const Filter = ({handleFilterQuery}) => {
         <Form.Control 
             type="number" 
             onChange={handleBpm}  
-            placeholder="Enter BPM 0 to 200..." 
+            placeholder="Enter BPM 1 to 200..." 
             value={bpm} 
-            min="0" 
+            min="1" 
             max="200" 
           />
       </Form.Group>
@@ -183,9 +209,14 @@ const Filter = ({handleFilterQuery}) => {
             })}
           />
       </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
+      <Form.Group className="mb-2 d-flex justify-content-center">
+        <Button variant="primary" className="mx-2" type="submit">
+          Submit
+        </Button>
+        <Button className="mx-2" variant="primary" type="reset" onClick={handleReset}>
+          Reset 
+        </Button>
+      </Form.Group>
     </Form>
   )
 }

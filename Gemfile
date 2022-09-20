@@ -24,6 +24,7 @@ gem 'active_model_serializers', "~> 0.10.13"
 gem 'rails_serve_static_assets'
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 gem 'foreman'
+gem 'will_paginate', '~> 3.3', '>= 3.3.1'
 
 # Cloud Storage 
 gem 'activestorage', '~> 7.0', '>= 7.0.4'

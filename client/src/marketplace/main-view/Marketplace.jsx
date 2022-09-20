@@ -10,41 +10,23 @@ import Image from 'react-bootstrap/Image'
 import featured from '../../assets/stock-album-2.jpg'
 
 const Marketplace = () => {
+  const [searchResults , setSearchResults] = useState(null)
+
   function handleFilterQuery(filter){
-    // if all of the search inputs are empty then do not send API Request
-    const send = Object.keys(filter).map(key => {
-      switch(key) {
-        case "sample_type":
-          if(filter[key] === null) return false;
-          break;
-          case "search":
-            if(filter[key] === "") return false;
-            break;
-            case "key":
-              if(filter[key] === null || filter[key].length < 1) return false;
-              break;
-              case "genre":
-          if(!!filter[key] === false) return false;
-          break;
-          case "bpm":
-            if( !!filter[key] === false) return false;
-            break;
-          default:
-              return true
-      }   
-    }).every(v => v === false || v)
-
-    if(!send) {
-
-      fetch("/samples", {
+      fetch("/samples/search", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(filter)
-      
+      }).then(r =>{
+        if(r.ok){ r.json().then(res =>{
+          // setSearchResults([...setSearchResults,res])
+          console.log(res)
+        })
+
+        }
       })
-    }
   
   }  
   return (
