@@ -95,6 +95,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
   
   function handleClick(e){
     e.preventDefault()
+    
     const keyArray = key.map(k => {return k.value})
     const newSample = {
       id: uuid(),
@@ -138,7 +139,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
           placeholder="Use underscores , no spaces" 
           value={sampleName} 
           onChange={handleSampleName} 
-          
+          maxLength="40"
         />
       </td>
       <td>

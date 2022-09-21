@@ -3,7 +3,7 @@ class Sample < ApplicationRecord
   has_one_attached :audio_file , dependent: :destroy
   has_many :downloads , dependent: :destroy
 
-  validates :name , presence: true , format: {with: /[a-zA-z0-9_-]/ , message: "may only include alphanumeric characters , underscores_ , dashes-"}
+  validates :name , presence: true , format: {with: /[a-zA-z0-9_-]/ , message: "may only include alphanumeric characters , underscores_ , dashes-"}, length: { maximum: 40 }
   validates :bpm , presence: true , numericality: { only_integer: true }
   validates :genre , presence: true , inclusion: {in: [ 
     "pop","rock","hip-hop","rap","country","rnb", "jazz",

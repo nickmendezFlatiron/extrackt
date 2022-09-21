@@ -1,6 +1,7 @@
 import React , {useState , useContext, useRef} from 'react'
 import FormTable from './FormTable'
 import PreviewModal from './PreviewModal'
+import Errors from '../Errors'
 
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
@@ -17,7 +18,8 @@ const UploadForm = () => {
   const [name , setName] = useState()
   const [description , setDescription] = useState()
   const [coverArt , setCoverArt] = useState()
-  const [showModal, setshowModal] = useState(false);
+
+  const [showModal, setshowModal] = useState();
   const [showAlert , setShowAlert] = useState(false)
   
   const coverRef = useRef()
@@ -30,7 +32,11 @@ const UploadForm = () => {
   function handleSubmit(e) {
     e.preventDefault()
     setShowAlert(false)
-    if (samples.length === 0) return window.alert("No samples were uploaded") 
+    if (samples.length === 0) {
+      setShowAlert(true)
+      return setErrors(["No samples have been uploaded"])
+      
+    }
     const data = new FormData()
 
     data.append("[collection]cover_art" , coverArt)
@@ -80,6 +86,11 @@ const UploadForm = () => {
     setDescription(e.target.value)
   }
   function handleCoverArt(e) {
+    if (e.target.files[0].size > (1024**2)) {
+      coverRef.current.value = null
+      setErrors(["Collection Artwork maximum file size is 1 megabyte."])
+      return setShowAlert(true)
+    }
     setCoverArt(e.target.files[0])
   }
   
@@ -90,11 +101,7 @@ const UploadForm = () => {
         <Col className=" pt-2 light-purple-bg rounded-3 mx-2">
           <Alert variant="danger" show={showAlert} onClose={() => setShowAlert(false)} dismissible="true">
             <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-            <p>
-              Change this and that and try again. Duis mollis, est non commodo
-              luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-              Cras mattis consectetur purus sit amet fermentum.
-            </p>
+            <Errors />
           </Alert>
           <Row className="mt-2">
             <Col className="col-auto">
@@ -103,15 +110,15 @@ const UploadForm = () => {
               <br/>
               <h4 className="mt-1">Artwork</h4>
               <h4 className="mt-3">Samples</h4>
-              <Button onClick={handleShow} className="mt-3" variant="secondary">Preview</Button>
+              <Button variant="outline-dark"  type="button">Help</Button>
             </Col>
             <Col>
               <Form className="mb-3" onSubmit={handleSubmit}>
                 <Form.Group className="mb-3 w-25 shadow-sm rounded">
-                  <Form.Control value={name} onChange={handleName} type="text" placeholder="Enter collection name here..." required/>
+                  <Form.Control maxLength={40} value={name} onChange={handleName} type="text" placeholder="Enter collection name here..." required/>
                 </Form.Group>
                 <Form.Group className="mb-3 w-50 shadow-sm rounded">
-                    <Form.Control value={description} onChange={handleDescription} className="text-break" as="textarea" placeholder="Describe your sample pack...." required/>
+                    <Form.Control maxLength={180} value={description} onChange={handleDescription} className="text-break" as="textarea" placeholder="Describe your sample pack in 180 characters...." required/>
                 </Form.Group>
                 <Form.Group controlId="formFileSm" className="mb-3 w-25 shadow-sm rounded">
                   <Form.Control ref={coverRef} type="file" accept="image/*" size="sm" onChange={handleCoverArt} required/>
@@ -119,7 +126,8 @@ const UploadForm = () => {
                 <Form.Group>
                   <FormTable samples={samples} setSamples={setSamples}/>
                 </Form.Group>
-                <Button variant="primary" type="submit">Submit</Button>
+                <Button variant="success" className="shadow" type="submit">Submit</Button>
+                <Button onClick={handleShow} type="button" className="text-white mx-3 opacity-75" variant="secondary">Preview</Button>
               </Form>
             </Col>
           </Row>
