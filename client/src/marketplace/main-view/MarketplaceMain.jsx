@@ -25,7 +25,7 @@ const MarketplaceMain = () => {
 
   },[])
 
-  console.log({popularCollections})
+  
   return (
     
     <Container>

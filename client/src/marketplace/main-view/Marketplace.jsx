@@ -39,7 +39,7 @@ const Marketplace = () => {
         }
         if(r.ok){ r.json().then(res =>{
           // setSearchResults([...setSearchResults,res])
-         
+          console.log(res)
         })
 
         }

@@ -1,4 +1,4 @@
-import {React , useState, useRef} from 'react'
+import {React , useState, useRef, useEffect} from 'react'
 import Select from 'react-select'
 
 import Form from 'react-bootstrap/Form'
@@ -12,8 +12,19 @@ const UploadTableRowForm = ({setSamples , samples}) => {
   const [sampleName , setSampleName] = useState("")
   const [bpm , setBpm] = useState(null)
   const [file , setFile] = useState()
-  
   const fileRef = useRef()
+  
+  useEffect(()=>{
+    if (samples.length === 0) {
+      setSelectedType(null)
+      setSelectedGenre(null)
+      setSelectedKey(null)
+      setSampleName("")
+      setBpm(null)
+      fileRef.current.value = null
+    }
+  },[samples])
+  
 
   const genres = [ "pop","rock","hip-hop","rap","country","rnb", "jazz", "metal", "electronic", "soul", "ambient", "funk","raggae", "disco","classical","house","indie","techno","trap","dubstep", "gospel","latin", "raggaeton", "grime", "edm", "synthwave", "cinematic", "trance", "experimental","electro","idm","acapella"]
 
@@ -78,13 +89,29 @@ const UploadTableRowForm = ({setSamples , samples}) => {
   }
 
   function handleBpm(e) {
-    setBpm(parseInt(e.target.value))
+    if (e.target.value > 200) {
+      setBpm(200)
+      e.target.value = 200
+    } else if(e.target.value <= 200 || e.target.value > 0) {
+      setBpm(parseInt(e.target.value))
+    } else if(e.target.value == NaN) {
+      e.target.value = null
+      setBpm(null)
+    } else if(e.target.value === 0 || e.target.value < 1) {
+      setBpm(1)
+      e.target.value = 1
+    }
   }
 
   function handleFile(e) {
     let name = e.target.files[0].name.split(" ").join("_")
     setFile(e.target.files[0])
-    setSampleName(name.substring(0 , name.length - 4))
+
+    if(name.length <= 40) {
+      setSampleName(name.substring(0 , name.length - 4))
+    } else {
+      setSampleName(name.substring(0 , 40))
+    }
     
     // let reader = new FileReader()
     // reader.readAsDataURL(e.target.files[0])
@@ -130,7 +157,9 @@ const UploadTableRowForm = ({setSamples , samples}) => {
           accept="audio/wav" 
           title="*" 
           onChange={handleFile} 
-          ref={fileRef}     
+          ref={fileRef}
+          onDragStart={(e)=> e.preventDefault()} 
+          onDrop={(e)=> e.preventDefault()}   
         />
       </td>
       <td>
@@ -184,7 +213,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
           placeholder="BPM" 
           onChange={handleBpm}  
           value={bpm} 
-          min="0" max="200" 
+          min="1" max="200" 
         />
       </td>
       <td>
