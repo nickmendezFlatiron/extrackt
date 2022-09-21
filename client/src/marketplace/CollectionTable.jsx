@@ -5,10 +5,10 @@ import Table from 'react-bootstrap/Table'
 import uuid from 'react-uuid'
 // import Button from 'react-bootstrap/Button'
 
-const CollectionTable = ({samples, setArrayIndex}) => {
+const CollectionTable = ({samples, setArrayIndex, showAlert}) => {
   
   const renderSamples = samples.map(sample=>{
-    return <CollectionTableRow key={uuid()} samples={samples} sample={sample} setArrayIndex={setArrayIndex}/>
+    return <CollectionTableRow key={uuid()} showAlert={showAlert} samples={samples} sample={sample} setArrayIndex={setArrayIndex}/>
   })
   return (
     <Table hover responsive className=''>

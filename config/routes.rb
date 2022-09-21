@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   #samples controller
   post '/samples/search' , to: "samples#search"
-  
+  resources :samples , only: [:show]
   #sessions controller
   post "/login" , to: "sessions#login"
   delete "/logout", to: "sessions#destroy"
 
   #users controller
-  resources :users , only: [:update]
+  resources :users , only: [:update, :destroy]
   post '/signup' ,  to: "users#create"
   get '/authorize', to: "users#show"  
   

@@ -54,14 +54,15 @@ const Marketplace = () => {
   
   }  
 
-  const renderView = searchResults?.length > 0 ? <CollectionTable samples={searchResults} setArrayIndex={setSearchIndex}/> : <MarketplaceMain /> ;
+  const renderView = searchResults?.length > 0 ? <CollectionTable showAlert={showAlert} samples={searchResults} setArrayIndex={setSearchIndex}/> : <MarketplaceMain /> ;
   const renderPlayer = searchResults?.length > 0 ? <AudioPlayer searchResults={searchResults} setArrayIndex={setSearchIndex} arrayIndex={searchIndex}/> : null ;
+  const style = searchResults?.length > 0 ? "table-height mb-5 pb-3 overflow-auto" : ""
 
   return (
     <>
       <div className="mb-3 pb-3 mx-4">
         <Row>
-          <Col className="filter" lg={3}>
+          <Col className="filter height-match" lg={3}>
             <Row>
             <Filter 
               setSearchResults={setSearchResults} 
@@ -75,7 +76,7 @@ const Marketplace = () => {
               <Errors />   
             </Alert>
           </Col>
-          <Col  lg={9}>
+          <Col  lg={9} className={style}>
             {renderView}
           </Col>
         </Row>

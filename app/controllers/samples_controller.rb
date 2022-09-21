@@ -31,6 +31,17 @@ class SamplesController < ApplicationController
     return render json: res , status: :ok
   end
   
+  # def show
+  #   if current_user
+      
+  #     sample = Sample.find_by!(:id => params[:id])
+  #     path = ActiveStorage::Blob.service.path_for(sample.audio_file)
+  #     debugger
+  #     send_file(path , type: 'audio/x-wav', disposition: "attachment")
+  #   else
+  #     render json: {errors: ["Purchase more credits to download this file"]} , status: :unprocessable_entity
+  #   end
+  # end
 
   private
   def sample_params

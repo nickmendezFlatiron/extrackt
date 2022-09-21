@@ -7,17 +7,20 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-
+import {useNavigate} from 'react-router-dom'
 
 
 const Account = ({user , spinner}) => {
+
   const [name , setName] = useState("")
   const [userEmail , setEmail] = useState("") 
-  const {setUser , setErrors} = useContext(LoginContext)
+  const {setUser , setErrors, isAuthenticated} = useContext(LoginContext)
+  const navigate = useNavigate()
+
   function handleName(e){
     setName(e.target.value)
   }
-
+  
   function handleEmail(e){
     setEmail(e.target.value)
   }
@@ -47,6 +50,19 @@ const Account = ({user , spinner}) => {
     })
 
   }
+
+  function handleDelete(){
+    if (window.confirm(`Deleting your account is not reversible and will remove all associated collections.Please confirm that you want to delete your account`)) {
+      fetch(`/users/${user.id}` , {method: "DELETE"}).then(r => {
+        if (r.ok) { 
+          isAuthenticated(false)
+          setUser({})
+          navigate("/signup")
+        }
+      })
+
+  }
+  }
   useEffect(()=>{
     if(user){
       setName(user.full_name)
@@ -71,7 +87,7 @@ const Account = ({user , spinner}) => {
               <Form.Control className="mb-3" type="email" placeholder="Enter email" value={userEmail} onChange={handleEmail}/>
               <Errors />
               <Button type="submit" primary="true" className="fs-5 fw-bold">Save</Button>
-              <Button variant="link" >Delete My Account</Button>
+              <Button onClick={handleDelete} variant="link" type="button">Delete My Account</Button>
             </Form.Group>
           </Form>
           <div className="text-secondary pb-3">

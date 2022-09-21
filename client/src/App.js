@@ -91,7 +91,7 @@ function App() {
           </Route>
               <Route path="/user/:username/samples" exact element={<Samples />}/>
           <Route path="/upload" element={<UploadForm />} />
-          <Route path="*" element={<Navigate replace to="/" />} />
+          {/* <Route path="*" element={<Navigate replace to="/" />} /> */}
         </Routes>
           </CollectionContext.Provider>
       </LoginContext.Provider>

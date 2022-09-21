@@ -23,6 +23,11 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    if current_user 
+      current_user.destroy
+      session.delete :current_user
+      head :no_content
+    end
   end 
 
   private
