@@ -33,12 +33,11 @@ const Collection = () => {
             return navigate('/marketplace')
           }
           r.json().then(e=> {
-         
           setErrors(e.errors[0])
         })}
       })
   },[])
-
+  debugger
   console.log(errors)
   const renderTable = collection? <CollectionTable arrayIndex={arrayIndex} samples={collection?.samples} setArrayIndex={setArrayIndex}/> : spinner;
 

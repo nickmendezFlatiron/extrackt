@@ -17,7 +17,7 @@ function calculateTime(secs){
   return {minutes , seconds }
 }
 
-const AudioPlayer = ({ arrayIndex , setArrayIndex}) => {
+const AudioPlayer = ({ arrayIndex , setArrayIndex, searchResults}) => {
   const [isLoading , toggleLoading] = useState(true)
 
   const [audioDuration , setAudioDuration] = useState({minutes: 0 , seconds: 0 })
@@ -47,6 +47,7 @@ const AudioPlayer = ({ arrayIndex , setArrayIndex}) => {
     });
     
     collection && ws.load(collection?.samples[arrayIndex].sample_url)
+    searchResults && ws.load(searchResults[arrayIndex].sample_url)
 
     setWavesurfer(ws)
     ws.on("ready", function () {
@@ -83,9 +84,12 @@ const AudioPlayer = ({ arrayIndex , setArrayIndex}) => {
   }
   
   function handleNext(){    
-    if(arrayIndex < collection.samples?.length - 1 ){
-      setArrayIndex((arrayIndex)=> arrayIndex + 1 )
+    if(collection && arrayIndex < collection.samples?.length - 1 ){
+      return   setArrayIndex((arrayIndex)=> arrayIndex + 1 )
     } 
+    if (searchResults && arrayIndex < searchResults.length - 1 ) {
+      return   setArrayIndex((arrayIndex)=> arrayIndex + 1 )
+    }
   }
 
   function handleVolume(e){
@@ -124,6 +128,8 @@ const AudioPlayer = ({ arrayIndex , setArrayIndex}) => {
         <Row>
            <h5>{collection?.samples[arrayIndex].name}</h5>
            <h6>{collection?.samples[arrayIndex].artist}</h6>
+           <h5>{searchResults[arrayIndex].name}</h5>
+           <h6>{searchResults[arrayIndex].artist}</h6>
         </Row>
       </Col>
 

@@ -8,7 +8,7 @@ const CollectionTableRow = ({sample, setArrayIndex, samples, arrayIndex}) => {
   const letters = ["a", "b", "c", "d", "e", "f", "g"]
   const half = ["sharp", "flat"]
   const scale = ["major", 'minor']
-
+  
   const renderKeys = key.map(k =>{
       if (letters.includes(k)){
         return k.toUpperCase()

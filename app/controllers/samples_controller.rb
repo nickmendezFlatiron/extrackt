@@ -10,7 +10,6 @@ class SamplesController < ApplicationController
     end
 
     res = Sample.where(search)
-
     if params.has_key?("name")
       res = res.find_all {|r| r["name"].downcase.include?(params["name"].downcase)}
     end

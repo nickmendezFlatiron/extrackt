@@ -7,11 +7,11 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 
-const Filter = ({handleFilterQuery, setShowAlert}) => {
+const Filter = ({handleFilterQuery, setShowAlert, setSearchResults, setSearchIndex}) => {
   const [search , setSearch] = useState("")
   const [key, setKey] = useState(null)
   const [genre, setGenre] = useState(null)
-  const [bpm , setBpm] = useState(null)
+  const [bpm , setBpm] = useState()
   const [type, setType] = useState(null)
   const {setErrors} = useContext(LoginContext)
 
@@ -42,6 +42,7 @@ const Filter = ({handleFilterQuery, setShowAlert}) => {
     setType(null)
     setErrors(null)
     setShowAlert(false)
+    setSearchResults([])
   }
 
   function handleSubmit(e){
@@ -69,7 +70,7 @@ const Filter = ({handleFilterQuery, setShowAlert}) => {
         searchObj[param] = searchParams[param]
       }
     })
-  
+    
     if (filterParams.length > 0) return handleFilterQuery(searchObj)
   
   }

@@ -6,8 +6,8 @@ import uuid from 'react-uuid'
 // import Button from 'react-bootstrap/Button'
 
 const CollectionTable = ({samples, setArrayIndex}) => {
-
-  const renderSamples = samples?.map(sample=>{
+  
+  const renderSamples = samples.map(sample=>{
     return <CollectionTableRow key={uuid()} samples={samples} sample={sample} setArrayIndex={setArrayIndex}/>
   })
   return (
