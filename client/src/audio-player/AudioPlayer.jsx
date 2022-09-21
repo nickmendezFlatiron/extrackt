@@ -4,11 +4,8 @@ import CollectionContext from '../context/CollectionContext'
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Spinner from 'react-bootstrap/Spinner'
 
-import audioTest from '../assets/audio-files/snare.wav'
-import audioTest1 from '../assets/audio-files/audio-test-1.mp3'
-import audioTest2 from '../assets/audio-files/audio-test-2.mp3'
-import audioTest3 from '../assets/audio-files/audio-test-3.mp3'
 
 
 function calculateTime(secs){
@@ -21,7 +18,8 @@ function calculateTime(secs){
 }
 
 const AudioPlayer = ({samplePreview}) => {
-  const [audioFile, setAudioFile] = useState(0)
+  const [isLoading , toggleLoading] = useState(true)
+  const [arrayIndex, setArrayIndex] = useState(0)
   const [audioDuration , setAudioDuration] = useState({minutes: 0 , seconds: 0 })
   const [wavesurfer , setWavesurfer] = useState(null)
   const [volume, setVolume] = useState(100)
@@ -31,9 +29,11 @@ const AudioPlayer = ({samplePreview}) => {
   const play = <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
   const [playButton, setPlayButton] = useState(play)
   const waveform = useRef()
-  const audioFiles = [audioTest , audioTest1 , audioTest2 , audioTest3]
+ 
 
   useEffect(()=>{
+
+    // debugger
     let ws = WaveSurfer.create({ 
       normalize: true,
       barHeight: 1,
@@ -45,12 +45,14 @@ const AudioPlayer = ({samplePreview}) => {
       waveColor: "#e4c1f9",
       cursorColor: "transparent"
     });
-    ws.load(audioFiles[audioFile])
+    
+    collection && ws.load(collection?.samples[arrayIndex].sample_url)
 
     setWavesurfer(ws)
     ws.on("ready", function () {
       const time = ws.getDuration()
       setAudioDuration(()=>calculateTime(time))
+      toggleLoading(false)
       ws.play()
     });
     ws.on("pause", function(){
@@ -61,10 +63,11 @@ const AudioPlayer = ({samplePreview}) => {
     }
     )
     return () => {
+      toggleLoading(true)
       ws.unAll();
       ws.destroy();
     };
-  },[audioFile])
+  },[arrayIndex, collection])
     
   function handlePlay(){
     wavesurfer.playPause()
@@ -72,14 +75,14 @@ const AudioPlayer = ({samplePreview}) => {
   }
 
   function handlePrevious(){
-    if(audioFile > 0 ){
-      setAudioFile((audioFile)=> audioFile - 1 )
+    if(arrayIndex > 0 ){
+      setArrayIndex((arrayIndex)=> arrayIndex - 1 )
     } 
   }
   
   function handleNext(){    
-    if(audioFile < 3 ){
-      setAudioFile((audioFile)=> audioFile + 1 )
+    if(arrayIndex < collection.samples?.length - 1 ){
+      setArrayIndex((arrayIndex)=> arrayIndex + 1 )
     } 
   }
 
@@ -90,9 +93,7 @@ const AudioPlayer = ({samplePreview}) => {
     wavesurfer.setVolume(vol)
   }
 
-  function handleSeek(e){ 
-  }
-
+  const loadTime = isLoading ? <Spinner animation="border" variant="primary" /> : `${audioDuration.minutes}:${audioDuration.seconds}` ; 
   
   return (
     // Sticky footer
@@ -111,8 +112,7 @@ const AudioPlayer = ({samplePreview}) => {
           <input type="range" id="vol" name="vol" value={volume} min="0" max="100"  className='align-self-center slider mx-2' onChange={handleVolume}/>
           <p className="text-primary pe-2 text-va">{volume}</p>
           
-          <h4 className="text-ltg text-va  ms-auto">{`${audioDuration.minutes}:${audioDuration.seconds}`}</h4>
-
+          <h4 className="text-ltg text-va  ms-auto">{loadTime}</h4>
       </Col>
         <Col className="me-4">
           <div ref={waveform} className="creme-bg">
