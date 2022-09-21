@@ -17,9 +17,9 @@ function calculateTime(secs){
   return {minutes , seconds }
 }
 
-const AudioPlayer = ({samplePreview}) => {
+const AudioPlayer = ({samplePreview, arrayIndex , setArrayIndex}) => {
   const [isLoading , toggleLoading] = useState(true)
-  const [arrayIndex, setArrayIndex] = useState(0)
+
   const [audioDuration , setAudioDuration] = useState({minutes: 0 , seconds: 0 })
   const [wavesurfer , setWavesurfer] = useState(null)
   const [volume, setVolume] = useState(100)

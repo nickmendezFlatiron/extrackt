@@ -16,7 +16,7 @@ const Marketplace = () => {
   const [searchResults , setSearchResults] = useState(null)
   const {errors, setErrors} = useContext(LoginContext)
   const [showAlert, setShowAlert] = useState(false)
-
+  
   function handleAlert(){
     setShowAlert(false)
     setErrors([])

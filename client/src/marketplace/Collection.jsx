@@ -13,7 +13,7 @@ import Image from 'react-bootstrap/Image'
 
 const Collection = () => {
   const {collection , setCollection} = useContext(CollectionContext)
-  const {samplePreview , setSamplePreview} = useState()
+  const [arrayIndex, setArrayIndex] = useState(0)
   const {errors, setErrors, spinner, isAuthenticated} = useContext(LoginContext)
   const params = useParams()
   let navigate = useNavigate()
@@ -33,7 +33,7 @@ const Collection = () => {
   },[])
 
 
-  const renderTable = collection? <CollectionTable samples={collection?.samples} setSamplePreview={setSamplePreview}/> : spinner;
+  const renderTable = collection? <CollectionTable samples={collection?.samples} setArrayIndex={setArrayIndex}/> : spinner;
 
   const loadMore = <button className="text-start mb-3 me-auto link-btn">Load Next 20 Samples...</button>
   const date = Date(collection?.created_at).split(" ").splice(1,3).join(" ")
@@ -64,7 +64,7 @@ const Collection = () => {
             </Col>
           </Col>
         </Row>
-      <AudioPlayer samplePreview={samplePreview}/>
+      <AudioPlayer arrayIndex={arrayIndex}/>
       </div>
     </>
         
