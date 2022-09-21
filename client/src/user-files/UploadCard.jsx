@@ -29,14 +29,14 @@ const UploadCard = ({upload, handleUploads}) => {
   }
   return (
     <Col>
-      <Card onClick={handleClick}>
+      <Card onClick={handleClick} className="my-2">
         <Card.Body className="">
           <Card.Title className="d-flex justify-content-between align-items-center">
             {upload.name}
             <CloseButton onClick={handleDelete}/>
             </Card.Title>
             <Card.Img variant="top" className="carousel-pic" src={upload.cover_art_url} />
-          <Card.Text>{upload.description}</Card.Text>
+          <Card.Text className="mt-2">{upload.description}</Card.Text>
         </Card.Body>
       </Card>
     </Col>

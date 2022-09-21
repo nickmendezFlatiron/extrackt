@@ -31,7 +31,7 @@ const Samples = () => {
   
   const renderUploads = uploads && uploads.map(upload => <UploadCard upload={upload} handleUploads={handleUploads} key={uuid()}/>)
   const renderMessage = <div className="text-center mx-3 py-5 my-5 border border-20 border-primary rounded-5 shadow">
-                          <h2>
+                          <h2 >
                             You have not uploaded a collection.
                             <br/>
                             <br/>
@@ -43,7 +43,7 @@ const Samples = () => {
   return (
     <Container>
         {message}
-      <Row sm={2} md={3} lg={4}>
+      <Row sm={2} md={3} lg={4} className="creme-bg p-4 rounded-5 shadow-sm">
         {renderUploads}
         {!uploads && <Spinner animation="border" variant="secondary" />}
       </Row>
