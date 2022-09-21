@@ -94,7 +94,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
       e.target.value = 200
     } else if(e.target.value <= 200 || e.target.value > 0) {
       setBpm(parseInt(e.target.value))
-    } else if(e.target.value == NaN) {
+    } else if(e.target.value === NaN) {
       e.target.value = null
       setBpm(null)
     } else if(e.target.value === 0 || e.target.value < 1) {

@@ -2,14 +2,14 @@ import {React, useContext} from 'react'
 import { LoginContext } from '../context/LoginContext'
 
 import Button from 'react-bootstrap/Button'
-import {songKeys} from '../context/SelectContext'
+
 const CollectionTableRow = ({sample, setArrayIndex, samples, arrayIndex, showAlert}) => {
-  const {id, name , bpm, artist, genre, key, sample_type, sample_url} = sample
+  const {id, name , bpm,  genre, key, sample_type} = sample
   const {setErrors} = useContext(LoginContext)
 
   const letters = ["a", "b", "c", "d", "e", "f", "g"]
   const half = ["sharp", "flat"]
-  const scale = ["major", 'minor']
+  // const scale = ["major", 'minor']
   
   const renderKeys = key.map(k =>{
       if (letters.includes(k)){

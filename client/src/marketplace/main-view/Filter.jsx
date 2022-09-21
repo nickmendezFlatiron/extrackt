@@ -26,7 +26,7 @@ const Filter = ({handleFilterQuery, setShowAlert, setSearchResults, isLoading })
       e.target.value = 200
     } else if(e.target.value <= 200 || e.target.value > 0) {
       setBpm(parseInt(e.target.value))
-    } else if(e.target.value == NaN) {
+    } else if(e.target.value === NaN) {
       e.target.value = null
       setBpm(null)
     } else if(e.target.value === 0 || e.target.value < 1) {
@@ -142,7 +142,7 @@ const Filter = ({handleFilterQuery, setShowAlert, setSearchResults, isLoading })
   return (
     <Form className="my-2" onSubmit={handleSubmit}>
       {/* <h3 className="text-center mt-2">Filter</h3> */}
-      <InputGroup size="lg" className="px- mb-3">
+      <InputGroup size="lg" className=" mb-3">
         <FormControl  
           aria-label="Large" 
           aria-describedby="inputGroup-sizing-sm" 

@@ -17,7 +17,7 @@ const Marketplace = () => {
   const [isLoading , toggleLoading] = useState(false)
   const [searchResults , setSearchResults] = useState([])
   const [searchIndex , setSearchIndex] = useState(0)
-  const {errors, setErrors} = useContext(LoginContext)
+  const {errors, setErrors, authenticated, navigate} = useContext(LoginContext)
   const [showAlert, setShowAlert] = useState(false)
   const {setCollection} = useContext(CollectionContext)
   function handleAlert(){
@@ -57,7 +57,7 @@ const Marketplace = () => {
   const renderView = searchResults?.length > 0 ? <CollectionTable showAlert={showAlert} samples={searchResults} setArrayIndex={setSearchIndex}/> : <MarketplaceMain /> ;
   const renderPlayer = searchResults?.length > 0 ? <AudioPlayer searchResults={searchResults} setArrayIndex={setSearchIndex} arrayIndex={searchIndex}/> : null ;
   const style = searchResults?.length > 0 ? "table-height mb-5 pb-3 overflow-auto" : ""
-
+  if (authenticated === false) return navigate
   return (
     <>
       <div className="mb-3 pb-3 mx-4">

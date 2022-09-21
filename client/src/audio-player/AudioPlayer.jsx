@@ -68,7 +68,7 @@ const AudioPlayer = ({ arrayIndex , setArrayIndex, searchResults}) => {
       ws.unAll();
       ws.destroy();
     };
-  },[arrayIndex, collection])
+  },[arrayIndex, collection, searchResults])
     
   function handlePlay(){
     wavesurfer.playPause()

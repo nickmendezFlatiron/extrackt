@@ -25,11 +25,6 @@ import './styles/app.scss'
 import './styles/App.css';
 
 
-// TEMP FILES
-import cover from "./assets/stock-album-2.jpg"
-
-
-
 function App() {
 
   const [authenticated , isAuthenticated] = useState(null)
@@ -47,7 +42,7 @@ function App() {
   };
 
 
-  const navigate = <Navigate to="/" />
+  const navigate = <Navigate replace to="/" />
   const spinner =   <Spinner animation="border" role="status">
                       <span className="visually-hidden">Loading...</span>
                     </Spinner>
@@ -79,7 +74,7 @@ function App() {
         {authenticated && <Sidebar user={user} setUser={setUser} isAuthenticated={isAuthenticated}/>}
           <CollectionContext.Provider value={{collection, setCollection}}>
         <Routes >
-          <Route path="/" element={<Homepage toggleModal={toggleModal} />}/>
+          <Route path="/" element={<Homepage />}/>
           <Route path="/signup" element={<SignupForm handleShow={handleShow}/>}/>
           <Route path="/plans" element={<Plans />} />
           <Route path="about" element={<About />} />
@@ -91,7 +86,7 @@ function App() {
           </Route>
               <Route path="/user/:username/samples" exact element={<Samples />}/>
           <Route path="/upload" element={<UploadForm />} />
-          {/* <Route path="*" element={<Navigate replace to="/" />} /> */}
+          <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
           </CollectionContext.Provider>
       </LoginContext.Provider>

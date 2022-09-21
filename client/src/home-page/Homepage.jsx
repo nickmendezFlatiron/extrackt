@@ -7,9 +7,9 @@ import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 import {Link , useNavigate} from 'react-router-dom'
 import logo from "../assets/logo-stroke.png"
-import LoginModal from './LoginModal'
 
-const Homepage = ({toggleModal , handleClose}) => {
+
+const Homepage = () => {
   const navigate = useNavigate()
   return (
     <Container fluid className="p-5 mb-5 banner-bg shadow" >

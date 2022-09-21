@@ -6,12 +6,12 @@ import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image'
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import logo from "./assets/top-logo.png"
 
 const Sidebar = ({user , setUser , isAuthenticated}) => {
 
-const navigate = useNavigate()
+// const navigate = useNavigate()
 
 const handleLogout = () => {
   fetch('/logout', {method: "DELETE"})
@@ -19,7 +19,7 @@ const handleLogout = () => {
       if(r.ok) {
         setUser({})
         isAuthenticated(false)
-        navigate("/")
+      return   <Navigate to="/" />
       }
     })
 }

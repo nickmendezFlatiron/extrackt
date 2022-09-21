@@ -9,7 +9,7 @@ import Spinner from 'react-bootstrap/Spinner'
 
 const Samples = () => {
   const [uploads, setUploads] = useState(null)
-  const {user} = useContext(LoginContext)
+  const {user, authenticated, navigate} = useContext(LoginContext)
 
   function handleUploads(id){
     const filterUploads = uploads.filter(upload => upload.id !== id)
@@ -28,7 +28,7 @@ const Samples = () => {
         })
     }
   },[user])
-  
+  if (authenticated === false) return navigate
   const renderUploads = uploads && uploads.map(upload => <UploadCard upload={upload} handleUploads={handleUploads} key={uuid()}/>)
   const renderMessage = <div className="text-center mx-3 py-5 my-5 border border-20 border-primary rounded-5 shadow">
                           <h2 >

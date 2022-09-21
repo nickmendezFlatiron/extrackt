@@ -7,14 +7,14 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, Navigate} from 'react-router-dom'
 
 
 const Account = ({user , spinner}) => {
 
   const [name , setName] = useState("")
   const [userEmail , setEmail] = useState("") 
-  const {setUser , setErrors, isAuthenticated} = useContext(LoginContext)
+  const {setUser , setErrors, isAuthenticated, authenticated} = useContext(LoginContext)
   const navigate = useNavigate()
 
   function handleName(e){
@@ -70,9 +70,8 @@ const Account = ({user , spinner}) => {
     }
   },[user])
 
-  if (!user) return spinner
-
-  
+  if (authenticated === null) return spinner
+  if(authenticated === false) return <Navigate replace to="/"/>
   return (
     <Container className="pb-5">
       <Row>

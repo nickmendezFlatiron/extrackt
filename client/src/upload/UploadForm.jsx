@@ -29,8 +29,10 @@ const UploadForm = () => {
   const handleShow = () => setshowModal(true);
   
   const {collection , setCollection} = useContext(CollectionContext)
-  const {errors , setErrors} = useContext(LoginContext)
-
+  const {errors , setErrors, authenticated, navigate} = useContext(LoginContext)
+  
+  if (authenticated === false) return navigate
+  
   function handleSubmit(e) {
     e.preventDefault()
     setErrors([])
@@ -101,6 +103,8 @@ const UploadForm = () => {
     }
     setCoverArt(e.target.files[0])
   }
+  
+  
   
   return (
     <div className="mx-3">

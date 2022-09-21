@@ -23,20 +23,20 @@ const MarketplaceMain = () => {
       .catch(e => setErrors(e.error))
         
 
-  },[])
+  },[errors])
 
   
   return (
     
     <Container>
       <div>
-        <h3 className="mt-2">Top 10 Downloads</h3>
+        <h4 className="mt-2">Top 10 Downloads</h4>
         <Col className="light-purple-bg my-3 mt-3 rounded-2 shadow-sm">
           <Carousel key={uuid()} featuredCollections={popularCollections}/>
         </Col>
       </div>
       <div className='mt-5'>
-        <h3 className="mt-2">New Releases</h3>
+        <h4 className="mt-2">New Releases</h4>
         <Col className="bg-light my-3 mt-3 rounded-2 shadow">
           <Carousel key={uuid()} featuredCollections={recentCollections}/>
         </Col>

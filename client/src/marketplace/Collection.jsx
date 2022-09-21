@@ -14,7 +14,7 @@ import Image from 'react-bootstrap/Image'
 const Collection = () => {
   const {collection , setCollection} = useContext(CollectionContext)
   const [arrayIndex, setArrayIndex] = useState(0)
-  const {errors, setErrors, spinner, isAuthenticated} = useContext(LoginContext)
+  const {errors, setErrors, spinner, authenticated} = useContext(LoginContext)
   const params = useParams()
   let navigate = useNavigate()
 
@@ -43,6 +43,8 @@ const Collection = () => {
 
   const loadMore = <button className="text-start mb-3 me-auto link-btn">Load Next 20 Samples...</button>
   const date = Date(collection?.created_at).split(" ").splice(1,3).join(" ")
+
+  if(authenticated === false) return navigate("/")
   return (
     <>
       <div className="mb-3 pb-5 mx-4">
