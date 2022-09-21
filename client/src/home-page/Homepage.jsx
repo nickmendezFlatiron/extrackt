@@ -1,16 +1,19 @@
-import React  from 'react'
+import {React, useContext}  from 'react'
+import { LoginContext } from '../context/LoginContext'
+import {Link , useNavigate} from 'react-router-dom'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
-import {Link , useNavigate} from 'react-router-dom'
 import logo from "../assets/logo-stroke.png"
-
 
 const Homepage = () => {
   const navigate = useNavigate()
+  const {authenticated, user} = useContext(LoginContext)
+  const createAcctButton =  <Button onClick={()=>navigate("/signup") } variant="primary" className="fs-5 fw-bold">Create An Account</Button>
+  const renderName = authenticated ? <h1 className='text-primary '>Welcome, {user.username}!</h1> : createAcctButton ;
   return (
     <Container fluid className="p-5 mb-5 banner-bg shadow" >
       <Row>
@@ -31,8 +34,8 @@ const Homepage = () => {
           That means more money for your dreams.
         </p>
         <Container className="d-flex align-content-center">
-          <Button onClick={()=>navigate("/signup") } variant="primary" className="fs-5 fw-bold">Create An Account</Button>
-          <Link to="/about" className='ms-4 fs-4'><strong>Learn More</strong></Link>
+         {renderName}
+          {/* <Link to="/about" className='ms-4 fs-4'><strong>Learn More</strong></Link> */}
         </Container>
         </Col>
         <Col className="mx-5 d-flex align-items-center">
