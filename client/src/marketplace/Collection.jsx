@@ -28,11 +28,18 @@ const Collection = () => {
         if(r.ok){
           r.json().then(collection => setCollection(collection))
       
-        }else {r.json().then(e=> setErrors(e.errors[0]))}
+        }else {
+          if(r.status === 404) {
+            return navigate('/marketplace')
+          }
+          r.json().then(e=> {
+         
+          setErrors(e.errors[0])
+        })}
       })
   },[])
 
-
+  console.log(errors)
   const renderTable = collection? <CollectionTable arrayIndex={arrayIndex} samples={collection?.samples} setArrayIndex={setArrayIndex}/> : spinner;
 
   const loadMore = <button className="text-start mb-3 me-auto link-btn">Load Next 20 Samples...</button>
@@ -52,7 +59,7 @@ const Collection = () => {
             </Col>
               <h2 className='text-black fw-bold '>{collection?.name}</h2>
             <h2 className="text-black">{collection?.user.username}</h2>
-            <p className="text-black">Released: {date}</p>
+            <p className="text-black">Released: {collection?.created_at}</p>
           </Col>
           <Col className="">
             <Col>

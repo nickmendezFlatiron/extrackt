@@ -31,7 +31,7 @@ const Homepage = ({toggleModal , handleClose}) => {
           That means more money for your dreams.
         </p>
         <Container className="d-flex align-content-center">
-          <Button onClick={()=>navigate("/signup") } primary className="fs-5 fw-bold">Create An Account</Button>
+          <Button onClick={()=>navigate("/signup") } variant="primary" className="fs-5 fw-bold">Create An Account</Button>
           <Link to="/about" className='ms-4 fs-4'><strong>Learn More</strong></Link>
         </Container>
         </Col>
