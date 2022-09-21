@@ -1,5 +1,5 @@
 class SampleSerializer < ActiveModel::Serializer
-  attributes :id, :name, :key, :bpm, :genre, :sample_type, :sample_url, :artist, :collection_id
+  attributes :id, :name, :key, :bpm, :genre, :sample_type,  :artist, :collection_id, :sample_url
   # has_one :collection
 
   def sample_url

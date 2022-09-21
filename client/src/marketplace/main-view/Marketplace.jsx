@@ -35,7 +35,7 @@ const Marketplace = () => {
        
         if(r.status === 204) {
           setShowAlert(true)
-          setErrors(["No matches found, broaden your search."])
+          setErrors(["No matches found, enter a new search."])
         }
         if(r.ok){ r.json().then(res =>{
           // setSearchResults([...setSearchResults,res])
