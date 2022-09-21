@@ -33,7 +33,7 @@ const Collection = () => {
   },[])
 
 
-  const renderTable = collection? <CollectionTable samples={collection?.samples} setArrayIndex={setArrayIndex}/> : spinner;
+  const renderTable = collection? <CollectionTable arrayIndex={arrayIndex} samples={collection?.samples} setArrayIndex={setArrayIndex}/> : spinner;
 
   const loadMore = <button className="text-start mb-3 me-auto link-btn">Load Next 20 Samples...</button>
   const date = Date(collection?.created_at).split(" ").splice(1,3).join(" ")
@@ -44,7 +44,7 @@ const Collection = () => {
           <Col className="height-match rounded-3 p-2" lg={4} xs={4}> 
             <Col className="pb-3 d-flex">
             <Button className="me-4" variant="link" onClick={() => goBack()}> {`< Back`} </Button>
-            <Button className="px-4 fs-5">Download All</Button>
+            {/* <Button className="px-4 fs-5">Download All</Button> */}
             </Col> 
             <Col >
               <Image src={collection?.cover_art_url} className="cover-preview offset"/>
@@ -64,7 +64,7 @@ const Collection = () => {
             </Col>
           </Col>
         </Row>
-      <AudioPlayer arrayIndex={arrayIndex}/>
+      <AudioPlayer setArrayIndex={setArrayIndex} arrayIndex={arrayIndex}/>
       </div>
     </>
         

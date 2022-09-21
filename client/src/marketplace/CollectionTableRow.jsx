@@ -2,9 +2,9 @@ import React from 'react'
 
 import Button from 'react-bootstrap/Button'
 import {songKeys} from '../context/SelectContext'
-const CollectionTableRow = ({sample, setArrayIndex, samples}) => {
+const CollectionTableRow = ({sample, setArrayIndex, samples, arrayIndex}) => {
   const {id, name , bpm, artist, genre, key, sample_type, sample_url} = sample
-
+  
   const letters = ["a", "b", "c", "d", "e", "f", "g"]
   const half = ["sharp", "flat"]
   const scale = ["major", 'minor']

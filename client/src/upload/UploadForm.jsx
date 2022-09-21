@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row'
 import Alert from 'react-bootstrap/Alert'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Spinner from 'react-bootstrap/Spinner'
 
 import {LoginContext} from '.././context/LoginContext'
 import CollectionContext from '../context/CollectionContext'
@@ -32,7 +33,10 @@ const UploadForm = () => {
 
   function handleSubmit(e) {
     e.preventDefault()
-    setShowAlert(false)
+    setErrors([])
+    setShowAlert(true)
+    setAlertColor("secondary")
+
     if (samples.length === 0) {
       setAlertColor("danger")
       setShowAlert(true)
@@ -106,6 +110,7 @@ const UploadForm = () => {
           <Alert variant={alertColor} show={showAlert} onClose={() => setShowAlert(false)} dismissible="true">
            {alertColor ==="danger" && <Alert.Heading>Oh snap! You got an error!</Alert.Heading>}
            {alertColor ==="success" && <Alert.Heading>Congrats, upload successful!</Alert.Heading>}
+           {alertColor === "secondary" && <Spinner animation="border" variant="secondary" />}
             <Errors />
           </Alert>
           <Row className="mt-2">

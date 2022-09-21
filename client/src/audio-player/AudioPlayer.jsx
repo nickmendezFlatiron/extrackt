@@ -12,12 +12,12 @@ function calculateTime(secs){
   let minutes = parseInt(secs / 60 )
   let seconds = parseInt(secs % 60)
   if (seconds < 10) {
-    seconds = "0" + seconds
+    seconds = `0${seconds}`
   } 
   return {minutes , seconds }
 }
 
-const AudioPlayer = ({samplePreview, arrayIndex , setArrayIndex}) => {
+const AudioPlayer = ({ arrayIndex , setArrayIndex}) => {
   const [isLoading , toggleLoading] = useState(true)
 
   const [audioDuration , setAudioDuration] = useState({minutes: 0 , seconds: 0 })
@@ -75,7 +75,9 @@ const AudioPlayer = ({samplePreview, arrayIndex , setArrayIndex}) => {
   }
 
   function handlePrevious(){
+    console.log(arrayIndex)
     if(arrayIndex > 0 ){
+
       setArrayIndex((arrayIndex)=> arrayIndex - 1 )
     } 
   }
@@ -118,10 +120,10 @@ const AudioPlayer = ({samplePreview, arrayIndex , setArrayIndex}) => {
           <div ref={waveform} className="creme-bg">
           </div>
         </Col>
-      <Col xs={2} className="justify-content-start text-ltg">
+      <Col xs={3} className="justify-content-start text-ltg">
         <Row>
-           <h5>Song Name</h5>
-           <h6>Artist Name</h6>
+           <h5>{collection?.samples[arrayIndex].name}</h5>
+           <h6>{collection?.samples[arrayIndex].artist}</h6>
         </Row>
       </Col>
 
