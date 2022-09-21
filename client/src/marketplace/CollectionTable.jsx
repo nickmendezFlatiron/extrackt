@@ -1,4 +1,4 @@
-import React from 'react'
+import {React} from 'react'
 
 import CollectionTableRow from "./CollectionTableRow"
 import Table from 'react-bootstrap/Table'

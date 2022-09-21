@@ -37,8 +37,8 @@ const Collection = () => {
         })}
       })
   },[])
-  debugger
-  console.log(errors)
+  
+  
   const renderTable = collection? <CollectionTable arrayIndex={arrayIndex} samples={collection?.samples} setArrayIndex={setArrayIndex}/> : spinner;
 
   const loadMore = <button className="text-start mb-3 me-auto link-btn">Load Next 20 Samples...</button>

@@ -100,7 +100,8 @@ const AudioPlayer = ({ arrayIndex , setArrayIndex, searchResults}) => {
   }
 
   const loadTime = isLoading ? <Spinner animation="border" variant="primary" /> : `${audioDuration.minutes}:${audioDuration.seconds}` ; 
-  
+  const playerName = collection? collection?.samples[arrayIndex].name : searchResults && searchResults[arrayIndex].name ;
+  const playerPack = collection? collection?.samples[arrayIndex].artist : searchResults && searchResults[arrayIndex].artist ;
   return (
     // Sticky footer
    <div className="audio-player fixed-bottom creme-bg" >
@@ -126,10 +127,8 @@ const AudioPlayer = ({ arrayIndex , setArrayIndex, searchResults}) => {
         </Col>
       <Col xs={3} className="justify-content-start text-ltg">
         <Row>
-           <h5>{collection?.samples[arrayIndex].name}</h5>
-           <h6>{collection?.samples[arrayIndex].artist}</h6>
-           <h5>{searchResults[arrayIndex].name}</h5>
-           <h6>{searchResults[arrayIndex].artist}</h6>
+           <h5>{playerName}</h5>
+           <h5>{playerPack}</h5>
         </Row>
       </Col>
 

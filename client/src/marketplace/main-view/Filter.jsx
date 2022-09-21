@@ -6,8 +6,9 @@ import Form from  'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
+import Spinner from 'react-bootstrap/Spinner';
 
-const Filter = ({handleFilterQuery, setShowAlert, setSearchResults, setSearchIndex}) => {
+const Filter = ({handleFilterQuery, setShowAlert, setSearchResults, isLoading }) => {
   const [search , setSearch] = useState("")
   const [key, setKey] = useState(null)
   const [genre, setGenre] = useState(null)
@@ -47,6 +48,7 @@ const Filter = ({handleFilterQuery, setShowAlert, setSearchResults, setSearchInd
 
   function handleSubmit(e){
     e.preventDefault()
+    setSearchResults([])
     const searchParams = {
       sample_type: type?.value,
       name: search,
@@ -133,7 +135,10 @@ const Filter = ({handleFilterQuery, setShowAlert, setSearchResults, setSearchInd
   const selectDropdownStyles = {
     menuList: styles => ({...styles , height: 200})
   };
-
+  const renderSpinner = <div className="d-flex flex-row align-content-center align-text-middle justify-content-center mt-e">
+                          <Spinner animation="border" variant="primary" />
+                          <h4>Loading</h4>
+                        </div>
   return (
     <Form className="my-2" onSubmit={handleSubmit}>
       {/* <h3 className="text-center mt-2">Filter</h3> */}
@@ -221,6 +226,7 @@ const Filter = ({handleFilterQuery, setShowAlert, setSearchResults, setSearchInd
           Reset 
         </Button>
       </Form.Group>
+      {isLoading ? renderSpinner : null}
     </Form>
   )
 }
