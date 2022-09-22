@@ -24,13 +24,19 @@ class CollectionsController < ApplicationController
   end
 
   def index
-    user = User.find(params[:id])
+    user = User.find_by!(id: params[:user_id])
     if current_user == user
       render json: user.collections , status: :ok,  each_serializer: MarketplaceCollectionSerializer ,status: :created
     end
   end 
 
   def show
+    if params[:collection_id] && Collection.find_by(id: params[:collection_id]).user_id.to_i == current_user.id
+      collection = Collection.find_by!(id: params[:collection_id])
+      return render json: collection, status: :ok
+    elsif params[:collection_id] && Collection.find_by(id: params[:collection_id]).user_id.to_i != current_user.id
+      return render json: {errors: "You are not authorized to edit this sample pack"}, status: :unauthorized
+    end
     collection = Collection.find_by!(id: params[:id])
     render json: collection , status: :ok
   end

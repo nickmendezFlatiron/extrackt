@@ -15,11 +15,10 @@ import Downloads from './user-files/Downloads'
 import Samples from './user-files/Samples'
 import Account from './user-files/Account'
 import SignupForm from './home-page/SignupForm';
+import EditCollection from './user-files/EditCollection';
 
 import Spinner from 'react-bootstrap/Spinner'
 
-
-// CSS Styling
 import './styles/app.scss'
 import './styles/App.css';
 
@@ -80,10 +79,10 @@ function App() {
           <Route path="marketplace" exact element={ <Marketplace collection={collection}/>}>
           </Route>
           <Route path="marketplace/:id" element={<Collection collection={collection} />} />
-          <Route path='user/:username' exact element={<Account user={user} spinner={spinner}/>}>
-              <Route path="downloads" exact element={<Downloads />}/>
-          </Route>
+          <Route path='user/:username' exact element={<Account user={user} spinner={spinner}/>} />
+              <Route path="/user/:username/downloads" exact element={<Downloads />}/>
               <Route path="/user/:username/samples" exact element={<Samples />}/>
+              <Route path="/user/:username/samples/:collection_id" exact element={<EditCollection />}/>
           <Route path="/upload" element={<UploadForm />} />
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>

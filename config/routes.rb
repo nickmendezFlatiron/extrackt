@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   resources :collections , only: [:create, :show, :destroy]
   get '/marketplace/recent', to: "collections#recent"
   get '/marketplace/popular', to: "collections#popular"
-  get 'user/:id/collections', to: "collections#index"
+  get 'user/:user_id/collections', to: "collections#index"
+  get 'user/:user_id/collections/:collection_id', to: "collections#show"
   
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
