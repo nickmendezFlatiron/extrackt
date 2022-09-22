@@ -46,6 +46,8 @@ class CollectionsController < ApplicationController
     if current_user.id == collection.user_id
       collection.destroy
       return head :no_content
+    else
+      render json: {errors: "Delete unsuccessful"} , status: :unprocessable_entity
     end
     
   end 

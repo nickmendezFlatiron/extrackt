@@ -33,10 +33,7 @@ const EditCollection = () => {
           if(r.ok) {
             r.json().then(r => {
               setCollection(()=> r)
-            }).then(() =>
-            
-              {}
-            )
+            })
           } else {
               if (r.status === 401) {
                return navigate
@@ -51,7 +48,7 @@ const EditCollection = () => {
 
   useEffect(()=>{
     setDescription(collection?.description)
-              setName(collection?.name)
+    setName(collection?.name)
   },[collection])
 
   const created = collection?.created_at.split("T")[0]

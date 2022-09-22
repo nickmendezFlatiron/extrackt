@@ -23,7 +23,6 @@ const UploadCard = ({upload, handleUploads}) => {
     fetch(`/collections/${upload.id}`, {method: "DELETE"})
       .then(r => {
         if(r.ok){
-          console.log(r)
             handleUploads(upload.id)
         } else {
          setErrors(["Delete unsuccessful, please try again."])

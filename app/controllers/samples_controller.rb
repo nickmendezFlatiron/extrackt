@@ -42,7 +42,15 @@ class SamplesController < ApplicationController
   #     render json: {errors: ["Purchase more credits to download this file"]} , status: :unprocessable_entity
   #   end
   # end
-
+  def destroy
+    sample = Sample.find_by!(id: params[:id])
+    if current_user.id == sample.collection.user_id
+      sample.destroy
+      return head :no_content
+    else
+      render json: {errors: "Delete unsuccessful"} , status: :unprocessable_entity
+    end
+  end
   private
   def sample_params
     params.permit(:key, :bpm, :name, :genre, :sample_type, :audio_file)

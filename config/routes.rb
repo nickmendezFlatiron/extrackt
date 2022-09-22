@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   #samples controller
   post '/samples/search' , to: "samples#search"
-  resources :samples , only: [:show]
+  resources :samples , only: [:show, :destroy]
   #sessions controller
   post "/login" , to: "sessions#login"
   delete "/logout", to: "sessions#destroy"

@@ -1,12 +1,19 @@
-import React from 'react'
+import {React, useState} from 'react'
 
 import Table from 'react-bootstrap/Table'
 import uuid from 'react-uuid'
 import EditTableRow from './EditTableRow'
 
 const EditTable = ({samples}) => {
-  
-  const renderSamples = samples.map(sample=> <EditTableRow key={uuid()} sample={sample}/>)
+  const [deletePermission, toggleDeletePermission] = useState(false)
+
+  const renderSamples = samples?.map(sample=>{return <EditTableRow 
+                                                        key={uuid()} 
+                                                        sample={sample} 
+                                                        deletePermission={deletePermission} 
+                                                        toggleDeletePermission={toggleDeletePermission}
+                                                        samples={samples}
+                                                      />})
   return (
     <Table hover responsive className=''>
       <thead>
