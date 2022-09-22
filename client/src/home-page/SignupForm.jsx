@@ -23,7 +23,7 @@ const SignupForm = ({handleShow}) => {
   
   const navigate = useNavigate()
 
-  const {setUser , isAuthenticated , setErrors } = useContext(LoginContext)
+  const {setUser , isAuthenticated , setErrors , authenticated} = useContext(LoginContext)
 
   function handleUsername(e){
     setUsername(e.target.value)
@@ -78,9 +78,9 @@ const SignupForm = ({handleShow}) => {
     })
    
 
-    // setValidated(true);
   };
-
+  
+  if (authenticated) return navigate("/")
   return (
     <Container >
       <Row className="signup-bg align-items-center p-4 rounded-4">

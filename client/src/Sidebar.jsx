@@ -25,7 +25,7 @@ const handleLogout = () => {
 }
   return (
       <>
-        <Navbar   expand="false" className="mx-3">
+        <Navbar  expand="false" className="mx-3">
           <Container fluid >
             <div className='d-flex align-items-center'>
             <Navbar.Brand href="/"><h2 className="text-dark rounded-3 pt-2">Extrackt.</h2></Navbar.Brand>
@@ -42,7 +42,7 @@ const handleLogout = () => {
               placement="start"
               className="light-purple-bg"
             >
-              <Offcanvas.Header closeButton>
+              <Offcanvas.Header >
                 <Offcanvas.Title id="offcanvasNavbarLabel-expand-false">
                 <h2 className="pt-2">Extrackt.</h2>
                 </Offcanvas.Title>
@@ -52,7 +52,7 @@ const handleLogout = () => {
                   <Nav.Link href="/" className="px-2 sidebar">Home</Nav.Link>
                   <Nav.Link href="/marketplace" className="px-2 sidebar">The Crate</Nav.Link>
                   <Nav.Link href={`/user/${user.username}/downloads`} className="px-2 sidebar">My Downloads</Nav.Link>
-                  <Nav.Link href={`/user/${user.username}/samples`} className="px-2 sidebar">Manage Uploads</Nav.Link>
+                  <Nav.Link href={`/user/${user.username}/samples`} className="px-2 sidebar">My Uploads</Nav.Link>
                   <Nav.Link href="/upload" className="px-2 sidebar">Upload</Nav.Link>
                 </Nav>
               </Offcanvas.Body>

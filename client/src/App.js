@@ -2,7 +2,6 @@ import { Fragment , useState , useEffect } from 'react';
 import {Routes , Route, Navigate} from 'react-router-dom'
 import {LoginContext} from './context/LoginContext'
 import CollectionContext from './context/CollectionContext'
-import Protected from './Protected'
 
 import Sidebar from './Sidebar';
 import Navigation from './home-page/Navigation'

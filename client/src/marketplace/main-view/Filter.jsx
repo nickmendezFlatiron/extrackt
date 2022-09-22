@@ -135,8 +135,8 @@ const Filter = ({handleFilterQuery, setShowAlert, setSearchResults, isLoading })
   const selectDropdownStyles = {
     menuList: styles => ({...styles , height: 200})
   };
-  const renderSpinner = <div className="d-flex flex-row align-content-center align-text-middle justify-content-center mt-e">
-                          <Spinner animation="border" variant="primary" />
+  const renderSpinner = <div className="d-flex flex-row align-content-center align-text-middle justify-content-center mt-3">
+                          <Spinner animation="border" variant="primary" className="mx-2"/>
                           <h4>Loading</h4>
                         </div>
   return (

@@ -1,7 +1,7 @@
 import React,{useState , useRef , useEffect, useContext} from 'react'
 import WaveSurfer from "wavesurfer.js"
 import CollectionContext from '../context/CollectionContext'
-
+import {useNavigate} from 'react-router-dom'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Spinner from 'react-bootstrap/Spinner'
@@ -24,7 +24,7 @@ const AudioPlayer = ({ arrayIndex , setArrayIndex, searchResults}) => {
   const [wavesurfer , setWavesurfer] = useState(null)
   const [volume, setVolume] = useState(100)
   const {collection} = useContext(CollectionContext)
-
+  const navigate = useNavigate()
   const pause =  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z"/>
   const play = <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
   const [playButton, setPlayButton] = useState(play)
@@ -93,15 +93,21 @@ const AudioPlayer = ({ arrayIndex , setArrayIndex, searchResults}) => {
   }
 
   function handleVolume(e){
-    let vol = parseFloat(e.target.value / 100) 
-    
+    let vol = parseFloat(e.target.value / 100)   
     setVolume(e.target.value)
     wavesurfer.setVolume(vol)
   }
 
+  function handleCollection(e){
+    e.stopPropagation()
+    if (searchResults){
+      navigate(`/marketplace/${searchResults[arrayIndex].collection_id}`)
+    } 
+  }
+
   const loadTime = isLoading ? <Spinner animation="border" variant="primary" /> : `${audioDuration.minutes}:${audioDuration.seconds}` ; 
   const playerName = collection? collection?.samples[arrayIndex].name : searchResults && searchResults[arrayIndex].name ;
-  const playerPack = collection? collection?.samples[arrayIndex].artist : searchResults && searchResults[arrayIndex].artist ;
+  const playerArtist = collection? collection?.samples[arrayIndex].artist : searchResults && searchResults[arrayIndex].artist ;
   return (
     // Sticky footer
    <div className="audio-player fixed-bottom creme-bg" >
@@ -127,8 +133,10 @@ const AudioPlayer = ({ arrayIndex , setArrayIndex, searchResults}) => {
         </Col>
       <Col xs={3} className="justify-content-start text-ltg">
         <Row>
-           <h5>{playerName}</h5>
-           <h5>{playerPack}</h5>
+           <h5 className="audio-player-link" onClick={handleCollection}>
+            {playerName}
+            </h5>
+           <h5>{playerArtist}</h5>
         </Row>
       </Col>
 
