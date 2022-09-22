@@ -1,4 +1,4 @@
-import React from 'react'
+import {React} from 'react'
 import Card from 'react-bootstrap/Card'
 
 import Container from 'react-bootstrap/Container'
@@ -17,19 +17,19 @@ const Plans = () => {
           <Col lg="4" className="my-3 d-flex align-items-stretch ">
             <Card className="text-center ">
               <Card.Header className="light-purple-bg">
-                <h4 className="fw-normal">Free</h4>
+                <h4 className="fw-normal">Trial</h4>
               </Card.Header>
               <Card.Body>
                 <Card.Title>
-                  <h1 className="fw-light text-dkg"> <strong className="text-dark fw-bold">$0</strong>/mo</h1>
+                  <h1 className="fw-light text-dkg"> <strong className="text-dark fw-bold">$0</strong></h1>
                 </Card.Title>
                 <ul className="my-3 text-start">
-                  <li>10 Credits on Signup</li>
+                  <li>10 Credits at Signup</li>
                   <li>Access to the Community Forums</li>
-                  <li>Limited Access to The Sample Marketplace</li>
+                  <li>7 Day access to Extrackt</li>
                 </ul>
                 <Card.Text className="fw-bold">
-                  For users who want to experience the Extrackt platform before committing to a plan. 
+                  For users who want to test drive the Extrackt platform before committing to a plan. 
                 </Card.Text>
                 <Button variant="primary">Go somewhere</Button>
               </Card.Body>
@@ -42,13 +42,12 @@ const Plans = () => {
               </Card.Header>
               <Card.Body>
                 <Card.Title>
-                  <h1 className="fw-light text-dkg"> <strong className="text-dark fw-bold">$7</strong>/mo</h1>
+                  <h1 className="fw-light text-dkg"> <strong className="text-dark fw-bold">$10</strong></h1>
                 </Card.Title>
                 <ul className="my-3 text-start">
-                  <li>70 Credits per Month</li>
-                  <li>Access to the Community Forums</li>
-                  <li>Full Access to the Sample Marketplace</li>
-                  <li>Credits rollover every month and never expire.</li>
+                  <li>70 Credits at Signup</li>
+                  <li>Recharge credits balace at any time.</li>
+                  <li>Lifetime access to Extrackt.</li>
                 </ul>
                 <Card.Text className="fw-bold">
                   For users who want to expand their personal sample library with fresh and unique audio samples.
@@ -64,12 +63,13 @@ const Plans = () => {
               </Card.Header>
               <Card.Body>
                 <Card.Title>
-                  <h1 className="fw-light text-dkg"> <strong className="text-dark fw-bold">$15</strong>/mo</h1>
+                  <h1 className="fw-light text-dkg"> <strong className="text-dark fw-bold">$15</strong></h1>
                 </Card.Title>
                 <ul className="my-3 text-start">
-                  <li className="">30 Credits Per Month</li>
+                  <li>Includes all perks of Producer Plan</li>
                   <li>20 Gb of Upload/Storage Space</li>
                   <li>50/50 Starting Profit Split</li>
+                  
                 </ul>
                 <Card.Text className="fw-bold">
                   For users who are ready to upload sounds to the Sample Marketplace and get paid their talent.
