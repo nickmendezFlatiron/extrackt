@@ -6,7 +6,6 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 
-
 const Plans = () => {
   return (
     <Container className="py-4">

@@ -1,6 +1,9 @@
 import React , {useState , useContext, useRef} from 'react'
+import {LoginContext} from '.././context/LoginContext'
+import CollectionContext from '../context/CollectionContext'
 import FormTable from './FormTable'
 import PreviewModal from './PreviewModal'
+import HelpModal from './HelpModal'
 import Errors from '../Errors'
 
 import Col from 'react-bootstrap/Col'
@@ -10,8 +13,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
 
-import {LoginContext} from '.././context/LoginContext'
-import CollectionContext from '../context/CollectionContext'
+
 
 
 const UploadForm = () => {
@@ -19,7 +21,7 @@ const UploadForm = () => {
   const [name , setName] = useState()
   const [description , setDescription] = useState()
   const [coverArt , setCoverArt] = useState()
-
+  const [helpModal, setHelpModal] = useState(false)
   const [showModal, setshowModal] = useState();
   const [showAlert , setShowAlert] = useState(false)
   const [alertColor ,setAlertColor] = useState('danger')
@@ -109,6 +111,7 @@ const UploadForm = () => {
   return (
     <div className="mx-3">
       <PreviewModal name={name} samples={samples} description={description} coverArt={coverArt} showModal={showModal} handleClose={handleClose}/>
+      <HelpModal setHelpModal={setHelpModal} helpModal={helpModal}/>
       <Row className="">
         <Col className=" pt-2 light-purple-bg rounded-3 mx-2">
           <Alert variant={alertColor} show={showAlert} onClose={() => setShowAlert(false)} dismissible="true">
@@ -124,7 +127,7 @@ const UploadForm = () => {
               <br/>
               <h4 className="mt-1">Artwork</h4>
               <h4 className="mt-3">Samples</h4>
-              <Button variant="outline-dark"  type="button">Help</Button>
+              <Button variant="outline-dark" onClick={()=>setHelpModal(true)} type="button">Help</Button>
             </Col>
             <Col>
               <Form className="mb-3" onSubmit={handleSubmit}>
