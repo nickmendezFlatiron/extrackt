@@ -1,15 +1,14 @@
 import {React, useContext}from 'react'
 import {LoginContext} from '../context/LoginContext'
 import CollectionContext from '../context/CollectionContext'
-import {useNavigate} from 'react-router-dom'
 
 import CloseButton from 'react-bootstrap/CloseButton'
-import Collection from '../marketplace/Collection'
+
 const EditTableRow = ({sample, toggleDeletePermission, deletePermission, handleSamples, samples}) => {
   const {id, name, genre, sample_type, bpm, key} = sample
   const {setErrors} = useContext(LoginContext)
   const {setCollection, collection} = useContext(CollectionContext)
-  console.log(collection)
+  
   const letters = ["a", "b", "c", "d", "e", "f", "g"]
   const half = ["sharp", "flat"]
   // const scale = ["major", 'minor']

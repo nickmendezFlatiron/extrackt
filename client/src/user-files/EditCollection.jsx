@@ -1,5 +1,5 @@
 import {React , useEffect, useContext, useState}from 'react'
-import { useParams} from 'react-router-dom'
+import { useParams, useNavigate} from 'react-router-dom'
 import CollectionContext from '../context/CollectionContext'
 import { LoginContext } from '../context/LoginContext'
 import EditTable from './EditTable'
@@ -12,12 +12,16 @@ import Image from 'react-bootstrap/Image'
 
 const EditCollection = () => {
   const {collection , setCollection} = useContext(CollectionContext)
+  const {user, setErrors, errors, authenticated, navigate} = useContext(LoginContext)
   const [name , setName] = useState(collection?.name)
   const [description , setDescription] = useState(collection?.description)
+
+  const navigation = useNavigate()
   const params = useParams()
-  const {user, setErrors, errors, authenticated, navigate} = useContext(LoginContext)
   
-  const goBack = () => {}
+  const goBack = () => {
+    return navigation(-1)
+  }
   function handleDescription(e){
     setDescription(e.target.value)
   }
