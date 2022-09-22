@@ -41,6 +41,16 @@ class CollectionsController < ApplicationController
     render json: collection , status: :ok
   end
 
+  def update
+    collection = Collection.find_by!(id: params[:id])
+    if collection.user_id == current_user.id
+      collection.update!(collection_params)
+     return render json: collection , status: :ok
+    else 
+      render json: ["Update Unsuccessful"], status: :unprocessable_entity
+    end
+  end 
+
   def destroy
     collection = Collection.find_by!(id: params[:id])
     if current_user.id == collection.user_id

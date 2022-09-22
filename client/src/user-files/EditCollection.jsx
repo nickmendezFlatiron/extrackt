@@ -29,6 +29,31 @@ const EditCollection = () => {
     setName(e.target.value)
   }
 
+  function handleSubmit(e){
+    e.preventDefault()
+    const body = {
+      name, 
+      description
+    }
+    fetch(`/collections/${collection.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    }).then(r => {
+        if(r.ok){
+          r.json().then(r =>{
+            setCollection(r)
+            window.alert("Successfully updated collection title and description")
+            }
+          )
+        } else(
+          r.json().then(e => setErrors(e.errors))
+        )
+    })
+  }
+
   useEffect(()=>{
     setCollection(null)
     if (user) {
@@ -65,10 +90,10 @@ const EditCollection = () => {
       <div className="mb-3 pb-5 mx-4">
         <Row>
           <Col className="height-match rounded-3 p-2 col-auto" > 
-            <Form>
+            <Form onSubmit={handleSubmit}>
               <Col className="pb-3 d-flex">
               <Button className="me-4" variant="link" onClick={() => goBack()}> {`< Back`} </Button>
-              <Button type="submit" className="px-4 fs-5">Apply</Button>
+              <Button type="submit" className="px-4 fs-5">Apply Changes</Button>
               </Col> 
               <Col >
                 <Image src={collection?.cover_art_url} className="cover-preview offset"/>

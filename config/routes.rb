@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/authorize', to: "users#show"  
   
   #collections controller
-  resources :collections , only: [:create, :show, :destroy]
+  resources :collections , only: [:create, :show, :destroy, :update]
   get '/marketplace/recent', to: "collections#recent"
   get '/marketplace/popular', to: "collections#popular"
   get 'user/:user_id/collections', to: "collections#index"
