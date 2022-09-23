@@ -10,7 +10,7 @@ import Spinner from 'react-bootstrap/Spinner';
 
 const Filter = ({handleFilterQuery, setShowAlert, setSearchResults, isLoading }) => {
   const [search , setSearch] = useState("")
-  const [key, setKey] = useState(null)
+  const [sample_key, setKey] = useState(null)
   const [genre, setGenre] = useState(null)
   const [bpm , setBpm] = useState()
   const [type, setType] = useState(null)
@@ -52,7 +52,7 @@ const Filter = ({handleFilterQuery, setShowAlert, setSearchResults, isLoading })
     const searchParams = {
       sample_type: type?.value,
       name: search,
-      key, 
+      sample_key, 
       genre: genre?.value,
       bpm
     }
@@ -66,8 +66,8 @@ const Filter = ({handleFilterQuery, setShowAlert, setSearchResults, isLoading })
     const searchObj = {}
     
     filterParams.forEach(param => {
-      if(param === "key") {
-        searchObj[param] = key.map(k => {return k.value})
+      if(param === "sample_key") {
+        searchObj[param] = sample_key.map(k => {return k.value})
       } else {
         searchObj[param] = searchParams[param]
       }
@@ -101,14 +101,14 @@ const Filter = ({handleFilterQuery, setShowAlert, setSearchResults, isLoading })
     {value: "f", label: "F"},
     {value: "g", label: "G"}
   ]
-  const keyExist = key && key.filter(k => /[a-g]/.exec(k.value) && k.value.length === 1)
+  const keyExist = sample_key && sample_key.filter(k => /[a-g]/.exec(k.value) && k.value.length === 1)
   const hideKeys = keyExist?.length > 0 ? [] : songKeys 
 
   const halfStep = [
     {value: "flat", label: "♭"},
     {value: "sharp", label: "♯"}
   ]
-  const halfStepExist = key && key.filter(k => /sharp/.exec(k.value) ||  /flat/.exec(k.value))
+  const halfStepExist = sample_key && sample_key.filter(k => /sharp/.exec(k.value) ||  /flat/.exec(k.value))
   const hideHalfSteps = halfStepExist?.length > 0 ? [] : halfStep
   
   const scales = [
@@ -116,7 +116,7 @@ const Filter = ({handleFilterQuery, setShowAlert, setSearchResults, isLoading })
     {value: "minor", label: "min"}
   ]
 
-  const scalesExist = key && key.filter(k => k.value.includes("minor") || k.value.includes("major"))
+  const scalesExist = sample_key && sample_key.filter(k => k.value.includes("minor") || k.value.includes("major"))
   const hideScales = scalesExist?.length > 0 ? [] : scales
   const keyOptions = [
     {
@@ -163,7 +163,7 @@ const Filter = ({handleFilterQuery, setShowAlert, setSearchResults, isLoading })
       </Form.Group>
       <Form.Group className=" mb-3">
         <Select 
-          value={key}
+          value={sample_key}
           isMulti
           styles={selectDropdownStyles}
           onChange={setKey}

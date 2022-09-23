@@ -56,7 +56,7 @@ const UploadForm = () => {
     // each sample in its own [sample_individual]attr and append each piece
     samples.forEach((sample)=>{
       data.append(`[sample${counter}]name`, sample.name)
-      data.append(`[sample${counter}]key`,JSON.stringify(sample.key))
+      data.append(`[sample${counter}]sample_key`,JSON.stringify(sample.sample_key))
       data.append(`[sample${counter}]bpm`,sample.bpm)
       data.append(`[sample${counter}]genre`, sample.genre)
       data.append(`[sample${counter}]sample_type`, sample.type)

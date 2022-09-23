@@ -12,7 +12,7 @@ class CollectionsController < ApplicationController
       params.keys[1..-3].each do |p|
         collection.samples.create!({
           name: params[p][:name],
-          key: JSON.parse(params[p][:key]),
+          sample_key: JSON.parse(params[p][:sample_key]),
           bpm: params[p][:bpm],
           genre: params[p][:genre],
           sample_type: params[p][:sample_type],

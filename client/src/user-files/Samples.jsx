@@ -43,7 +43,7 @@ const Samples = () => {
   return (
     <Container>
         {message}
-      <Row sm={2} md={3} lg={4} className="creme-bg p-4 rounded-5 shadow-sm">
+      <Row sm={2} md={3} lg={4} className="creme-bg p-4 rounded-5 shadow-sm ">
         {renderUploads}
         {!uploads && <Spinner animation="border" variant="secondary" />}
       </Row>

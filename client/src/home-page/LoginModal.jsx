@@ -84,9 +84,6 @@ const LoginModal = ({toggleModal , handleClose }) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
           <Button variant="primary" type="submit" onSubmit={handleLogin} form="login-form">
             Login
           </Button>

@@ -9,7 +9,7 @@ import uuid from 'react-uuid'
 const UploadTableRowForm = ({setSamples , samples, setShowAlert}) => {
   const [type, setSelectedType] = useState(null);
   const [genre , setSelectedGenre] = useState(null)
-  const [key ,setSelectedKey] = useState(null)
+  const [sample_key ,setSelectedKey] = useState(null)
   const [sampleName , setSampleName] = useState("")
   const [bpm , setBpm] = useState(null)
   const [file , setFile] = useState()
@@ -50,14 +50,14 @@ const UploadTableRowForm = ({setSamples , samples, setShowAlert}) => {
     {value: "f", label: "F"},
     {value: "g", label: "G"}
   ]
-  const keyExist = key && key.filter(k => /[a-g]/.exec(k.value) && k.value.length === 1)
+  const keyExist = sample_key && sample_key.filter(k => /[a-g]/.exec(k.value) && k.value.length === 1)
   const hideKeys = keyExist?.length > 0 ? [] : songKeys 
 
   const halfStep = [
     {value: "flat", label: "♭"},
     {value: "sharp", label: "♯"}
   ]
-  const halfStepExist = key && key.filter(k => /sharp/.exec(k.value) ||  /flat/.exec(k.value))
+  const halfStepExist = sample_key && sample_key.filter(k => /sharp/.exec(k.value) ||  /flat/.exec(k.value))
   const hideHalfSteps = halfStepExist?.length > 0 ? [] : halfStep
   
   const scales = [
@@ -65,7 +65,7 @@ const UploadTableRowForm = ({setSamples , samples, setShowAlert}) => {
     {value: "minor", label: "min"}
   ]
 
-  const scalesExist = key && key.filter(k => k.value.includes("minor") || k.value.includes("major"))
+  const scalesExist = sample_key && sample_key.filter(k => k.value.includes("minor") || k.value.includes("major"))
   const hideScales = scalesExist?.length > 0 ? [] : scales
   const keyOptions = [
     {
@@ -121,18 +121,18 @@ const UploadTableRowForm = ({setSamples , samples, setShowAlert}) => {
     setShowAlert(false)
     setErrors([])
     console.log(!type)
-    if(sampleName.length < 1 || sampleName === null || !file || !key || key?.length === 0 || !genre || genre?.value.length === 0 || !Number.isInteger(bpm) || !type || type.value?.length === 0){
+    if(sampleName.length < 1 || sampleName === null || !file || !sample_key || sample_key?.length === 0 || !genre || genre?.value.length === 0 || !Number.isInteger(bpm) || !type || type.value?.length === 0){
       setShowAlert(true)
      return  setErrors(["Fill out all sample inputs fields prior to adding a sample"])
     } 
-    const keyArray = key.map(k => {return k.value})
+    const keyArray = sample_key.map(k => {return k.value})
     const newSample = {
       id: uuid(),
-      keyLabel: key,
+      keyLabel: sample_key,
       name: sampleName,
       type: type.value,
       genre: genre.value,
-      key: keyArray,
+      sample_key: keyArray,
       bpm,
       file
     }
@@ -176,7 +176,7 @@ const UploadTableRowForm = ({setSamples , samples, setShowAlert}) => {
       </td>
       <td>
       <Select 
-          value={key}
+          value={sample_key}
           isMulti
           styles={selectDropdownStyles}
           onChange={setSelectedKey}

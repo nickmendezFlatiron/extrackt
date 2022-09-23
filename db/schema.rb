@@ -68,7 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_17_134744) do
     t.integer "downloads", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "key", array: true
+    t.string "sample_key", array: true
     t.index ["collection_id"], name: "index_samples_on_collection_id"
   end
 

@@ -4,14 +4,14 @@ import { LoginContext } from '../context/LoginContext'
 import Button from 'react-bootstrap/Button'
 
 const CollectionTableRow = ({sample, setArrayIndex, samples, arrayIndex, showAlert}) => {
-  const {id, name , bpm,  genre, key, sample_type} = sample
+  const {id, name , bpm,  genre, sample_key, sample_type} = sample
   const {setErrors} = useContext(LoginContext)
 
   const letters = ["a", "b", "c", "d", "e", "f", "g"]
   const half = ["sharp", "flat"]
   // const scale = ["major", 'minor']
   
-  const renderKeys = key.map(k =>{
+  const renderKeys = sample_key.map(k =>{
       if (letters.includes(k)){
         return k.toUpperCase()
       } else if (half.includes(k)){

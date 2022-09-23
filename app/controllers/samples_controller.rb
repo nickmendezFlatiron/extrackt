@@ -3,7 +3,7 @@ class SamplesController < ApplicationController
   def search
     search = {}
     params.keys[0..-4].each do |p|
-    if p == "key" || p == "name"
+    if p == "sample_key" || p == "name"
       next
     end
      search[p] = params[p]
@@ -15,9 +15,9 @@ class SamplesController < ApplicationController
     end
     # if the key parameter is not empty then i want to check if each result includes each "key" value
     # check if every provided param key string is included in result key array
-    if params.has_key?("key") && !params["key"].empty?
+    if params.has_key?("sample_key") && !params["sample_key"].empty?
       ans = res.filter do |r|
-        test_case =  params["key"].all? {|e| r["key"].include?(e)}
+        test_case =  params["sample_key"].all? {|e| r["sample_key"].include?(e)}
         test_case
       end
       if ans.empty?
@@ -53,6 +53,6 @@ class SamplesController < ApplicationController
   end
   private
   def sample_params
-    params.permit(:key, :bpm, :name, :genre, :sample_type, :audio_file)
+    params.permit(:sample_key, :bpm, :name, :genre, :sample_type, :audio_file)
   end
 end

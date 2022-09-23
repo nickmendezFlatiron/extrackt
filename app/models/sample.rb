@@ -20,18 +20,18 @@ class Sample < ApplicationRecord
   validate :key_validator
 
   def key_validator
-    letter_count = key.select {|k| ["a", "b", "c", "d", "e", "f", "g"].include?(k)==true}
-    step_count = key.select {|k| ["sharp", "flat"].include?(k)==true}
-    scale_count = key.select {|k| ["major", "minor"].include?(k)==true}
+    letter_count = sample_key.select {|k| ["a", "b", "c", "d", "e", "f", "g"].include?(k)==true}
+    step_count =sample_key.select {|k| ["sharp", "flat"].include?(k)==true}
+    scale_count = sample_key.select {|k| ["major", "minor"].include?(k)==true}
 
     if letter_count.length > 1 
-      errors.add(:key, "invalid, only 1 letter allowed ")
+      errors.add(:sample_key, "invalid, only 1 letter allowed ")
     end
     if step_count.length > 1
-      errors.add(:key, "invalid, only 1 half step allowed")
+      errors.add(:sample_key, "invalid, only 1 half step allowed")
     end
     if scale_count.length > 1
-      errors.add(:key, "invalid, only 1 scale allowed")
+      errors.add(:sample_key, "invalid, only 1 scale allowed")
     end
   end
 
