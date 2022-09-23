@@ -1,11 +1,12 @@
-import {React , useState, useRef, useEffect} from 'react'
+import {React , useState, useRef, useEffect, useContext} from 'react'
+import { LoginContext } from '../context/LoginContext'
 import Select from 'react-select'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import uuid from 'react-uuid'
 
-const UploadTableRowForm = ({setSamples , samples}) => {
+const UploadTableRowForm = ({setSamples , samples, setShowAlert}) => {
   const [type, setSelectedType] = useState(null);
   const [genre , setSelectedGenre] = useState(null)
   const [key ,setSelectedKey] = useState(null)
@@ -13,7 +14,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
   const [bpm , setBpm] = useState(null)
   const [file , setFile] = useState()
   const fileRef = useRef()
-  
+  const {setErrors, errors} = useContext(LoginContext)
   useEffect(()=>{
     if (samples.length === 0) {
       setSelectedType(null)
@@ -113,16 +114,17 @@ const UploadTableRowForm = ({setSamples , samples}) => {
       setSampleName(name.substring(0 , 40))
     }
     
-    // let reader = new FileReader()
-    // reader.readAsDataURL(e.target.files[0])
-    // reader.onload = (e) => {
-    //   // console.log(reader.result)
-    // }
   }
   
   function handleClick(e){
     e.preventDefault()
-    
+    setShowAlert(false)
+    setErrors([])
+    console.log(!type)
+    if(sampleName.length < 1 || sampleName === null || !file || !key || key?.length === 0 || !genre || genre?.value.length === 0 || !Number.isInteger(bpm) || !type || type.value?.length === 0){
+      setShowAlert(true)
+     return  setErrors(["Fill out all sample inputs fields prior to adding a sample"])
+    } 
     const keyArray = key.map(k => {return k.value})
     const newSample = {
       id: uuid(),
@@ -134,6 +136,7 @@ const UploadTableRowForm = ({setSamples , samples}) => {
       bpm,
       file
     }
+    console.log({newSample})
     setSamples(()=>[newSample, ...samples ])
     setSampleName("")
     fileRef.current.value = null

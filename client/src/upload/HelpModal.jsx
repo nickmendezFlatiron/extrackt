@@ -15,7 +15,7 @@ const HelpModal = ({helpModal, setHelpModal}) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Row className="d-flex align-items-top bg-light justify-content-start">
+        <Row className="d-flex align-items-top justify-content-start">
           <Col >
             <h4>Name</h4>
             <br/>
@@ -39,13 +39,13 @@ const HelpModal = ({helpModal, setHelpModal}) => {
         <Row className="d-flex align-items-top justify-content-start">
         
         </Row>
-        <Row className="d-flex align-items-top justify-content-start bg-light">
+        <Row className="d-flex align-items-top justify-content-start">
           <Col className="col-auto">
           </Col>
           <Col xs={8}>
           </Col>
         </Row>
-        <Row className="d-flex align-items-top justify-content-start bg-light">
+        <Row className="d-flex align-items-top justify-content-start ">
           <Col className="col-auto">
           </Col>
           <Col xs={8}>

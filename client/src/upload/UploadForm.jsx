@@ -150,7 +150,7 @@ const UploadForm = () => {
                   />
                 </Form.Group>
                 <Form.Group>
-                  <FormTable samples={samples} setSamples={setSamples}/>
+                  <FormTable samples={samples} setSamples={setSamples} setShowAlert={setShowAlert}/>
                 </Form.Group>
                 <Button variant="success" className="shadow" type="submit">Submit</Button>
                 <Button onClick={handleShow} type="button" className="text-white mx-3 opacity-75" variant="secondary">Preview</Button>

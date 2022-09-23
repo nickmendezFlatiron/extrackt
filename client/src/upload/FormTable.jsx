@@ -5,7 +5,7 @@ import Table from 'react-bootstrap/Table'
 
 import SubmittedRow from './SubmittedRow'
 
-const FormTable = ({samples , setSamples}) => {
+const FormTable = ({samples , setSamples, setShowAlert}) => {
   const rows = samples.map(sample => {
     return <SubmittedRow 
       sample={sample} 
@@ -30,7 +30,7 @@ const FormTable = ({samples , setSamples}) => {
         </tr>
       </thead>
       <tbody >
-       <UploadTableRowForm setSamples={setSamples} samples={samples}/>
+       <UploadTableRowForm setSamples={setSamples} samples={samples} setShowAlert={setShowAlert}/>
         {rows}
       </tbody>
     </Table>
