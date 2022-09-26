@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/authorize', to: "users#show"  
 
   #downloads controller
-  get '/downloads', to: "downloads#index"
+  resources :downloads , only: [:show]
   
   #collections controller
   resources :collections , only: [:create, :show, :destroy, :update]

@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import uuid from 'react-uuid'
 
-const UploadTableRowForm = ({setSamples , samples, setShowAlert}) => {
+const UploadTableRowForm = ({setAlertColor, setSamples , samples, setShowAlert}) => {
   const [type, setSelectedType] = useState(null);
   const [genre , setSelectedGenre] = useState(null)
   const [sample_key ,setSelectedKey] = useState(null)
@@ -117,6 +117,7 @@ const UploadTableRowForm = ({setSamples , samples, setShowAlert}) => {
     setErrors([])
     console.log(!type)
     if(sampleName.length < 1 || sampleName === null || !file || !sample_key || sample_key?.length === 0 || !genre || genre?.value.length === 0 || !Number.isInteger(bpm) || !type || type.value?.length === 0){
+      setAlertColor("danger")
       setShowAlert(true)
      return  setErrors(["Fill out all sample inputs fields prior to adding a sample"])
     } 

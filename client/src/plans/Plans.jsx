@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button'
 
 const Plans = () => {
   return (
-    <Container className="py-4">
+    <Container className="py-4 plans">
         <Row className="banner-bg py-4 mx-1 my-2 rounded-3 shadow">
           <h1 className="text-center text-white ">Plans</h1>
         </Row>

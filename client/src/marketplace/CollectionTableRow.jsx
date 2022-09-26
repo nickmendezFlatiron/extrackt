@@ -9,7 +9,7 @@ const CollectionTableRow = ({sample, setArrayIndex, samples, arrayIndex, showAle
 
   const letters = ["a", "b", "c", "d", "e", "f", "g"]
   const half = ["sharp", "flat"]
-  // const scale = ["major", 'minor']
+  const scale = ["major", 'minor']
   
   const renderKeys = sample_key.map(k =>{
       if (letters.includes(k)){
@@ -20,23 +20,6 @@ const CollectionTableRow = ({sample, setArrayIndex, samples, arrayIndex, showAle
   }).join("")
 
   
-  function handleDownload(e){
-    e.stopPropagation()
-    fetch(`/samples/${id}`)
-      .then (r=>{
-        if(r.ok){
-          r.json().then(s=>{
-            debugger
-            // download(s.sample_url)
-          })
-        } else{
-          r.json().then(e =>{
-              setErrors(e.errors)
-              showAlert(true)
-          })
-        }
-      })
-  }
 
   function handleSelectedSample(e){
     e.stopPropagation()
@@ -53,8 +36,6 @@ const CollectionTableRow = ({sample, setArrayIndex, samples, arrayIndex, showAle
       <td>{renderKeys}</td>
       <td>
         <a href={`http://localhost:3000/samples/${id}`} download >DL</a>
-        {/* <Button id={id} type="button" onClick={handleDownload}>DL</Button> */}
-        {/* <Button variant="white" className=" ms-2 text-primary">✓</Button> */}
       </td>
     </tr>
   )
