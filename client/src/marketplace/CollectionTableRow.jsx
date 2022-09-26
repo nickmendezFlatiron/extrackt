@@ -23,6 +23,7 @@ const CollectionTableRow = ({sample, setArrayIndex, samples, arrayIndex, showAle
 
   function handleSelectedSample(e){
     e.stopPropagation()
+    console.log(samples)
     const index = samples.findIndex(s => s.name === name)
     setArrayIndex(index)
   }
