@@ -52,7 +52,7 @@ const CollectionTableRow = ({sample, setArrayIndex, samples, arrayIndex, showAle
       <td>{bpm}</td>
       <td>{renderKeys}</td>
       <td>
-        <a href={`http://localhost:3000/samples/${id}`} target="_blank" rel="noreferrer noopener">DL</a>
+        <a href={`http://localhost:3000/samples/${id}`} download >DL</a>
         {/* <Button id={id} type="button" onClick={handleDownload}>DL</Button> */}
         {/* <Button variant="white" className=" ms-2 text-primary">✓</Button> */}
       </td>
