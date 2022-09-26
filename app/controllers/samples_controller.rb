@@ -1,4 +1,5 @@
 class SamplesController < ApplicationController
+  before_action :set_active_storage_host, only: [:show]
 
   def search
     search = {}
@@ -31,17 +32,22 @@ class SamplesController < ApplicationController
     return render json: res , status: :ok
   end
   
-  # def show
-  #   if current_user
-      
-  #     sample = Sample.find_by!(:id => params[:id])
-  #     path = ActiveStorage::Blob.service.path_for(sample.audio_file)
-  #     debugger
-  #     send_file(path , type: 'audio/x-wav', disposition: "attachment")
-  #   else
-  #     render json: {errors: ["Purchase more credits to download this file"]} , status: :unprocessable_entity
-  #   end
-  # end
+  def show
+    if current_user
+      sample = Sample.find_by!(:id => params[:id])
+      response.headers["Content-Type"] = sample.audio_file.content_type
+      response.headers["Content-Disposition"] = "attachment; filename=#{sample.name}.wav"
+      sample.audio_file.download {|c| response.stream.write(c)}
+
+      if current_user.downloads.find_by(sample_id: sample.id).nil?
+        current_user.downloads.create!(sample_id: sample.id)  
+      end
+      return response.stream.close
+    else
+      render json: {errors: ["Purchase more credits to download this file"]} , status: :unprocessable_entity
+    end
+  end
+
   def destroy
     sample = Sample.find_by!(id: params[:id])
     if current_user.id == sample.collection.user_id
@@ -51,8 +57,14 @@ class SamplesController < ApplicationController
       render json: {errors: "Delete unsuccessful"} , status: :unprocessable_entity
     end
   end
+
   private
   def sample_params
     params.permit(:sample_key, :bpm, :name, :genre, :sample_type, :audio_file)
   end
+
+  def set_active_storage_host
+    ActiveStorage::Current.host = request.base_url
+  end
+
 end

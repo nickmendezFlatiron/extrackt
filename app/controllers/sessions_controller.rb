@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :authorize_user , only: [:login]
+  
 
   def login
     user = User.find_by(username: params[:username])
@@ -16,4 +17,5 @@ class SessionsController < ApplicationController
     session.delete :user_id
     head :no_content
   end
+
 end

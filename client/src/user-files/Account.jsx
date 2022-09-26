@@ -41,6 +41,7 @@ const Account = ({user , spinner}) => {
       if(r.ok){
         r.json().then(user => {
           setUser(user)
+          window.alert("Successfully updated account information.")
           setErrors([])
         }
         )

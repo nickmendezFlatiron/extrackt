@@ -1,8 +1,21 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+
+import Container from 'react-bootstrap/Container'
 
 const Downloads = () => {
+
+  useEffect(()=>{
+    fetch('/downloads')
+      .then(r => {
+        if(r.ok){
+          r.json().then(r => console.log(r))
+      }
+    })
+  },[])
   return (
-    <div>Downloads</div>
+    <Container>
+      Downloads
+    </Container>
   )
 }
 

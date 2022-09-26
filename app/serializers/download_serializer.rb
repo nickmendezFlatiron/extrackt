@@ -1,5 +1,5 @@
 class DownloadSerializer < ActiveModel::Serializer
-  attributes :id
+  # attributes :id
   has_one :sample
-  has_one :user
+  # has_one :user
 end

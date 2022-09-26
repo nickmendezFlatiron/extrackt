@@ -15,7 +15,7 @@ const EditTable = ({samples}) => {
                                                         samples={samples}
                                                       />})
   return (
-    <Table hover responsive className=''>
+    <Table hover responsive >
       <thead>
         <tr>
           <th scope="col">Sample Name</th>

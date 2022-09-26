@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :users , only: [:update, :destroy]
   post '/signup' ,  to: "users#create"
   get '/authorize', to: "users#show"  
+
+  #downloads controller
+  get '/downloads', to: "downloads#index"
   
   #collections controller
   resources :collections , only: [:create, :show, :destroy, :update]
