@@ -122,7 +122,10 @@ input[type="range"]::-webkit-slider-thumb {
   height:45vh;
 }
 
-
+.about {
+  max-width: 100%;
+  height: auto;
+}
 
 .text-va{
   vertical-align: middle !important;
@@ -207,9 +210,7 @@ input[type="range"]::-webkit-slider-thumb {
   opacity: 100% !important;
 }
 
-/* .slick-dots{
-  position:static  !important;
-} */
+
 /* TAG STYLING */
 
 .plans ul li::marker  {

@@ -14,7 +14,7 @@ const UploadTableRowForm = ({setAlertColor, setSamples , samples, setShowAlert})
   const [bpm , setBpm] = useState(null)
   const [file , setFile] = useState()
   const fileRef = useRef()
-  const {setErrors, errors} = useContext(LoginContext)
+  const {setErrors} = useContext(LoginContext)
   useEffect(()=>{
     if (samples.length === 0) {
       setSelectedType(null)
@@ -95,7 +95,7 @@ const UploadTableRowForm = ({setAlertColor, setSamples , samples, setShowAlert})
       e.target.value = 200
     } else if(e.target.value <= 200 || e.target.value > 0) {
       setBpm(parseInt(e.target.value))
-    } else if(e.target.value === NaN) {
+    } else if( Number.isNaN(e.target.value)  === true) {
       e.target.value = null
       setBpm(null)
     } else if(e.target.value === 0 || e.target.value < 1) {
@@ -115,7 +115,6 @@ const UploadTableRowForm = ({setAlertColor, setSamples , samples, setShowAlert})
     e.preventDefault()
     setShowAlert(false)
     setErrors([])
-    console.log(!type)
     if(sampleName.length < 1 || sampleName === null || !file || !sample_key || sample_key?.length === 0 || !genre || genre?.value.length === 0 || !Number.isInteger(bpm) || !type || type.value?.length === 0){
       setAlertColor("danger")
       setShowAlert(true)
@@ -132,7 +131,6 @@ const UploadTableRowForm = ({setAlertColor, setSamples , samples, setShowAlert})
       bpm,
       file
     }
-    console.log({newSample})
     setSamples(()=>[newSample, ...samples ])
     setSampleName("")
     fileRef.current.value = null

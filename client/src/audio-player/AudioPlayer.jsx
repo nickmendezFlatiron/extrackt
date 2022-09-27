@@ -32,8 +32,6 @@ const AudioPlayer = ({ arrayIndex , setArrayIndex, searchResults}) => {
  
 
   useEffect(()=>{
-
-    // debugger
     let ws = WaveSurfer.create({ 
       normalize: true,
       barHeight: 1,
@@ -76,9 +74,7 @@ const AudioPlayer = ({ arrayIndex , setArrayIndex, searchResults}) => {
   }
 
   function handlePrevious(){
-    console.log(arrayIndex)
     if(arrayIndex > 0 ){
-
       setArrayIndex((arrayIndex)=> arrayIndex - 1 )
     } 
   }

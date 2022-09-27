@@ -17,11 +17,9 @@ const Samples = () => {
   }
   useEffect(()=>{
     if(user){
-      console.log("fetch")
       fetch(`/user/${user.id}/collections`)
         .then(r => {if(r.ok){
           r.json().then(r=> {
-            console.log(r)
             setUploads(r)
           })
         }

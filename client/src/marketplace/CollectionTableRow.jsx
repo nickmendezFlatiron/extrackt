@@ -1,11 +1,8 @@
-import {React, useContext} from 'react'
-import { LoginContext } from '../context/LoginContext'
+import React from 'react'
 
-import Button from 'react-bootstrap/Button'
 
 const CollectionTableRow = ({sample, setArrayIndex, samples, arrayIndex, showAlert}) => {
   const {id, name , bpm,  genre, sample_key, sample_type} = sample
-  const {setErrors} = useContext(LoginContext)
 
   const letters = ["a", "b", "c", "d", "e", "f", "g"]
   const half = ["sharp", "flat"]
@@ -23,7 +20,6 @@ const CollectionTableRow = ({sample, setArrayIndex, samples, arrayIndex, showAle
 
   function handleSelectedSample(e){
     e.stopPropagation()
-    console.log(samples)
     const index = samples.findIndex(s => s.name === name)
     setArrayIndex(index)
   }

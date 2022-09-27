@@ -14,7 +14,7 @@ import Image from 'react-bootstrap/Image'
 const Collection = () => {
   const {collection , setCollection} = useContext(CollectionContext)
   const [arrayIndex, setArrayIndex] = useState(0)
-  const {errors, setErrors, spinner, authenticated} = useContext(LoginContext)
+  const { setErrors, spinner, authenticated} = useContext(LoginContext)
   const params = useParams()
   let navigate = useNavigate()
 
@@ -36,12 +36,10 @@ const Collection = () => {
           setErrors(e.errors[0])
         })}
       })
-  },[])
+  },[params.id])
   
   
   const renderTable = collection? <CollectionTable arrayIndex={arrayIndex} samples={collection?.samples} setArrayIndex={setArrayIndex}/> : spinner;
-
-  const loadMore = <button className="text-start mb-3 me-auto link-btn">Load Next 20 Samples...</button>
   const date = Date(collection?.created_at).split(" ").splice(1,3).join(" ")
 
   if(authenticated === false) return navigate("/")
@@ -62,13 +60,9 @@ const Collection = () => {
             <h2 className="text-black">{collection?.user.username}</h2>
             <p className="text-black">Released: {collection && date}</p>
           </Col>
-          <Col className="">
-            <Col>
-            <h2>search bar</h2>
-            </Col>
+          <Col className="mt-5">
             <Col className="table-height mb-5 pb-3 overflow-auto">
             {renderTable}
-            {collection?.samples.length > 20 ? <button className="text-start mb-3 me-auto link-btn">Load Next 20 Samples...</button> : null}
             </Col>
           </Col>
         </Row>

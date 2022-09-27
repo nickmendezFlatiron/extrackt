@@ -26,7 +26,6 @@ const Marketplace = () => {
   }
 
   function handleFilterQuery(filter){
-    // setSearchResults([])
     toggleLoading(true)
     setCollection(null)
     setShowAlert(false)

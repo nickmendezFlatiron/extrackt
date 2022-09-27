@@ -14,7 +14,7 @@ import logo from '../assets/logo-stroke.png'
 
 
 const SignupForm = ({handleShow}) => {
-  const [validated, setValidated] = useState(false);
+  
   const [username , setUsername] = useState("")
   const [name , setName] = useState("")
   const [email, setEmail] = useState("")
@@ -81,6 +81,7 @@ const SignupForm = ({handleShow}) => {
   };
   
   if (authenticated) return navigate("/")
+  const isEqual = password !== passwordConfirmation ? "Does Not Match" : "" ;
   return (
     <Container >
       <Row className="signup-bg align-items-center p-4 rounded-4">
@@ -89,12 +90,12 @@ const SignupForm = ({handleShow}) => {
         </Col>
         <Col className="bg-light m-3 p-3 rounded-4">
         <h1 className=" text-secondary text-center">Sign Up </h1>
-          <Form noValidate="true" validate={validated} onSubmit={handleSubmit}>
+          <Form noValidate="true" onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicUsername">
               <Form.Label>
                 Username
                   <Form.Text className="ms-2 text-muted">
-                  Char Count Remaining
+                  <em>{40 - username.length} Characters Remaining</em>
                   </Form.Text>
                   <Form.Control.Feedback type="invalid">
                     Please choose a username.
@@ -103,7 +104,9 @@ const SignupForm = ({handleShow}) => {
               <Form.Control 
                 type="text" 
                 placeholder="Username..." 
-                value={username} onChange={handleUsername}
+                value={username} 
+                onChange={handleUsername}
+                maxLength={40}
                 required
               />
             </Form.Group>
@@ -139,7 +142,7 @@ const SignupForm = ({handleShow}) => {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPasswordConfirmation">
-              <Form.Label>Password Confirmation</Form.Label>
+              <Form.Label>Password Confirmation  <small><em className='text-danger'>{isEqual}</em></small></Form.Label>
               <Form.Control 
                 type="password" 
                 placeholder="Password must match" 

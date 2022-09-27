@@ -65,7 +65,7 @@ class SamplesController < ApplicationController
   end
 
   def set_active_storage_host
-    ActiveStorage::Current.host = request.base_url
+    ActiveStorage::Current.url_options = { protocol: request.protocol, host: request.host, port: request.port }
   end
 
 end

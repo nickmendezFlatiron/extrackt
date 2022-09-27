@@ -3,7 +3,7 @@ import {React} from 'react'
 import CollectionTableRow from "./CollectionTableRow"
 import Table from 'react-bootstrap/Table'
 import uuid from 'react-uuid'
-// import Button from 'react-bootstrap/Button'
+
 
 const CollectionTable = ({samples, setArrayIndex, showAlert}) => {
   
@@ -22,7 +22,7 @@ const CollectionTable = ({samples, setArrayIndex, showAlert}) => {
           <th scope="col">DL/Like</th>
         </tr>
       </thead>
-      <tbody className="">
+      <tbody >
         {renderSamples}
       </tbody>
     </Table>

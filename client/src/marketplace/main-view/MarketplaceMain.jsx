@@ -9,6 +9,7 @@ const MarketplaceMain = () => {
   const {errors, setErrors } = useContext(LoginContext)
   const [recentCollections , setRecentCollections] = useState(null)
   const [popularCollections , setPopularCollections] = useState(null)
+  
   // 2 API Calls , one for 10 newest collections , one for 10 most downloaded collections
   useEffect(()=>{
     Promise.all([

@@ -7,12 +7,12 @@ import Col from 'react-bootstrap/Col';
 import CloseButton from 'react-bootstrap/CloseButton';
 import Form from 'react-bootstrap/Form'
 
+
 const UploadCard = ({upload, handleUploads}) => {
-  const {errors, setErrors, user} = useContext(LoginContext)
+  const { setErrors, user} = useContext(LoginContext)
   const navigate = useNavigate()
   
   function handleClick(){
-    console.log("handleClick")
     navigate(`/user/${user.username}/samples/${upload.id}`)
   }
 
