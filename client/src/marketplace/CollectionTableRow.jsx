@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const CollectionTableRow = ({sample, setArrayIndex, samples, arrayIndex, showAlert}) => {
+const CollectionTableRow = ({sample, setArrayIndex, samples}) => {
   const {id, name , bpm,  genre, sample_key, sample_type} = sample
 
   const letters = ["a", "b", "c", "d", "e", "f", "g"]
@@ -32,7 +32,7 @@ const CollectionTableRow = ({sample, setArrayIndex, samples, arrayIndex, showAle
       <td>{bpm}</td>
       <td>{renderKeys}</td>
       <td>
-        <a href={`http://localhost:3000/samples/${id}`} download >DL</a>
+        <a href={`/samples/${id}`} download >DL</a>
       </td>
     </tr>
   )

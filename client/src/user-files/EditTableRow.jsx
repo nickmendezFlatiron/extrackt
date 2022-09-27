@@ -50,8 +50,7 @@ const EditTableRow = ({sample, toggleDeletePermission, deletePermission, handleS
     <td>{renderKeys}</td>
     <td>
       <CloseButton onClick={handleDelete}/>
-      {/* <Button id={id} type="button" onClick={handleDownload}>DL</Button> */}
-      {/* <Button variant="white" className=" ms-2 text-primary">✓</Button> */}
+  
     </td>
   </tr>
   )
