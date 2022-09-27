@@ -19,7 +19,7 @@ const CollectionTable = ({samples, setArrayIndex, showAlert}) => {
           <th scope="col">Type</th>
           <th scope="col">BPM</th>
           <th scope="col">Key</th>
-          <th scope="col">DL/Like</th>
+          <th scope="col">Download</th>
         </tr>
       </thead>
       <tbody >

@@ -92,8 +92,8 @@ const Account = ({user , spinner}) => {
           </Form>
           <div className="text-secondary pb-3">
             <h4>{user && user.credits} Credits</h4>
-            <h4>Total Downloads</h4>
-            <h4>Total Favorites</h4>
+            {/* <h4>Total Downloads</h4>
+            <h4>Total Favorites</h4> */}
           </div>
           <div className="d-flex align-content-center">
           </div>
