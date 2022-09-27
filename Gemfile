@@ -23,7 +23,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'active_model_serializers', "~> 0.10.13"
 gem 'rails_serve_static_assets'
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
-gem 'foreman'
+
 gem 'will_paginate', '~> 3.3', '>= 3.3.1'
 
 
@@ -32,9 +32,6 @@ gem 'activestorage', '~> 7.0', '>= 7.0.4'
 gem 'activestorage-validator', '~> 0.2.2'
 gem "aws-sdk-s3", require: false
 
-
-#Faker Gem
-gem 'faker'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
