@@ -60,7 +60,7 @@ const Collection = () => {
             </Col>
               <h2 className='text-black fw-bold '>{collection?.name}</h2>
             <h2 className="text-black">{collection?.user.username}</h2>
-            <p className="text-black">Released: {collection?.created_at}</p>
+            <p className="text-black">Released: {collection && date}</p>
           </Col>
           <Col className="">
             <Col>

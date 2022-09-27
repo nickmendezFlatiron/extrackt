@@ -38,8 +38,9 @@ class SamplesController < ApplicationController
       response.headers["Content-Type"] = sample.audio_file.content_type
       response.headers["Content-Disposition"] = "attachment; filename=#{sample.name}.wav"
       sample.audio_file.download {|c| response.stream.write(c)}
-
+      
       if current_user.downloads.find_by(sample_id: sample.id).nil?
+        sample.update({download_count: sample.download_count + 1})
         current_user.downloads.create!(sample_id: sample.id)  
       end
       return response.stream.close

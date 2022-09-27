@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_17_134744) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_26_210207) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,7 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_17_134744) do
     t.string "genre"
     t.string "sample_type"
     t.bigint "collection_id", null: false
-    t.integer "downloads", default: 0
+    t.integer "download_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "sample_key", array: true

@@ -5,8 +5,10 @@ import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
+import {useNavigate} from 'react-router-dom'
 
 const Plans = () => {
+  const navigate = useNavigate()
   return (
     <Container className="py-4 plans">
         <Row className="banner-bg py-4 mx-1 my-2 rounded-3 shadow">
@@ -24,13 +26,13 @@ const Plans = () => {
                 </Card.Title>
                 <ul className="my-3 text-start">
                   <li>10 Credits at Signup</li>
-                  <li>Access to the Community Forums</li>
-                  <li>7 Day access to Extrackt</li>
+                  <li>Access to the Marketplace</li>
+                  <li>7 Day trial period</li>
                 </ul>
                 <Card.Text className="fw-bold">
-                  For users who want to test drive the Extrackt platform before committing to a plan. 
+                  For producers who want to test drive the Extrackt platform before committing to a plan. 
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button  variant="primary" onClick={()=> navigate("/signup")}>Sign Up</Button>
               </Card.Body>
             </Card>
           </Col>
@@ -45,13 +47,13 @@ const Plans = () => {
                 </Card.Title>
                 <ul className="my-3 text-start">
                   <li>70 Credits at Signup</li>
-                  <li>Recharge credits balace at any time.</li>
+                  <li>Recharge credits balance at any time.</li>
                   <li>Lifetime access to Extrackt.</li>
                 </ul>
                 <Card.Text className="fw-bold">
-                  For users who want to expand their personal sample library with fresh and unique audio samples.
+                  For producers who want to expand their personal sample library with fresh and unique audio samples.
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button  variant="primary" onClick={()=> navigate("/signup")}>Sign Up</Button>
               </Card.Body>
             </Card>
           </Col>
@@ -68,12 +70,11 @@ const Plans = () => {
                   <li>Includes all perks of Producer Plan</li>
                   <li>20 Gb of Upload/Storage Space</li>
                   <li>50/50 Starting Profit Split</li>
-                  
                 </ul>
                 <Card.Text className="fw-bold">
-                  For users who are ready to upload sounds to the Sample Marketplace and get paid their talent.
+                  For producers who are ready to upload sounds to the Sample Marketplace and get paid their talent.
                 </Card.Text>
-                <Button className=""  variant="primary">Go somewhere</Button>
+                <Button  variant="primary" onClick={()=> navigate("/signup")}>Sign Up</Button>
               </Card.Body>
             </Card>
           </Col>
