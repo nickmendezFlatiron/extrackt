@@ -26,7 +26,7 @@ class CollectionsController < ApplicationController
   def index
     user = User.find_by!(id: params[:user_id])
     if current_user == user
-      render json: user.collections , status: :ok,  each_serializer: MarketplaceCollectionSerializer ,status: :created
+      render json: user.collections ,  each_serializer: MarketplaceCollectionSerializer ,status: :created
     end
   end 
 
