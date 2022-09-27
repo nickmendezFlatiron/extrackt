@@ -50,7 +50,7 @@ Rails.application.configure do
   config.active_record.verbose_query_logs = true
 
   # Store files locally.
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
