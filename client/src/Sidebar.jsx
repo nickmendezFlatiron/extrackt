@@ -25,7 +25,7 @@ const handleLogout = () => {
 }
   return (
       <>
-        <Navbar  expand="false" className="mx-3">
+        <Navbar  expand="false" className="px-3">
           <Container fluid >
             <div className='d-flex align-items-center'>
             <Navbar.Brand href="/"><h2 className="text-dark rounded-3 pt-2">Extrackt.</h2></Navbar.Brand>
@@ -47,19 +47,19 @@ const handleLogout = () => {
                 <h2 className="pt-2">Extrackt.</h2>
                 </Offcanvas.Title>
               </Offcanvas.Header>
-              <Offcanvas.Body className="d-inline-flex no-padding-margin">
+              <Offcanvas.Body className=" no-padding-margin ">
                 <Nav className="fs-4 roboto text-dark ">
-                  <Nav.Link href="/" className="px-2 sidebar">Home</Nav.Link>
+                  <Nav.Link href="/" className="px-2 col-auto sidebar">Home</Nav.Link>
                   <Nav.Link href="/marketplace" className="px-2 sidebar">The Crate</Nav.Link>
                   <Nav.Link href={`/user/${user.username}/downloads`} className="px-2 sidebar">My Downloads</Nav.Link>
                   <Nav.Link href={`/user/${user.username}/samples`} className="px-2 sidebar">My Uploads</Nav.Link>
                   <Nav.Link href="/upload" className="px-2 sidebar">Upload</Nav.Link>
                 </Nav>
               </Offcanvas.Body>
-                <Container className="no-padding-margin">
+                <Container className="no-padding-margin inline">
                 <Nav.Link onClick={handleLogout} className="px-2 sidebar fs-4">Logout</Nav.Link>
                   <hr/>
-                  <Nav.Link href={`/user/${user.username}`} className="px-2 sidebar"><h2 className='text-dark'>{user.username}</h2></Nav.Link>
+                  <Nav.Link href={`/user/${user.username}`} className="px-2 sidebar"><h3 className='text-dark '>{user.username}</h3></Nav.Link>
                   <h6 className='text-secondary px-2' >{user.credits} Credits</h6>
                 </Container>
             </Navbar.Offcanvas>

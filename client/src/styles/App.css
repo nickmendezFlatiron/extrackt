@@ -182,6 +182,9 @@ input[type="range"]::-webkit-slider-thumb {
   height: 30px;
 }
   
+.resize-text {
+  font-size: 2.5vw;
+}
 .sidebar:hover {
   background-color: #cf76ff;
   transition: all .1s linear;
