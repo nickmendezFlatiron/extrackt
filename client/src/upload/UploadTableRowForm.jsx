@@ -106,8 +106,13 @@ const UploadTableRowForm = ({setAlertColor, setSamples , samples, setShowAlert})
 
   function handleFile(e) {
     let name = e.target.files[0].name.split(" ").join("_")
+    if(name.length >= 36) {
+      setSampleName(name.substring(0 , 32))
+    } else if(name.length < 36) {
+      setSampleName(name.substring(0 , name.length - 4))
+    }
+
     setFile(e.target.files[0])
-    setSampleName(name.substring(0 , name.length - 4))
   
   }
   

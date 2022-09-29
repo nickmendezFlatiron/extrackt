@@ -19,8 +19,11 @@ class CollectionsController < ApplicationController
           audio_file: params[p][:audio_file]
           })
       end
-        render json: collection , status: :created
+      render json: collection , status: :created           
     end
+  rescue ActiveRecord::RecordInvalid
+    collection.destroy
+    render json: render_unprocessable_entity ,status: :unprocessable_entity
   end
 
   def index
