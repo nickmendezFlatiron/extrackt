@@ -55,7 +55,7 @@ const Downloads = () => {
             <th scope="col">Type</th>
             <th scope="col">BPM</th>
             <th scope="col">Key</th>
-            <th scope="col">Delete</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody className="">
